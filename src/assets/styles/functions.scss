@@ -1,0 +1,48 @@
+// This Functions Convert Pix value to Rem or Em
+// Example of using the function
+// with: pix-rem(20,em) -> em
+// height: pix-rem(10) -> rem by default
+
+@function pixRem($value, $suffix: rem) {
+  $calculate: calc($value/16);
+  @return #{$calculate}#{$suffix};
+}
+
+// Easy Media Queries for individual Module/Components
+/**
+  Example usage: 
+  body {
+    @include mediaQuery(1200px) {
+      background-color: red
+    }
+  }
+
+  This changes the body color to red at any screensize below 1200px
+*/
+
+//mobile devices
+// On screens between 720px and 294px
+@mixin sm() {
+  @media (max-width: 720px) and (min-width: 294px) {
+    @content;
+  }
+}
+
+//most tablets and phablet devices
+//on screens between 1280px and 601px
+//because of the macbook air, i adjusted this to 1279px-721px
+@mixin md() {
+  @media (max-width: 1279px) and (min-width: 721px) {
+    @content;
+  }
+}
+
+//extra large screens
+//on screens above 1780px
+@mixin xl() {
+  @media (min-width: 1781px) {
+    @content;
+  }
+}
+
+//note that large screens are between 1281px and 1780px

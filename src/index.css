@@ -1,0 +1,40 @@
+/* add Solway and Sora fonts */
+:root {
+  font-family: "Montserrat", sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  /* overflow: hidden; */
+}
+
+/* width and height of the scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* background of the scrollbar */
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track-color);
+}
+
+/* color of the scrollbar handle */
+::-webkit-scrollbar-thumb {
+  background: #0a4aaa;
+  border-radius: 9px;
+}
+
+/* color of the scrollbar handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #3965a7;
+}

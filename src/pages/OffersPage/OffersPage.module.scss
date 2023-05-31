@@ -1,0 +1,8 @@
+@use "../../assets/styles/" as *;
+
+.OffersPage {
+  display: flex;
+
+  @include sm() {
+  }
+}

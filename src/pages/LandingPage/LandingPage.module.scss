@@ -1,0 +1,8 @@
+@use "../../assets/styles/" as *;
+
+.LandingPage {
+  display: flex;
+
+  @include sm() {
+  }
+}

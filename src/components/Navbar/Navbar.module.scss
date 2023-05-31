@@ -1,0 +1,8 @@
+@use "../../assets/styles/" as *;
+
+.Navbar {
+  display: flex;
+
+  @include sm() {
+  }
+}

@@ -1,0 +1,8 @@
+@use "../../assets/styles/" as *;
+
+.LoginPage {
+  display: flex;
+
+  @include sm() {
+  }
+}

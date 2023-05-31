@@ -1,0 +1,8 @@
+@use "../../assets/styles/" as *;
+
+.PropertyListingsPage {
+  display: flex;
+
+  @include sm() {
+  }
+}
