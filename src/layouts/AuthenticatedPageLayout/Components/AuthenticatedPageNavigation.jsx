@@ -1,4 +1,4 @@
-import styles from "../styles/AuthenticatedPageNavigation.module.scss";
+import styles from "../styles/Navigation.module.scss";
 
 export default function AuthenticatedPageNavigation() {
   return (
