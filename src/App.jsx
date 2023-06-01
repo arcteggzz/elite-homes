@@ -42,7 +42,7 @@ const App = () => {
           {/* private routes */}
           <Route element={<AuthenticatedPageLayout />}>
             <Route
-              path="/user/property-listings"
+              path="/properties/property-listings"
               element={<PropertyListingsPage />}
             />
           </Route>
