@@ -1,20 +1,26 @@
 import styles from "./Navbar.module.scss";
 import elite_homes_black_icon from "./images/elite_homes_black_icon.png";
 // import elite_homes_white_icon from "./images/elite_homes_white_icon.png";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import sign_in_black_icon from "./images/sign_in_black.png";
 import sign_in_white_icon from "./images/sign_in_white.png";
 import placeholder_avatar from "./images/placeholder_avatar.png";
 import PropTypes from "prop-types";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import {
   selectCurrentUserName,
   selectCurrentUserImage,
 } from "../../redux/features/auth/authSlice";
+import { resetCredentials } from "../../redux/features/auth/authSlice";
+import { useLogoutMutation } from "../../redux/features/auth/authApiSlice";
 
 export default function Navbar({ isAuthenticated, isHomepageNavbar }) {
   const currentUser = useSelector(selectCurrentUserName);
   const currentUserImage = useSelector(selectCurrentUserImage);
+  const dispatch = useDispatch();
+  const [logout] = useLogoutMutation();
+  const navigate = useNavigate();
+
   const navElements = [
     { link: "/home", name: "Home" },
     { link: "/offers", name: "Offers" },
@@ -23,6 +29,18 @@ export default function Navbar({ isAuthenticated, isHomepageNavbar }) {
 
   const Navbar_styles = {
     background: isHomepageNavbar ? "" : "#ffffff",
+  };
+
+  const logoutHandler = async () => {
+    console.log("fired");
+    try {
+      const response = await logout().unwrap();
+      console.log(response);
+      dispatch(resetCredentials());
+      navigate("/home");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -77,6 +95,7 @@ export default function Navbar({ isAuthenticated, isHomepageNavbar }) {
                 src={currentUserImage ? currentUserImage : placeholder_avatar}
                 alt="user avatar image"
               />
+              <button onClick={logoutHandler}>Logout</button>
             </div>
           ) : isHomepageNavbar ? (
             <Link to={"/signup"} className={styles.homePage_signUp_btn}>

@@ -1,0 +1,8 @@
+@use "../../assets/styles/" as *;
+
+.MockLoginPage {
+  display: flex;
+
+  @include sm() {
+  }
+}
