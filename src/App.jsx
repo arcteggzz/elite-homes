@@ -10,6 +10,7 @@ import AuthenticatedPageLayout from "./layouts/AuthenticatedPageLayout";
 import SplashPage from "./pages/SplashPage";
 import LandingPage from "./pages/LandingPage";
 import LoginPage from "./pages/LoginPage";
+import MockLoginPage from "./pages/MockLoginPage";
 import SignUpPage from "./pages/SignUpPage";
 
 //lazyLoading for pages
@@ -30,6 +31,7 @@ const App = () => {
 
           {/* Authentication routes */}
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/mock-login" element={<MockLoginPage />} />
           <Route path="/signup" element={<SignUpPage />} />
 
           {/* public routes */}
