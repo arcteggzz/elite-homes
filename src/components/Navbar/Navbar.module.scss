@@ -2,7 +2,119 @@
 
 .Navbar {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: pixRem(128);
+  padding: 0 pixRem(100);
 
   @include sm() {
+  }
+
+  .center {
+    display: flex;
+    align-items: center;
+    gap: pixRem(28);
+
+    @include md() {
+      gap: pixRem(32);
+    }
+
+    .single_NavLink {
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 24px;
+      padding: 2px;
+      transition: all ease 0.2s;
+      text-decoration: none;
+      color: rgba(0, 0, 0, 0.6);
+      border-bottom: 1px solid transparent;
+    }
+
+    .single_NavLink:hover {
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 24px;
+      padding: 2px;
+      text-decoration: none;
+      color: $fontDark;
+      border-bottom: $fontDark solid 1px;
+    }
+
+    .single_NavLinkActive {
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 24px;
+      padding: 2px;
+      text-decoration: none;
+      color: $fontDark;
+      border-bottom: $fontDark solid 1px;
+    }
+  }
+
+  .right {
+    .homePage_signUp_btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: pixRem(6) pixRem(12);
+      column-gap: pixRem(8);
+      background: #ffffff;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+
+      p {
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 18px;
+        color: #000000;
+        text-decoration: none;
+        cursor: pointer;
+      }
+    }
+
+    .homePage_signUp_btn:hover {
+      background: #919191;
+    }
+
+    .otherPages_signUp_btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: pixRem(6) pixRem(12);
+      column-gap: pixRem(8);
+      background: #000000;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+
+      p {
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 18px;
+        color: #ffffff;
+        text-decoration: none;
+        cursor: pointer;
+      }
+    }
+
+    .otherPages_signUp_btn:hover {
+      background: #919191;
+    }
+
+    .userDetails {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      column-gap: pixRem(14);
+
+      p {
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 18px;
+        color: #000000;
+      }
+    }
   }
 }
