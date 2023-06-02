@@ -1,17 +1,27 @@
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./SplashPage.module.scss";
 import AnimatedFadeInPage from "../../utils/AnimatedFadeInPage";
-import { useSelector } from "react-redux";
 
 const SplashPage = () => {
-  const propertyName = useSelector((state) => state.propertySlice.propertyName);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      navigate("/home");
+    }, 3000);
+
+    return () => clearTimeout(timeoutId);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
       <AnimatedFadeInPage>
-        <main className={styles.SplashPage}>
-          <h2>SplashPage2</h2>
-          <p>{propertyName}</p>
-        </main>
+        <section className={styles.SplashPage}>
+          <h2>Elite Homes</h2>
+          <p>Real Estate Innovation by Zojatech</p>
+        </section>
       </AnimatedFadeInPage>
     </>
   );

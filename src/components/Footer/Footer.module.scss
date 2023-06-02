@@ -2,7 +2,77 @@
 
 .Footer {
   display: flex;
-
+  padding: pixRem(100) pixRem(100) 50px pixRem(100);
+  justify-content: space-between;
+  align-items: start;
+  color: #524f4f;
+  width: 100%;
   @include sm() {
   }
+}
+h3{
+  color: #333333;
+}
+.socialIcons{
+  display: flex;
+  justify-content: space-between;
+  width: 152px;
+}
+.EliteHomes{
+  width: 248px;
+  height: 117px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: left;
+ font-size: 35px;
+ color: #333333;
+ font-weight: 800
+}
+.phone{
+  display: flex;
+  align-items: center;
+  width: 180px;
+  justify-content: space-between;
+}
+.mail{
+  display: flex;
+  align-items: center;
+  width: 224px;
+  justify-content: space-between;
+}
+.contact{
+  width: 296px;
+  height: 202px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  
+}
+.address{
+  width:256px
+}
+.Account{
+  width: 130px;
+  height: 226px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  
+}
+.Company{
+  width: 182px;
+  height: 130px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  
+}
+.Resources{
+  width: 160px;
+  height: 178px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  
 }

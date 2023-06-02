@@ -1,0 +1,67 @@
+@use "../../../assets/styles/" as *;
+
+.PropertyImages {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  row-gap: pixRem(48);
+  padding: 0 pixRem(100);
+  @include sm() {
+  }
+
+  .Image_Carousel_Parent_Container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    .Image_Carousel_Container {
+      width: 50%;
+      // border: 2px solid yellow;
+      // aspect-ratio: 3/2;
+    }
+  }
+
+  .Image_Slider_Container {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+
+    .slider_container {
+      width: 200%;
+
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+
+      animation-name: slide;
+      animation-duration: 30s;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+
+      .image_container {
+        border-radius: 10px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+
+        img {
+          width: 95%;
+          aspect-ratio: 3/2;
+          border-radius: 10px;
+          object-fit: cover;
+        }
+      }
+    }
+  }
+}
+
+@keyframes slide {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}

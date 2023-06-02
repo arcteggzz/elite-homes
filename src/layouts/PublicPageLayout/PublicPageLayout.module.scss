@@ -22,12 +22,12 @@
       z-index: 9999;
       display: flex;
       justify-content: center;
-      border: 1px yellow solid;
+      // border: 1px yellow solid;
 
       .Navbar_Child_Container {
         width: 100%;
         max-width: 1740px;
-        border: 1px blue solid;
+        // border: 1px blue solid;
       }
     }
 
@@ -38,7 +38,7 @@
       display: flex;
       justify-content: center;
       overflow: hidden;
-      border: 1px red solid;
+      // border: 1px red solid;
 
       @include md() {
         margin-top: pixRem(88);
