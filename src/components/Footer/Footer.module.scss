@@ -2,22 +2,32 @@
 
 .Footer {
   display: flex;
-  padding-top: 100px;
-  padding-bottom: 50px;
+  padding: pixRem(100) pixRem(100) 50px pixRem(100);
   justify-content: space-between;
   align-items: start;
   color: #524f4f;
-
+  width: 100%;
   @include sm() {
   }
 }
-h3, h1{
+h3{
   color: #333333;
 }
 .socialIcons{
   display: flex;
   justify-content: space-between;
   width: 152px;
+}
+.EliteHomes{
+  width: 248px;
+  height: 117px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: left;
+ font-size: 35px;
+ color: #333333;
+ font-weight: 800
 }
 .phone{
   display: flex;
@@ -41,14 +51,6 @@ h3, h1{
 }
 .address{
   width:256px
-}
-.EliteHomes{
-  width: 248px;
-  height: 117px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  
 }
 .Account{
   width: 130px;

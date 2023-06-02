@@ -5,7 +5,7 @@ export default function Footer() {
     <>
       <footer className={styles.Footer}>
         <div className={styles.EliteHomes}>
-          <h1>Elite Homes</h1>
+          <p>Elite Homes</p>
           <div className={styles.socialIcons}>
             {/*////////////////////// INSTAGRAM ICON //////////////////////////// */}
             <a>
