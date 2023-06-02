@@ -1,0 +1,48 @@
+@use "../../../assets/styles/" as *;
+
+.PropertyHeader {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  row-gap: pixRem(10);
+  padding: pixRem(28) pixRem(100);
+
+  @include sm() {
+  }
+
+  .Property_Name_Price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+
+    h2 {
+      font-weight: 600;
+      font-size: 50px;
+      line-height: 60px;
+      color: $fontDark;
+    }
+  }
+
+  .Property_Tags {
+    display: flex;
+    column-gap: pixRem(40);
+    align-items: center;
+
+    .Tag_Name {
+      background: rgba(0, 0, 0, 0.05);
+      border-radius: 10px;
+      padding: 8px 14px;
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 24px;
+    }
+
+    p {
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 24px;
+      color: $fontDark;
+    }
+  }
+}
