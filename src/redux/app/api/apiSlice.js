@@ -5,7 +5,7 @@ import {
 } from "../../features/auth/authSlice";
 
 const BASE_URL = "http://localhost:3500";
-const REFRESH_ENDPOINT_URL = "/refresh";
+const REFRESH_ENDPOINT_URL = "/auth/refresh";
 
 const baseQuery = fetchBaseQuery({
   baseUrl: BASE_URL,
@@ -22,10 +22,12 @@ const baseQuery = fetchBaseQuery({
 
 //this wrapper function enables us to send our request again if we have a refresh token that is still valid.
 const baseQueryWithReauth = async (args, api, extraOptions) => {
+  console.log("fired baseQueryWithReauth");
   let result = await baseQuery(args, api, extraOptions);
+  console.log(result);
 
   //here we are looking for a 403 error because the backedn api sends a 403 error if the access token has expired.
-  if (result?.error?.originalStatus === 403) {
+  if (result?.error?.status === 403) {
     console.log("sending refresh token");
     // send refresh token to get new access token
     //here we are sending it to the /refresh endpoint of the backend

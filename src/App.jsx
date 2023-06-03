@@ -12,6 +12,7 @@ import LandingPage from "./pages/LandingPage";
 import LoginPage from "./pages/LoginPage";
 import MockLoginPage from "./pages/MockLoginPage";
 import SignUpPage from "./pages/SignUpPage";
+import MockProtectedPage from "./pages/MockProtectedPage";
 
 //lazyLoading for pages
 const OffersPage = lazy(() => import("./pages/OffersPage/"));
@@ -47,6 +48,7 @@ const App = () => {
               path="/properties/property-listings"
               element={<PropertyListingsPage />}
             />
+            <Route path="/MockProtectedPage" element={<MockProtectedPage />} />
           </Route>
         </Routes>
       </AnimatePresence>

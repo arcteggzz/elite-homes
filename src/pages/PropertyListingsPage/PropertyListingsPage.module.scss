@@ -1,7 +1,7 @@
 @use "../../assets/styles/" as *;
 
 .PropertyListingsPage {
-  display: flex;
+  display: block;
 
   @include sm() {
   }

@@ -14,8 +14,13 @@
 1. \_username (Type: string) //underscore-userName
 2. accessToken (Type: string)
 3. Link to user image (Type: string)
+4. Secure jwt token a cookie. The referesh token is stored inside the cookie.
 
 # REFRESH TOKEN ENDPOINT
+
+## suggested URL "/auth/referesh"
+
+## suggested METHOD:- "GET"
 
 ## Accepts:- NULL
 
