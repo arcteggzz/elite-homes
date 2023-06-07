@@ -5,6 +5,7 @@ import { AnimatePresence } from "framer-motion";
 //Layout
 import PublicPageLayout from "./layouts/PublicPageLayout";
 import AuthenticatedPageLayout from "./layouts/AuthenticatedPageLayout";
+import CredentialsPageLayout from "./layouts/CredentialsPageLayout";
 
 //Pages
 import SplashPage from "./pages/SplashPage";
@@ -30,9 +31,11 @@ const App = () => {
           <Route path="/" element={<SplashPage />} />
 
           {/* Authentication routes */}
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/mock-login" element={<MockLoginPage />} />
-          <Route path="/signup" element={<SignUpPage />} />
+          <Route element={<CredentialsPageLayout />}>
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/mock-login" element={<MockLoginPage />} />
+            <Route path="/signup" element={<SignUpPage />} />
+          </Route>
 
           {/* public routes */}
           <Route element={<PublicPageLayout />}>

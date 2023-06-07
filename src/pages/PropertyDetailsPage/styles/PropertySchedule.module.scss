@@ -1,0 +1,176 @@
+@use "../../../assets/styles/" as *;
+
+.PropertySchedule {
+  display: flex;
+  flex-direction: column;
+  row-gap: 40px;
+  padding: 40px 0 0 0;
+  width: 100%;
+
+  @include sm() {
+  }
+
+  .owner_details {
+    display: flex;
+    flex-direction: column;
+    background: rgba(46, 112, 203, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.07);
+    border-radius: 10px;
+    padding: 40px 14px;
+    width: 100%;
+    row-gap: 28px;
+
+    .card_top {
+      display: flex;
+      column-gap: 14px;
+      width: 100%;
+
+      .owner_name_tag {
+        display: flex;
+        flex-direction: column;
+        row-gap: 3px;
+
+        p {
+          font-weight: 500;
+          font-size: 15px;
+          line-height: 18px;
+          text-transform: capitalize;
+          color: #000000;
+          opacity: 0.4;
+        }
+
+        h6 {
+          font-weight: 600;
+          font-size: 25px;
+          line-height: 30px;
+          text-transform: capitalize;
+          color: #000000;
+        }
+      }
+    }
+
+    .other_details {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+
+      .contact_detail {
+        padding: 14px;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        border-top: 2px solid rgba(0, 0, 0, 0.05);
+
+        p {
+          font-weight: 500;
+          font-size: 15px;
+          line-height: 18px;
+          text-transform: capitalize;
+          color: #000000;
+          opacity: 0.6;
+        }
+
+        h5 {
+          font-weight: 500;
+          font-size: 15px;
+          line-height: 18px;
+          text-align: right;
+          text-transform: capitalize;
+          color: #000000;
+        }
+      }
+    }
+
+    button {
+      align-self: center;
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 24px;
+      text-transform: capitalize;
+      color: #ffffff;
+      width: 92%;
+      padding: 28px 0;
+      text-align: center;
+      background: #2e70cb;
+      border: none;
+      cursor: pointer;
+      transition: all ease 0.5s;
+    }
+
+    button:hover {
+      opacity: 0.75;
+    }
+  }
+
+  .schedule_tour_form {
+    display: flex;
+    flex-direction: column;
+    background: rgba(46, 112, 203, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.07);
+    border-radius: 10px;
+    padding: 40px 24px;
+    width: 100%;
+    row-gap: 24px;
+
+    h4 {
+      font-weight: 500;
+      font-size: 35px;
+      line-height: 43px;
+      color: #000000;
+    }
+
+    p {
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 22px;
+      color: rgba(0, 0, 0, 0.6);
+    }
+
+    .input_details {
+      padding: 20px 18px;
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 24px;
+      text-transform: capitalize;
+      color: #000000;
+      opacity: 0.4;
+      background: #ffffff;
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      border-radius: 5px;
+    }
+
+    .message_input {
+      padding: 20px 18px;
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 24px;
+      text-transform: capitalize;
+      color: #000000;
+      opacity: 0.4;
+      background: #ffffff;
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      border-radius: 5px;
+      height: 180px;
+    }
+
+    button {
+      align-self: center;
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 24px;
+      text-transform: capitalize;
+      color: #ffffff;
+      width: 92%;
+      padding: 28px 0;
+      text-align: center;
+      background: #2e70cb;
+      border: none;
+      cursor: pointer;
+      transition: all ease 0.5s;
+    }
+
+    button:hover {
+      opacity: 0.75;
+    }
+  }
+}

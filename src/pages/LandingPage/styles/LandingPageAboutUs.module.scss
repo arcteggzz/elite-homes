@@ -1,0 +1,42 @@
+@use "../../../assets/styles/" as *;
+
+.flex {
+  display: flex;
+  margin-top: 3.5rem;
+}
+
+.backgroundColor {
+  background-color: #ecf4ff;
+  height: 557px;
+  width: 100%;
+  padding: 55px 80px;
+  box-sizing: border-box;
+  h1{
+    font-weight: 600;
+    font-size: 48px;
+  }
+  .lgText{
+    font-size: pixRem(17);
+    margin-top: 1rem;
+    color: rgba($color: #000000, $alpha: 0.4);
+  }
+}
+
+.container {
+    width: 80vh;
+  div {
+    display: flex;
+    align-items: baseline;
+    .rounded {
+      background-color: #2e70cb;
+      padding: 14px 12px;
+      border-radius: 100%;
+      margin-top: 1.5rem;
+    }
+    .text {
+      margin-left: 20px;
+      color: rgba($color: #000000, $alpha: 0.4);
+      font-size: 24px;
+    }
+  }
+}
