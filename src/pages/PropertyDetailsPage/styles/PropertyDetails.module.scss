@@ -1,0 +1,173 @@
+@use "../../../assets/styles/" as *;
+
+.PropertyDetails {
+  display: flex;
+  flex-direction: column;
+  row-gap: 36px;
+
+  @include sm() {
+  }
+
+  .Description_container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 24px;
+    padding: 0 0 24px 0;
+
+    h2 {
+      font-weight: 500;
+      font-size: 40px;
+      line-height: 42px;
+      color: #000000;
+      text-align: left;
+    }
+
+    p {
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 24px;
+      color: #000000;
+      opacity: 0.5;
+      text-align: left;
+    }
+  }
+
+  .Property_Details_container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 24px;
+    padding: 24px 0;
+    border-top: 2px solid rgba(0, 0, 0, 0.05);
+    border-bottom: 2px solid rgba(0, 0, 0, 0.05);
+
+    h2 {
+      font-weight: 500;
+      font-size: 40px;
+      line-height: 42px;
+      color: #000000;
+      text-align: left;
+    }
+
+    p {
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 24px;
+      color: #000000;
+      opacity: 0.5;
+      text-align: left;
+    }
+
+    .breakdown_container {
+      display: flex;
+      flex-direction: column;
+      width: 60%;
+      max-width: 372px;
+
+      .size_container {
+        display: grid;
+        grid-template-columns: 12% 60% 28%;
+        align-items: center;
+        padding: 0 0 16px 0;
+        width: 100%;
+
+        h5 {
+          font-weight: 500;
+          font-size: 20px;
+          line-height: 24px;
+          color: #000000;
+          opacity: 0.6;
+          text-align: left;
+        }
+
+        h6 {
+          font-weight: 500;
+          font-size: 20px;
+          line-height: 24px;
+          color: #000000;
+          text-align: end;
+        }
+      }
+
+      .bedroom_container {
+        display: grid;
+        grid-template-columns: 12% 60% 28%;
+        align-items: center;
+        padding: 28px 0;
+        width: 100%;
+        border-bottom: 2px solid rgba(0, 0, 0, 0.05);
+        border-top: 2px solid rgba(0, 0, 0, 0.05);
+
+        h5 {
+          font-weight: 500;
+          font-size: 20px;
+          line-height: 24px;
+          color: #000000;
+          opacity: 0.6;
+          text-align: left;
+        }
+
+        h6 {
+          font-weight: 500;
+          font-size: 20px;
+          line-height: 24px;
+          color: #000000;
+          text-align: end;
+        }
+      }
+
+      .bathroom_container {
+        display: grid;
+        grid-template-columns: 12% 60% 28%;
+        align-items: center;
+        width: 100%;
+        padding: 16px 0 0 0;
+
+        h5 {
+          font-weight: 500;
+          font-size: 20px;
+          line-height: 24px;
+          color: #000000;
+          opacity: 0.6;
+          text-align: left;
+        }
+
+        h6 {
+          font-weight: 500;
+          font-size: 20px;
+          line-height: 24px;
+          color: #000000;
+          text-align: end;
+        }
+      }
+    }
+  }
+
+  .Floor_plan_container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 24px;
+    padding: 0 0 24px 0;
+
+    h2 {
+      font-weight: 500;
+      font-size: 40px;
+      line-height: 42px;
+      color: #000000;
+      text-align: left;
+    }
+
+    p {
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 24px;
+      color: #000000;
+      opacity: 0.5;
+      text-align: left;
+    }
+
+    img {
+      width: 70%;
+      height: auto;
+    }
+  }
+}
