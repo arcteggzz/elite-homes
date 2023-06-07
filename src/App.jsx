@@ -20,6 +20,8 @@ const PropertyListingsPage = lazy(() =>
   import("./pages/PropertyListingsPage/")
 );
 const PropertyDetailsPage = lazy(() => import("./pages/PropertyDetailsPage/"));
+const AddPropertyPage = lazy(() => import("./pages/AddPropertyPage/"));
+const YourPropertyPage = lazy(() => import("./pages/YourPropertyPage/"));
 
 const App = () => {
   const location = useLocation();
@@ -49,6 +51,14 @@ const App = () => {
             <Route
               path="/properties/property-listings"
               element={<PropertyListingsPage />}
+            />
+            <Route
+              path="/properties/add-property"
+              element={<AddPropertyPage />}
+            />
+            <Route
+              path="/properties/your-property"
+              element={<YourPropertyPage />}
             />
           </Route>
         </Routes>

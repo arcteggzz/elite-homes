@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  userName: null,
-  accessToken: null,
+  userName: "Oghenetega Esedere",
+  accessToken: "myAcecessToeknSucks",
   userImage: null,
   // userName: "Oghenetega Esedere",
   // accessToken: "TThhbfnkdofb",
