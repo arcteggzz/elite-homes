@@ -1,0 +1,117 @@
+@use "../../../assets/styles/" as *;
+
+.PropertySummary {
+  display: flex;
+  flex-direction: column;
+  width: 388px;
+  position: relative;
+  cursor: pointer !important;
+  transition: all ease 0.2s;
+  text-decoration: none;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    cursor: pointer !important;
+  }
+
+  .property_image {
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+  }
+
+  .property_name_tag {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    row-gap: 12px;
+    padding: 12px 0;
+
+    .location_tag {
+      display: flex;
+      width: 100%;
+      column-gap: 10px;
+      align-items: center;
+
+      h5 {
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 21px;
+        color: #000000;
+      }
+    }
+
+    h2 {
+      font-weight: 500;
+      font-size: 30px;
+      line-height: 37px;
+      color: #000000;
+      text-align: left;
+    }
+
+    p {
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 24px;
+      color: #000000;
+      opacity: 0.4;
+    }
+  }
+
+  .property_details_tag {
+    padding: 18px 0;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    border-top: 1px solid #0000004a;
+
+    h4 {
+      font-weight: 500;
+      font-size: 24px;
+      line-height: 26px;
+      color: #000000;
+    }
+
+    .details_container {
+      display: flex;
+      column-gap: 12px;
+
+      .item_detail_container {
+        display: flex;
+        column-gap: 2px;
+        align-items: center;
+
+        p {
+          font-weight: 500;
+          font-size: 16px;
+          line-height: 18px;
+          color: #000000;
+        }
+      }
+    }
+  }
+
+  .property_category {
+    position: absolute;
+    top: 36px;
+    left: 0;
+    padding: 6px 6px 6px 18px;
+
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 18px;
+    color: rgba(0, 0, 0, 0.8);
+    background: #d9d9d9;
+    border-radius: 0px 5px 5px 0px;
+    z-index: 10;
+  }
+}
+
+.PropertySummary:hover {
+  transform: scale(1.01);
+}
