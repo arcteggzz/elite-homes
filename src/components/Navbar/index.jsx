@@ -2,7 +2,7 @@ import styles from "./Navbar.module.scss";
 import elite_homes_black_icon from "./images/elite_homes_black_icon.png";
 // import elite_homes_white_icon from "./images/elite_homes_white_icon.png";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import sign_in_black_icon from "./images/sign_in_black.png";
+// import sign_in_black_icon from "./images/sign_in_black.png";
 import sign_in_white_icon from "./images/sign_in_white.png";
 import placeholder_avatar from "./images/placeholder_avatar.png";
 import PropTypes from "prop-types";
@@ -28,7 +28,7 @@ export default function Navbar({ isAuthenticated, isHomepageNavbar }) {
   ];
 
   const Navbar_styles = {
-    background: isHomepageNavbar ? "" : "#ffffff",
+    background: isHomepageNavbar ? "#ffffff" : "#ffffff",
   };
 
   const logoutHandler = async () => {
@@ -98,8 +98,8 @@ export default function Navbar({ isAuthenticated, isHomepageNavbar }) {
               <button onClick={logoutHandler}>Logout</button>
             </div>
           ) : isHomepageNavbar ? (
-            <Link to={"/signup"} className={styles.homePage_signUp_btn}>
-              <img src={sign_in_black_icon} alt="sign in icon" />
+            <Link to={"/signup"} className={styles.otherPages_signUp_btn}>
+              <img src={sign_in_white_icon} alt="sign in icon" />
               <p>Sign up</p>
             </Link>
           ) : (

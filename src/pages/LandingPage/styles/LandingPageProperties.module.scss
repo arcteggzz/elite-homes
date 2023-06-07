@@ -1,10 +1,8 @@
 @use "../../../assets/styles/" as *;
 
-.container {
+.LandingPageProperties {
   width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  box-sizing: border-box;
+  padding: 0 pixRem(100);
 }
 
 .title {
@@ -18,146 +16,36 @@
   }
 }
 
-.card {
+.Property_List {
   display: grid;
-  grid-template-columns: auto auto auto;
-  column-gap: 1.8rem;
-  row-gap: 2.5rem;
-  box-sizing: border-box;
-  div {
-    .image {
-      position: relative;
-      img {
-        width: 21rem;
-        height: 238px;
-        border-radius: 20px;
-      }
-      p {
-        position: absolute;
-        top: 2rem;
-        left: 0;
-        padding: 6px 6px 6px 18px;
-        background-color: #d9d9d9;
-        text-transform: capitalize;
-      }
-    }
-  }
+  grid-template-columns: 1fr 1fr 1fr;
+  width: 100%;
+  padding: pixRem(100) 0 pixRem(40) 0;
+  row-gap: 100px;
+  justify-items: center;
 }
 
-.location {
+.btn_container {
+  width: 100%;
   display: flex;
-  align-items: center;
+  justify-content: center;
 
-  img {
-    width: 1rem;
-  }
-  p {
-    padding-top: 4px;
-    margin-left: 0.4rem;
-    text-transform: capitalize;
-  }
-}
-
-.avenue {
-  font-weight: 600;
-  font-size: 30px;
-  margin: 0.5rem 0;
-  text-transform: capitalize;
-}
-
-.desc{
-  color: rgba($color: #000000, $alpha: 0.5);
-}
-
-.border {
-  color: black;
-  margin: 0.4rem 0;
-}
-
-.detail {
-  display: flex;
-  justify-content: space-between;
-  .price {
-    font-weight: 500;
-    font-size: 25px;
-  }
-  div {
-    display: flex;
-    align-items: center;
-    div {
-      margin-left: 8px;
-      img {
-        width: 1.3rem;
-        height: 1.3rem;
-      }
-      p {
-        font-size: 12px;
-        padding-top: 10px;
-        margin-left: 2px;
-      }
-      span {
-        font-size: 8px;
-      }
-    }
-  }
-}
-
-.btn {
-  width: 357px;
-  margin: 2.5rem auto;
-  button {
-    padding: 32px 68px;
-    color: white;
-    cursor: pointer;
-    background-color: $primary;
-    font-size: 18px;
-    outline: none;
+  .view_more_btn {
     border: none;
+    background: #2e70cb;
+    opacity: 0.7;
+    padding: 32px 64px;
+    cursor: pointer;
+
     font-weight: 500;
-    width: 357px;
-    height: 87px;
+    font-size: 18px;
+    line-height: 20px;
+    color: #ffffff;
+    transition: all ease 0.2s;
+    font-family: "Montserrat";
+  }
+
+  .view_more_btn:hover {
+    opacity: 1;
   }
 }
-
-@include sm() {
-  .display {
-    display: grid;
-    grid-template-columns: auto;
-    display: inline-grid;
-    gap: 1.8rem;
-    box-sizing: border-box;
-    div {
-      div {
-        img {
-          width: 21rem;
-        }
-      }
-    }
-  }
-}
-
-// @include md(){
-//     .display {
-//   display: grid;
-//   grid-template-columns: auto auto ;
-//   display: inline-grid;
-//   gap: 1.8rem;
-//   box-sizing: border-box;
-//   div {
-//     .image {
-//       position: relative;
-//       img {
-//         width: 21rem;
-//       }
-//       p {
-//         position: absolute;
-//         top: 2rem;
-//         left: 0;
-//         padding: 6px 6px 6px 18px;
-//         background-color: #d9d9d9;
-//         text-transform: capitalize;
-//       }
-//     }
-//   }
-// }
-// }
