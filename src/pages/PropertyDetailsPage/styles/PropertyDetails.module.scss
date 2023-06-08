@@ -20,6 +20,10 @@
       line-height: 42px;
       color: #000000;
       text-align: left;
+      @include sm() {
+        font-size: 12px;
+        line-height: 16px;
+      }
     }
 
     p {
@@ -29,6 +33,10 @@
       color: #000000;
       opacity: 0.5;
       text-align: left;
+      @include sm() {
+        font-size: 12px;
+        line-height: 16px;
+      }
     }
   }
 
@@ -46,6 +54,10 @@
       line-height: 42px;
       color: #000000;
       text-align: left;
+      @include sm() {
+        font-size: 12px;
+        line-height: 16px;
+      }
     }
 
     p {
@@ -55,6 +67,10 @@
       color: #000000;
       opacity: 0.5;
       text-align: left;
+      @include sm() {
+        font-size: 12px;
+        line-height: 16px;
+      }
     }
 
     .breakdown_container {
@@ -77,6 +93,10 @@
           color: #000000;
           opacity: 0.6;
           text-align: left;
+          @include sm() {
+            font-size: 12px;
+            line-height: 16px;
+          }
         }
 
         h6 {
@@ -85,6 +105,10 @@
           line-height: 24px;
           color: #000000;
           text-align: end;
+          @include sm() {
+            font-size: 12px;
+            line-height: 16px;
+          }
         }
       }
 
@@ -104,6 +128,10 @@
           color: #000000;
           opacity: 0.6;
           text-align: left;
+          @include sm() {
+            font-size: 12px;
+            line-height: 16px;
+          }
         }
 
         h6 {
@@ -112,6 +140,10 @@
           line-height: 24px;
           color: #000000;
           text-align: end;
+          @include sm() {
+            font-size: 12px;
+            line-height: 16px;
+          }
         }
       }
 
@@ -129,6 +161,10 @@
           color: #000000;
           opacity: 0.6;
           text-align: left;
+          @include sm() {
+            font-size: 12px;
+            line-height: 16px;
+          }
         }
 
         h6 {
@@ -137,6 +173,10 @@
           line-height: 24px;
           color: #000000;
           text-align: end;
+          @include sm() {
+            font-size: 12px;
+            line-height: 16px;
+          }
         }
       }
     }
@@ -154,6 +194,10 @@
       line-height: 42px;
       color: #000000;
       text-align: left;
+      @include sm() {
+        font-size: 12px;
+        line-height: 16px;
+      }
     }
 
     p {
@@ -163,6 +207,10 @@
       color: #000000;
       opacity: 0.5;
       text-align: left;
+      @include sm() {
+        font-size: 12px;
+        line-height: 16px;
+      }
     }
 
     img {

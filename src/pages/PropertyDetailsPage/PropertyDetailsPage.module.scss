@@ -14,5 +14,11 @@
     padding: pixRem(48) pixRem(100);
     gap: 5%;
     width: 100%;
+
+    @include sm() {
+      display: flex;
+      flex-direction: column;
+      padding: 40px 18px;
+    }
   }
 }
