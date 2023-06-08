@@ -4,7 +4,12 @@ export default function AuthenticatedPageHeader() {
   return (
     <>
       <section className={styles.AuthenticatedPageHeader}>
-        AuthenticatedPageHeader
+        <h1>
+          <span>
+            See Your <span>Real Estate</span>
+          </span>
+          <span>Properties</span>
+        </h1>
       </section>
     </>
   );

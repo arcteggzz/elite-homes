@@ -2,7 +2,35 @@
 
 .AuthenticatedPageHeader {
   display: flex;
+  background-image: url("../images/Authenticatedpage_header_bg.png");
+  background-size: cover;
+  background-position: center;
 
+  padding: pixRem(72) pixRem(120);
+
+  width: 100%;
   @include sm() {
+    padding: pixRem(28) pixRem(24);
+  }
+
+  h1 {
+    display: flex;
+    flex-direction: column;
+
+    span {
+      font-weight: 400;
+      font-size: 60px;
+      line-height: 72px;
+      color: #ffffff;
+
+      @include sm() {
+        font-size: 248px;
+        line-height: 28px;
+      }
+
+      span {
+        font-weight: 600;
+      }
+    }
   }
 }
