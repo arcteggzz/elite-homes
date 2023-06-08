@@ -24,12 +24,15 @@
       color: #ffffff;
 
       @include sm() {
-        font-size: 248px;
+        font-size: 24px;
         line-height: 28px;
       }
 
       span {
         font-weight: 600;
+        @include sm() {
+          font-weight: 600;
+        }
       }
     }
   }
