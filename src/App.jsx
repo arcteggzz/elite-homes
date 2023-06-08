@@ -11,8 +11,8 @@ import CredentialsPageLayout from "./layouts/CredentialsPageLayout";
 import SplashPage from "./pages/SplashPage";
 import LandingPage from "./pages/LandingPage";
 import LoginPage from "./pages/LoginPage";
-import MockLoginPage from "./pages/MockLoginPage";
 import SignUpPage from "./pages/SignUpPage";
+import FakeUsersPage from "./pages/FakeUsersPage";
 
 //lazyLoading for pages
 const OffersPage = lazy(() => import("./pages/OffersPage/"));
@@ -35,7 +35,6 @@ const App = () => {
           {/* Authentication routes */}
           <Route element={<CredentialsPageLayout />}>
             <Route path="/login" element={<LoginPage />} />
-            <Route path="/mock-login" element={<MockLoginPage />} />
             <Route path="/signup" element={<SignUpPage />} />
           </Route>
 
@@ -44,6 +43,8 @@ const App = () => {
             <Route path="/home" element={<LandingPage />} />
             <Route path="/offers" element={<OffersPage />} />
             <Route path="/properties/:id" element={<PropertyDetailsPage />} />
+
+            <Route path="/fakeUsers" element={<FakeUsersPage />} />
           </Route>
 
           {/* private routes */}

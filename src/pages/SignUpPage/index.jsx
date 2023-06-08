@@ -2,12 +2,25 @@ import styles from "./SignUpPage.module.scss";
 import AnimatedFadeInPage from "../../utils/AnimatedFadeInPage";
 import signUpImage from "./SignUpAssets/signUpImage.png";
 import add_image from "./SignUpAssets/add_image.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { useRegisterUserMutation } from "../../redux/features/users/usersApiSlice";
+import { ToastContainer, toast } from "react-toastify";
 
 const SignUpPage = () => {
+  const navigate = useNavigate();
   //general page variables
   const [pageOne, setPageOne] = useState(true);
+  const [registerDetails, setRegisterDetails] = useState({
+    fullName: "",
+    userName: "",
+    email: "",
+    phoneNumber: "",
+    password: "",
+    userCloudinaryURL: "",
+    userCategoryChoice: "",
+  });
+  const [registerUser] = useRegisterUserMutation();
 
   //pageOne Variables
   const [formValidationError, setFormValidationError] = useState("");
@@ -17,15 +30,15 @@ const SignUpPage = () => {
   const [phoneNumber, setPhoneNumber] = useState("+234");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  // const inputFocusRef = useRef()
 
   //pageTwo Variables
   const [profileImage, setProfileImage] = useState("");
   const [imagePreview, setImagePreview] = useState(null);
   const upload_preset = import.meta.env.VITE_UPLOAD_PRESET;
   const cloud_name = import.meta.env.VITE_CLOUD_NAME;
-  const [setUserCloudinaryURL] = useState("");
+  const [userCloudinaryURL, setUserCloudinaryURL] = useState("");
   const [userCategoryChoice, setUserCategoryChoice] = useState("Seller");
+  const [signUpError, setSignUpError] = useState("");
 
   const validateUserName = (_userName) => {
     const regex = /^\w+$/;
@@ -50,7 +63,7 @@ const SignUpPage = () => {
     setImagePreview(URL.createObjectURL(e.target.files[0]));
   };
 
-  const uploadImageCloudinaryAndGetImageURL = async () => {
+  const uploadImageToCloudinaryAndGetImageURL = async () => {
     try {
       let imageURL;
       if (
@@ -85,7 +98,7 @@ const SignUpPage = () => {
 
   // const uploadToCloudinaryTest = async (e) => {
   //   e.preventDefault();
-  //   const response = await uploadImageCloudinaryAndGetImageURL();
+  //   const response = await uploadImageToCloudinaryAndGetImageURL();
   //   setUserCloudinaryURL(response);
   //   alert(response);
   // };
@@ -142,25 +155,94 @@ const SignUpPage = () => {
     //create the object from respective fields to be used in backedn api call
     //create the object from respective fields to be used in backedn api call
     //create the object from respective fields to be used in backedn api call
+    const registrationObject = {
+      fullName: fullName,
+      userName: userName,
+      email: email,
+      phoneNumber: phoneNumber,
+      password: password,
+      userCloudinaryURL: userCloudinaryURL,
+      userCategoryChoice: userCategoryChoice,
+    };
+    setRegisterDetails(registrationObject);
+    setFormValidationError("");
     setPageOne(false);
   };
+
+  // const handleFormSubmit = async (e) => {
+  //   e.preventDefault();
+
+  //   if (imagePreview) {
+  //     const cloudinaryResponse = await uploadImageToCloudinaryAndGetImageURL();
+  //     setUserCloudinaryURL(cloudinaryResponse);
+  //   } else {
+  //     setUserCloudinaryURL("");
+  //   }
+
+  //   //update respective fields to be used in backedn api call
+  //   setRegisterDetails({
+  //     ...registerDetails,
+  //     userCategoryChoice: userCategoryChoice,
+  //     userCloudinaryURL: userCloudinaryURL,
+  //   });
+
+  //   //this is where we make the API call after creating the large object from the all the params.
+  //   const response = await registerUser(registerDetails);
+
+  //   //after successfully registering , navigate to login page and display message
+  //   if (response.data.status === 200) {
+  //     toast.success(
+  //       `Account Created Successfully, you will be routed to the login Page to login`,
+  //       {
+  //         autoClose: 2000,
+  //       }
+  //     );
+  //     setTimeout(() => {
+  //       navigate("/login");
+  //     }, 3500);
+  //   }
+  // };
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
     if (imagePreview) {
-      const cloudinaryResponse = await uploadImageCloudinaryAndGetImageURL();
+      const cloudinaryResponse = await uploadImageToCloudinaryAndGetImageURL();
       setUserCloudinaryURL(cloudinaryResponse);
     } else {
       setUserCloudinaryURL("");
     }
 
     //update respective fields to be used in backedn api call
-    //update respective fields to be used in backedn api call
-    //update respective fields to be used in backedn api call
+    setRegisterDetails({
+      ...registerDetails,
+      userCategoryChoice: userCategoryChoice,
+      userCloudinaryURL: userCloudinaryURL,
+    });
 
-    //this is where we make the API call after creating the large object from the all the params.
-    return;
+    try {
+      await registerUser(registerDetails);
+      toast.success(
+        `Account Created Successfully, you will be routed to the login Page to login`,
+        {
+          autoClose: 3200,
+        }
+      );
+      setTimeout(() => {
+        navigate("/login");
+      }, 3500);
+    } catch (err) {
+      if (!err?.originalStatus) {
+        // isLoading: true until timeout occurs
+        setSignUpError("No Server Response");
+      } else if (err.originalStatus === 400) {
+        setSignUpError("Missing Username or Password");
+      } else if (err.originalStatus === 401) {
+        setSignUpError("Unauthorized");
+      } else {
+        setSignUpError("Login Failed");
+      }
+    }
   };
 
   useEffect(() => {
@@ -240,6 +322,7 @@ const SignUpPage = () => {
                 <>
                   {/* PAGE TWO FORM */}
                   {/* PAGE TWO FORM */}
+                  <p className={styles.errorText}>{signUpError}</p>
                   <div>
                     <input
                       type="file"
@@ -304,11 +387,14 @@ const SignUpPage = () => {
               <h4>
                 Already have an account?{" "}
                 <span>
-                  <Link className={styles.login_btn}>Log In</Link>{" "}
+                  <Link to={"/login"} className={styles.login_btn}>
+                    Log In
+                  </Link>
                 </span>
               </h4>
             </div>
           </section>
+          <ToastContainer />
         </main>
       </AnimatedFadeInPage>
     </>

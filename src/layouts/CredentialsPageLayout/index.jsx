@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Outlet, Link } from "react-router-dom";
 import styles from "./CredentialsPageLayout.module.scss";
 import elite_homes_black_icon from "../../components/Navbar/images/elite_homes_black_icon.png";
+
 export default function PublicPageLayout() {
   useEffect(() => {
     window.scrollTo({
