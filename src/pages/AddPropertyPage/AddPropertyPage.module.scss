@@ -1,5 +1,283 @@
 @use "../../assets/styles/" as *;
 
-.AddPropertyPage {
+.container {
+  max-width: 1150px;
+  margin: auto;
+}
+
+h1 {
+  font-size: 48px;
+  font-weight: 60px;
+  margin-bottom: 1rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: auto auto;
+  // grid-template-rows: auto auto;
+  gap: 3rem;
+}
+
+input {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 0.3rem 0 1.5rem 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-sizing: border-box;
+  background-color: rgba($color: gray, $alpha: 0.02);
+  outline-color: $primary;
+}
+
+textarea {
+  width: 100%;
+  height: 8rem;
+  padding: 12px 20px;
+  margin: 0.3rem 0 1.5rem 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-sizing: border-box;
+  background-color: rgba($color: gray, $alpha: 0.02);
+  outline-color: $primary;
+  resize: none;
+}
+
+.fullText {
+  height: 13rem;
+}
+
+label {
+  color: black;
+  font-size: 20px;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+}
+
+// Addition Info
+h2 {
+  font-size: 40px;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.addInfo {
   display: flex;
+  flex-wrap: nowrap;
+
+  .flexRightContainer {
+    margin-left: 2.4rem;
+    .flexRightContent {
+      width: 112%;
+      display: grid;
+      grid-template-columns: auto auto auto;
+      gap: 1rem;
+      div {
+        .bedroomInput {
+          border-radius: 0;
+          width: 4.1rem;
+          padding: 15px 5px;
+          margin-left: 1rem;
+        }
+        .propertySize {
+          border-radius: 0;
+          padding: 15px 5px;
+          width: 5rem;
+          margin-left: 1rem;
+        }
+      }
+    }
+
+    .floorPlanFlex {
+      display: grid;
+      grid-template-columns: auto auto;
+      gap: 3rem;
+      width: 110%;
+      margin-top: 0.6rem;
+
+      .floorPlan {
+        height: 10.5rem;
+      }
+
+      .uploadBtnWrapper {
+        position: relative;
+        overflow: hidden;
+        display: inline-block;
+      }
+
+      .uploadImg {
+        border: 2px solid rgba($color: gray, $alpha: 0.02);
+        border-radius: 8px;
+        width: 377px;
+        height: 199px;
+        margin-top: 1.4rem;
+      }
+
+      .uploadBtnWrapper input[type="file"] {
+        font-size: 100px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        opacity: 0;
+      }
+    }
+  }
+}
+
+.category {
+  margin-bottom: 0.9rem;
+  font-weight: 500;
+  font-size: 23px;
+}
+
+.types {
+  margin-top: 2rem;
+  margin-bottom: 0.9rem;
+  font-weight: 500;
+  font-size: 23px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 26px;
+  height: 12.5px;
+  input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  border-radius: 50px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 10px;
+  width: 10px;
+  left: 1.5px;
+  bottom: 1.5px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+input:checked + .slider {
+  background-color: #2196f3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196f3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(12px);
+  -ms-transform: translateX(12px);
+  transform: translateX(12px);
+}
+
+.checks {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.7rem;
+  width: 190px;
+  p {
+    margin-right: 8px;
+  }
+}
+
+.btn {
+  background-color: $secondary;
+  border: none;
+  color: white;
+  padding: 25px 0px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  margin: 1.5rem 0;
+  cursor: pointer;
+}
+
+.verticalRule {
+  width: 2px;
+  height: 800px;
+  margin-left: 3rem;
+  background-color: rgba($color: black, $alpha: 0.2);
+}
+
+// Upload
+.upload {
+  h3 {
+    font-size: 28px;
+    margin-bottom: 0.8rem;
+  }
+
+  p {
+    font-size: 20px;
+    color: rgba($color: black, $alpha: 0.5);
+    text-transform: capitalize;
+    span {
+      color: red;
+    }
+  }
+
+  .uploadImage {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 0.6rem;
+
+    .uploadBtnWrapper {
+      position: relative;
+      overflow: hidden;
+      display: inline-block;
+    }
+
+    .uploadImg {
+      margin-top: 1rem;
+      border: 2px solid rgba($color: gray, $alpha: 0.02);
+      border-radius: 8px;
+      width: 275px;
+      height: 146px;
+    }
+
+    .uploadBtnWrapper input[type="file"] {
+      font-size: 100px;
+      position: absolute;
+      left: 0;
+      top: 0;
+      opacity: 0;
+    }
+
+    .propertyUpload{
+
+      position: relative;
+      .uploadedImg {
+        margin-top: 1rem;
+        border: 2px solid rgba($color: gray, $alpha: 0.02);
+        border-radius: 8px;
+        width: 275px;
+        height: 146px;
+      }
+      .deleteBtn{
+        position: absolute;
+        top: 8%;
+        left: 90%;
+      }
+    }
+  }
 }
