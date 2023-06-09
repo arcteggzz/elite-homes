@@ -9,15 +9,21 @@
   padding: 0 pixRem(100);
 
   @include sm() {
+    height: pixRem(72);
+    padding: 0 pixRem(18);
+    position: relative;
   }
 
-  .center {
+  .center_desktop_links {
     display: flex;
     align-items: center;
     gap: pixRem(28);
 
     @include md() {
       gap: pixRem(32);
+    }
+    @include sm() {
+      display: none;
     }
 
     .single_NavLink {
@@ -53,32 +59,10 @@
   }
 
   .right {
-    .homePage_signUp_btn {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: pixRem(6) pixRem(12);
-      column-gap: pixRem(8);
-      background: #ffffff;
-      border-radius: 4px;
-      cursor: pointer;
-      text-decoration: none;
-
-      p {
-        font-weight: 600;
-        font-size: 14px;
-        line-height: 18px;
-        color: #000000;
-        text-decoration: none;
-        cursor: pointer;
-      }
+    @include sm() {
+      display: none;
     }
-
-    .homePage_signUp_btn:hover {
-      background: #919191;
-    }
-
-    .otherPages_signUp_btn {
+    .signUp_btn {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -99,7 +83,7 @@
       }
     }
 
-    .otherPages_signUp_btn:hover {
+    .signUp_btn:hover {
       background: #919191;
     }
 
@@ -114,6 +98,114 @@
         font-size: 14px;
         line-height: 18px;
         color: #000000;
+        text-align: center;
+      }
+
+      .logout_btn {
+        padding: pixRem(10) pixRem(24);
+        background: $primary;
+        border-radius: 4px;
+        cursor: pointer;
+        text-decoration: none;
+        border: none;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 18px;
+        color: #ffffff;
+      }
+
+      .logout_btn:hover {
+        background: #2e85e2;
+      }
+    }
+  }
+
+  .haburger {
+    display: none;
+    @include sm() {
+      display: block;
+      border: none;
+    }
+  }
+
+  .mobile_links {
+    display: none;
+    @include sm() {
+      display: block;
+      border: none;
+      position: absolute;
+      top: 72px;
+      left: 0;
+      background: #ffffff;
+      width: 100%;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      row-gap: 40px;
+      padding: 12px 0;
+      border-top: $fontDark solid 0.5px;
+
+      .single_NavLink_mobile {
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 24px;
+        padding: 2px;
+        transition: all ease 0.2s;
+        text-decoration: none;
+        color: rgba(0, 0, 0, 0.6);
+        border-bottom: 1px solid transparent;
+      }
+
+      .single_NavLinkActive_mobile {
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 24px;
+        padding: 2px;
+        text-decoration: none;
+        color: $fontDark;
+        border-bottom: $fontDark solid 1px;
+      }
+
+      .mobile_userDetails {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        row-gap: 12px;
+        padding: 0 18px;
+
+        .logout_btn_mobile {
+          width: 100%;
+          text-align: center;
+
+          padding: pixRem(14) pixRem(8);
+          background: $primary;
+          border-radius: 4px;
+          cursor: pointer;
+          text-decoration: none;
+          border: none;
+          font-weight: 600;
+          font-size: 14px;
+          line-height: 18px;
+          color: #ffffff;
+        }
+      }
+
+      .signUp_btn_mobile {
+        width: 90%;
+        text-align: center;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: pixRem(12) pixRem(12);
+        column-gap: pixRem(8);
+        background: #000000;
+        border-radius: 4px;
+        cursor: pointer;
+        text-decoration: none;
+        color: #ffffff;
       }
     }
   }

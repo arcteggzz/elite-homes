@@ -8,6 +8,7 @@
   padding: pixRem(28) pixRem(100);
 
   @include sm() {
+    padding: 28px 18px;
   }
 
   .Property_Name_Price {
@@ -15,12 +16,20 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    @include sm() {
+      // flex-direction: column;
+      // justify-content: flex-start;
+    }
 
     h2 {
       font-weight: 600;
       font-size: 50px;
       line-height: 60px;
       color: $fontDark;
+      @include sm() {
+        font-size: 14px;
+        line-height: 18px;
+      }
     }
   }
 
@@ -28,6 +37,9 @@
     display: flex;
     column-gap: pixRem(40);
     align-items: center;
+    @include sm() {
+      column-gap: pixRem(12);
+    }
 
     .Tag_Name {
       padding: 8px 14px;
@@ -37,6 +49,10 @@
       background: #2e70cb;
       border-radius: 10px;
       color: #ffffff;
+      @include sm() {
+        font-size: 12px;
+        line-height: 14px;
+      }
     }
 
     p {
@@ -44,6 +60,10 @@
       font-size: 20px;
       line-height: 24px;
       color: $fontDark;
+      @include sm() {
+        font-size: 12px;
+        line-height: 14px;
+      }
     }
   }
 }

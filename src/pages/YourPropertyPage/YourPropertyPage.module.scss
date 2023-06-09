@@ -1,8 +1,5 @@
 @use "../../assets/styles/" as *;
 
-.MockLoginPage {
+.YourPropertyPage {
   display: flex;
-
-  @include sm() {
-  }
 }

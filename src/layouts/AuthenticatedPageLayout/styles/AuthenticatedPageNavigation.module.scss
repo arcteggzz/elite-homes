@@ -1,0 +1,57 @@
+@use "../../../assets/styles/" as *;
+
+.AuthenticatedPageNavigation {
+  display: flex;
+  padding: pixRem(54) pixRem(120);
+  column-gap: 12px;
+
+  width: 100%;
+  @include sm() {
+    padding: pixRem(26) pixRem(24);
+    display: grid;
+    grid-template-columns: 1fr 1Fr 1Fr;
+    column-gap: 8px;
+  }
+
+  .single_NavLink {
+    padding: 20px 28px;
+    font-weight: 600;
+    font-size: 25px;
+    line-height: 30px;
+    color: rgba(0, 0, 0, 0.8);
+    background: none;
+    text-decoration: none;
+    transition: all ease 0.5s;
+
+    @include sm() {
+      font-size: 10.4722px;
+      line-height: 13px;
+      padding: 8px 0;
+      text-align: center;
+      width: 100%;
+    }
+  }
+
+  .single_NavLink:hover {
+    color: #ffffff;
+    background: #2e70cb;
+  }
+
+  .single_NavLinkActive {
+    padding: 20px 28px;
+    font-weight: 600;
+    font-size: 25px;
+    line-height: 30px;
+    color: #ffffff;
+    background: #2e70cb;
+    text-decoration: none;
+
+    @include sm() {
+      font-size: 10.4722px;
+      line-height: 13px;
+      padding: 8px 0;
+      text-align: center;
+      width: 100%;
+    }
+  }
+}
