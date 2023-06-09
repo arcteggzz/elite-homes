@@ -3,6 +3,10 @@
 .LandingPageProperties {
   width: 100%;
   padding: 0 pixRem(100);
+
+  @include sm() {
+    padding: 0 pixRem(18);
+  }
 }
 
 .title {
@@ -10,6 +14,14 @@
   margin-bottom: 1rem;
   text-transform: capitalize;
   font-weight: 500;
+  @include sm() {
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+    margin-bottom: 0;
+    padding: 40px 0;
+  }
+
   span {
     font-weight: 600;
     color: $primary;
@@ -23,6 +35,12 @@
   padding: pixRem(100) 0 pixRem(40) 0;
   row-gap: 100px;
   justify-items: center;
+
+  @include sm() {
+    padding: pixRem(20) 0;
+    row-gap: 44px;
+    grid-template-columns: 1fr;
+  }
 }
 
 .btn_container {
@@ -43,6 +61,14 @@
     color: #ffffff;
     transition: all ease 0.2s;
     font-family: "Montserrat";
+
+    @include sm() {
+      padding: 12px 24px;
+      width: 100%;
+      text-align: center;
+      font-size: 18px;
+      line-height: 20px;
+    }
   }
 
   .view_more_btn:hover {
