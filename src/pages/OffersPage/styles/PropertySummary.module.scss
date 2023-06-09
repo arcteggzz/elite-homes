@@ -9,6 +9,10 @@
   transition: all ease 0.2s;
   text-decoration: none;
 
+  @include sm() {
+    width: 100%;
+  }
+
   h1,
   h2,
   h3,
@@ -23,6 +27,9 @@
     width: 100%;
     height: auto;
     border-radius: 20px;
+    @include sm() {
+      border-radius: 12px;
+    }
   }
 
   .property_name_tag {
@@ -43,6 +50,10 @@
         font-size: 18px;
         line-height: 21px;
         color: #000000;
+        @include sm() {
+          font-size: 12px;
+          line-height: 14px;
+        }
       }
     }
 
@@ -52,6 +63,10 @@
       line-height: 37px;
       color: #000000;
       text-align: left;
+      @include sm() {
+        font-size: 16px;
+        line-height: 18px;
+      }
     }
 
     p {
@@ -60,6 +75,10 @@
       line-height: 24px;
       color: #000000;
       opacity: 0.4;
+      @include sm() {
+        font-size: 12px;
+        line-height: 14px;
+      }
     }
   }
 
@@ -75,6 +94,10 @@
       font-size: 24px;
       line-height: 26px;
       color: #000000;
+      @include sm() {
+        font-size: 14px;
+        line-height: 16px;
+      }
     }
 
     .details_container {
@@ -91,6 +114,10 @@
           font-size: 16px;
           line-height: 18px;
           color: #000000;
+          @include sm() {
+            font-size: 14px;
+            line-height: 16px;
+          }
         }
       }
     }
