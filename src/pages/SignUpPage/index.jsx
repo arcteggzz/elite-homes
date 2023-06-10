@@ -24,7 +24,8 @@ const SignUpPage = () => {
 
   //pageOne Variables
   const [formValidationError, setFormValidationError] = useState("");
-  const [fullName, setFullName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("+234");
@@ -36,9 +37,12 @@ const SignUpPage = () => {
   const [imagePreview, setImagePreview] = useState(null);
   const upload_preset = import.meta.env.VITE_UPLOAD_PRESET;
   const cloud_name = import.meta.env.VITE_CLOUD_NAME;
-  const [userCloudinaryURL, setUserCloudinaryURL] = useState("");
-  const [userCategoryChoice, setUserCategoryChoice] = useState("Seller");
+  const [isLandlord, setIsLandlord] = useState(0);
   const [signUpError, setSignUpError] = useState("");
+
+  const validateName = (name) => {
+    return name.length < 1;
+  };
 
   const validateUserName = (_userName) => {
     const regex = /^\w+$/;
@@ -105,20 +109,25 @@ const SignUpPage = () => {
 
   const updateCategoryBuyer = (e) => {
     e.preventDefault();
-    setUserCategoryChoice("Buyer");
+    setIsLandlord(0);
   };
 
   const updateCategorySeller = (e) => {
     e.preventDefault();
-    setUserCategoryChoice("Seller");
+    setIsLandlord(1);
   };
 
   const goToPageTwo = (e) => {
     e.preventDefault();
 
-    //fullName validation
-    if (fullName.length < 0) {
-      setFormValidationError("Full Name field cannot be empty.");
+    //firstName validation
+    if (validateName(firstName)) {
+      setFormValidationError("First Name cannot be empty.");
+      return;
+    }
+    //lastName validation
+    if (validateName(lastName)) {
+      setFormValidationError("Last Name cannot be empty.");
       return;
     }
     //userName validation
@@ -141,8 +150,8 @@ const SignUpPage = () => {
       return;
     }
     //password length validation
-    if (password.length < 5) {
-      setFormValidationError("Password must be at least 5 characters");
+    if (password.length < 8) {
+      setFormValidationError("Password must be at least 8 characters");
       return;
     }
     //similarPassword validation
@@ -152,85 +161,58 @@ const SignUpPage = () => {
       );
       return;
     }
+
     //create the object from respective fields to be used in backedn api call
     //create the object from respective fields to be used in backedn api call
     //create the object from respective fields to be used in backedn api call
     const registrationObject = {
-      fullName: fullName,
-      userName: userName,
+      username: userName,
+      first_name: firstName,
+      last_name: lastName,
       email: email,
-      phoneNumber: phoneNumber,
       password: password,
-      userCloudinaryURL: userCloudinaryURL,
-      userCategoryChoice: userCategoryChoice,
+      confirm_password: password,
+      phone_number: phoneNumber,
     };
+
     setRegisterDetails(registrationObject);
     setFormValidationError("");
     setPageOne(false);
   };
 
-  // const handleFormSubmit = async (e) => {
-  //   e.preventDefault();
-
-  //   if (imagePreview) {
-  //     const cloudinaryResponse = await uploadImageToCloudinaryAndGetImageURL();
-  //     setUserCloudinaryURL(cloudinaryResponse);
-  //   } else {
-  //     setUserCloudinaryURL("");
-  //   }
-
-  //   //update respective fields to be used in backedn api call
-  //   setRegisterDetails({
-  //     ...registerDetails,
-  //     userCategoryChoice: userCategoryChoice,
-  //     userCloudinaryURL: userCloudinaryURL,
-  //   });
-
-  //   //this is where we make the API call after creating the large object from the all the params.
-  //   const response = await registerUser(registerDetails);
-
-  //   //after successfully registering , navigate to login page and display message
-  //   if (response.data.status === 200) {
-  //     toast.success(
-  //       `Account Created Successfully, you will be routed to the login Page to login`,
-  //       {
-  //         autoClose: 2000,
-  //       }
-  //     );
-  //     setTimeout(() => {
-  //       navigate("/login");
-  //     }, 3500);
-  //   }
-  // };
-
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
-    if (imagePreview) {
-      const cloudinaryResponse = await uploadImageToCloudinaryAndGetImageURL();
-      setUserCloudinaryURL(cloudinaryResponse);
-    } else {
-      setUserCloudinaryURL("");
+    if (!imagePreview) {
+      setFormValidationError("Please select a Profile Image");
+      return;
     }
 
-    //update respective fields to be used in backedn api call
-    setRegisterDetails({
+    const cloudinaryResponse = await uploadImageToCloudinaryAndGetImageURL();
+    console.log(cloudinaryResponse);
+
+    const finalRegistrationObject = {
+      userCloudinaryURL: cloudinaryResponse,
+      is_landlord: isLandlord,
       ...registerDetails,
-      userCategoryChoice: userCategoryChoice,
-      userCloudinaryURL: userCloudinaryURL,
-    });
+    };
+
+    console.log(finalRegistrationObject);
 
     try {
-      await registerUser(registerDetails);
-      toast.success(
-        `Account Created Successfully, you will be routed to the login Page to login`,
-        {
-          autoClose: 3200,
-        }
-      );
-      setTimeout(() => {
-        navigate("/login");
-      }, 3500);
+      const response = await registerUser(finalRegistrationObject);
+      console.log(response);
+      if (response.data.user) {
+        toast.success(
+          `Account Created Successfully, you will be routed to the login Page to login`,
+          {
+            autoClose: 3200,
+          }
+        );
+        setTimeout(() => {
+          navigate("/login");
+        }, 3500);
+      }
     } catch (err) {
       if (!err?.originalStatus) {
         // isLoading: true until timeout occurs
@@ -247,7 +229,7 @@ const SignUpPage = () => {
 
   useEffect(() => {
     setFormValidationError("");
-  }, [userName, phoneNumber, password, email, confirmPassword]);
+  }, [userName, phoneNumber, password, email, confirmPassword, profileImage]);
 
   return (
     <>
@@ -280,14 +262,21 @@ const SignUpPage = () => {
 
                   <input
                     type="text"
-                    placeholder="Full name"
-                    value={fullName}
-                    onChange={(e) => setFullName(e.target.value)}
+                    placeholder="First name"
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
                     required
                   />
                   <input
                     type="text"
-                    placeholder="User Name"
+                    placeholder="Last name"
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                    required
+                  />
+                  <input
+                    type="text"
+                    placeholder="Username. Must be one word."
                     value={userName}
                     onChange={(e) => setUserName(e.target.value)}
                   />
@@ -305,7 +294,7 @@ const SignUpPage = () => {
                   />
                   <input
                     type="password"
-                    placeholder="Password"
+                    placeholder="Password must be 8 characters."
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
@@ -323,6 +312,7 @@ const SignUpPage = () => {
                   {/* PAGE TWO FORM */}
                   {/* PAGE TWO FORM */}
                   <p className={styles.errorText}>{signUpError}</p>
+                  <p className={styles.errorText}>{formValidationError}</p>
                   <div>
                     <input
                       type="file"
@@ -334,9 +324,7 @@ const SignUpPage = () => {
                     <img src={imagePreview ? imagePreview : add_image} alt="" />
                     <div className={styles.upload_initiator}>
                       <h3>Upload Image</h3>
-                      <p>
-                        Torem ipsum dolor sit amet, consectetur adipiscing elit.
-                      </p>
+                      <p>Add your image. Must be a jpg, jpeg, or png file.</p>
                     </div>
 
                     {/* i used this test for the cloudinary upload */}
@@ -347,17 +335,17 @@ const SignUpPage = () => {
                   <div className={styles.category_btns}>
                     <button
                       className={
-                        userCategoryChoice === "Seller"
+                        isLandlord
                           ? styles.user_btn_active
                           : styles.user_btn_inactive
                       }
                       onClick={(e) => updateCategorySeller(e)}
                     >
-                      Seller
+                      LandLord
                     </button>
                     <button
                       className={
-                        userCategoryChoice === "Buyer"
+                        !isLandlord
                           ? styles.user_btn_active
                           : styles.user_btn_inactive
                       }

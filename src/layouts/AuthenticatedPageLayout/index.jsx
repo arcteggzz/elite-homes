@@ -5,13 +5,15 @@ import Footer from "../../components/Footer";
 import AuthenticatedPageHeader from "./Components/AuthenticatedPageHeader";
 import AuthenticatedPageNavigation from "./Components/AuthenticatedPageNavigation";
 import styles from "./AuthenticatedPageLayout.module.scss";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { selectCurrentAccessToken } from "../../redux/features/auth/authSlice";
+import { closeNavbar } from "../../redux/features/mobileNav/mobileNavSlice";
 
 export default function AuthenticatedPageLayout() {
   const location = useLocation();
   const routeName = location.pathname.substring(1, location.pathname.length);
   const currentAccessToken = useSelector(selectCurrentAccessToken);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     window.scrollTo({
@@ -19,6 +21,9 @@ export default function AuthenticatedPageLayout() {
       left: 0,
       behavior: "smooth",
     });
+
+    dispatch(closeNavbar());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

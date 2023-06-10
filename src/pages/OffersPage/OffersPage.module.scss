@@ -15,6 +15,12 @@
     padding: pixRem(100);
     row-gap: 100px;
     justify-items: center;
+
+    @include sm() {
+      padding: pixRem(48) 18px;
+      row-gap: 44px;
+      grid-template-columns: 1fr;
+    }
   }
 
   .btn_container {
