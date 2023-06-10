@@ -6,6 +6,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useRegisterUserMutation } from "../../redux/features/users/usersApiSlice";
 import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import LoadingScreen from "../../utils/LoadingScreen";
 
 const SignUpPage = () => {
   const navigate = useNavigate();
@@ -20,6 +22,7 @@ const SignUpPage = () => {
     userCloudinaryURL: "",
     userCategoryChoice: "",
   });
+  const [accountCreationLoading, setAccountCreationLoading] = useState(false);
   const [registerUser] = useRegisterUserMutation();
 
   //pageOne Variables
@@ -198,7 +201,7 @@ const SignUpPage = () => {
     };
 
     console.log(finalRegistrationObject);
-
+    setAccountCreationLoading(true);
     try {
       const response = await registerUser(finalRegistrationObject);
       console.log(response);
@@ -209,6 +212,7 @@ const SignUpPage = () => {
             autoClose: 3200,
           }
         );
+        setAccountCreationLoading(false);
         setTimeout(() => {
           navigate("/login");
         }, 3500);
@@ -216,6 +220,7 @@ const SignUpPage = () => {
     } catch (err) {
       if (!err?.originalStatus) {
         // isLoading: true until timeout occurs
+        setAccountCreationLoading(false);
         setSignUpError("No Server Response");
       } else if (err.originalStatus === 400) {
         setSignUpError("Missing Username or Password");
@@ -382,9 +387,16 @@ const SignUpPage = () => {
               </h4>
             </div>
           </section>
-          <ToastContainer />
         </main>
+        {accountCreationLoading ? (
+          <>
+            <LoadingScreen loading={accountCreationLoading} />
+          </>
+        ) : (
+          <></>
+        )}
       </AnimatedFadeInPage>
+      <ToastContainer />
     </>
   );
 };

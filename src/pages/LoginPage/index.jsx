@@ -2,36 +2,80 @@ import styles from "./LoginPage.module.scss";
 import login_image from "./LoginAssets/loginimage.png";
 import AnimatedFadeInPage from "../../utils/AnimatedFadeInPage";
 import { useNavigate, useLocation, Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setCredentials } from "../../redux/features/auth/authSlice";
 import { useLoginMutation } from "../../redux/features/auth/authApiSlice";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import LoadingScreen from "../../utils/LoadingScreen";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPasword] = useState("");
   const [errMsg, setErrMsg] = useState("");
+  const [accountLoginLoading, setAccountLoginLoading] = useState(false);
 
   const navigate = useNavigate();
   const location = useLocation();
   const from =
     location.state?.from?.pathname || "/properties/property-listings";
   const dispatch = useDispatch();
-  const [login, { isLoading }] = useLoginMutation();
+  const [login] = useLoginMutation();
+
+  const validateEmail = (_email) => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(_email);
+  };
+
+  const validateEmailIsNotEmpty = (name) => {
+    return name.length < 1;
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (validateEmailIsNotEmpty(email)) {
+      setErrMsg("Email Field Cannot be empty.");
+      return;
+    }
+
+    if (!validateEmail(email)) {
+      setErrMsg("Please enter a valid email address. joedoes@example.com");
+      return;
+    }
+    if (validateEmailIsNotEmpty(password)) {
+      setErrMsg("Password Field Cannot be empty.");
+      return;
+    }
+
+    setAccountLoginLoading(true);
     try {
-      const { _username, accessToken, userImage, userId } = await login({
+      const response = await login({
         email,
         password,
       }).unwrap();
-      dispatch(setCredentials({ _username, accessToken, userImage, userId }));
-      navigate(from, { replace: true });
+      if (response.token) {
+        toast.success(`Login Successful. Routing to Dashboard.`, {
+          autoClose: 1800,
+        });
+        dispatch(
+          setCredentials({
+            username: response.username,
+            accessToken: response.token,
+            userImage: response.userImage,
+            userId: response.id,
+          })
+        );
+        setAccountLoginLoading(false);
+        setTimeout(() => {
+          navigate(from, { replace: true });
+        }, 2000);
+      }
     } catch (err) {
       if (!err?.originalStatus) {
         // isLoading: true until timeout occurs
+        setAccountLoginLoading(false);
         setErrMsg("No Server Response");
       } else if (err.originalStatus === 400) {
         setErrMsg("Missing Username or Password");
@@ -43,9 +87,9 @@ const LoginPage = () => {
     }
   };
 
-  if (isLoading) {
-    return <h1>Loading...</h1>;
-  }
+  useEffect(() => {
+    setErrMsg("");
+  }, [password, email]);
 
   return (
     <>
@@ -62,15 +106,16 @@ const LoginPage = () => {
               </h3>
               <p>Log in with the data you entered during sign up</p>
 
-              <form onSubmit={handleSubmit}>
-                <p>{errMsg}</p>
+              <form onSubmit={handleSubmit} id="loginForm">
+                <h6 className={styles.errorText} id="errorText">
+                  {errMsg}
+                </h6>
                 <input
                   name="email"
                   id="email"
                   type="email"
                   placeholder="Email"
                   onChange={(e) => setEmail(e.target.value)}
-                  required
                 />
                 <input
                   name="password"
@@ -78,7 +123,6 @@ const LoginPage = () => {
                   type="password"
                   placeholder="Password"
                   onChange={(e) => setPasword(e.target.value)}
-                  required
                 />
                 <div className={styles.split}>
                   <div>
@@ -107,7 +151,15 @@ const LoginPage = () => {
             </div>
           </div>
         </main>
+        {accountLoginLoading ? (
+          <>
+            <LoadingScreen loading={accountLoginLoading} />
+          </>
+        ) : (
+          <></>
+        )}
       </AnimatedFadeInPage>
+      <ToastContainer />
     </>
   );
 };
