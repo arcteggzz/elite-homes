@@ -1,12 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  userName: null,
-  accessToken: null,
+  // userName: null,
+  // accessToken: null,
   userImage: null,
   userId: null,
-  // userName: "Oghenetega Esedere",
-  // accessToken: "TThhbfnkdofb",
+  userName: "Oghenetega Esedere",
+  accessToken: "TThhbfnkdofb",
   // userImage: null,
 };
 

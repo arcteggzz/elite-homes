@@ -18,14 +18,14 @@ import {
   openNavbar,
   closeNavbar,
 } from "../../redux/features/mobileNav/mobileNavSlice";
-import { useLogoutMutation } from "../../redux/features/auth/authApiSlice";
+// import { useLogoutMutation } from "../../redux/features/auth/authApiSlice";
 
 export default function Navbar({ isAuthenticated, isHomepageNavbar }) {
   const currentUser = useSelector(selectCurrentUserName);
   const currentUserImage = useSelector(selectCurrentUserImage);
   const currentNavbarState = useSelector(selectNavIsOpen);
   const dispatch = useDispatch();
-  const [logout] = useLogoutMutation();
+  // const [logout] = useLogoutMutation();
   const navigate = useNavigate();
 
   const navElements = [
@@ -38,16 +38,22 @@ export default function Navbar({ isAuthenticated, isHomepageNavbar }) {
     background: isHomepageNavbar ? "#ffffff" : "#ffffff",
   };
 
+  // const logoutHandler = async () => {
+  //   console.log("fired");
+  //   try {
+  //     const response = await logout().unwrap();
+  //     console.log(response);
+  //     dispatch(resetCredentials());
+  //     navigate("/home");
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
   const logoutHandler = async () => {
-    console.log("fired");
-    try {
-      const response = await logout().unwrap();
-      console.log(response);
-      dispatch(resetCredentials());
-      navigate("/home");
-    } catch (error) {
-      console.log(error);
-    }
+    dispatch(resetCredentials());
+    dispatch(closeNavbar());
+    navigate("/home");
   };
 
   const navbarHandler = () => {
@@ -97,9 +103,9 @@ export default function Navbar({ isAuthenticated, isHomepageNavbar }) {
               </button>
             </div>
           ) : (
-            <Link to={"/signup"} className={styles.signUp_btn}>
+            <Link to={"/login"} className={styles.signUp_btn}>
               <img src={sign_in_white_icon} alt="sign in icon" />
-              <p>Sign up</p>
+              <p>Login</p>
             </Link>
           )}
         </div>
@@ -145,9 +151,9 @@ export default function Navbar({ isAuthenticated, isHomepageNavbar }) {
                 </button>
               </div>
             ) : (
-              <Link to={"/signup"} className={styles.signUp_btn_mobile}>
+              <Link to={"/login"} className={styles.signUp_btn_mobile}>
                 <img src={sign_in_white_icon} alt="sign in icon" />
-                <p>Sign up</p>
+                <p>Login</p>
               </Link>
             )}
           </div>
