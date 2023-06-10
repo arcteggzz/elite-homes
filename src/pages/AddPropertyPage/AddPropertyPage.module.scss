@@ -3,64 +3,63 @@
 .container {
   max-width: 1150px;
   margin: auto;
-}
+  h1 {
+    font-size: 48px;
+    font-weight: 60px;
+    margin-bottom: 1rem;
+  }
 
-h1 {
-  font-size: 48px;
-  font-weight: 60px;
-  margin-bottom: 1rem;
-}
+  .grid {
+    display: grid;
+    grid-template-columns: auto auto;
+    // grid-template-rows: auto auto;
+    gap: 3rem;
+  }
 
-.grid {
-  display: grid;
-  grid-template-columns: auto auto;
-  // grid-template-rows: auto auto;
-  gap: 3rem;
-}
+  input {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 0.3rem 0 1.5rem 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+    background-color: rgba($color: gray, $alpha: 0.02);
+    outline-color: $primary;
+  }
 
-input {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 0.3rem 0 1.5rem 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  box-sizing: border-box;
-  background-color: rgba($color: gray, $alpha: 0.02);
-  outline-color: $primary;
-}
+  textarea {
+    width: 100%;
+    height: 8rem;
+    padding: 12px 20px;
+    margin: 0.3rem 0 1.5rem 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+    background-color: rgba($color: gray, $alpha: 0.02);
+    outline-color: $primary;
+    resize: none;
+  }
 
-textarea {
-  width: 100%;
-  height: 8rem;
-  padding: 12px 20px;
-  margin: 0.3rem 0 1.5rem 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  box-sizing: border-box;
-  background-color: rgba($color: gray, $alpha: 0.02);
-  outline-color: $primary;
-  resize: none;
-}
+  .fullText {
+    height: 13rem;
+  }
 
-.fullText {
-  height: 13rem;
-}
+  label {
+    color: black;
+    font-size: 20px;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+  }
 
-label {
-  color: black;
-  font-size: 20px;
-  font-weight: 400;
-  margin: 0;
-  padding: 0;
-}
-
-// Addition Info
-h2 {
-  font-size: 40px;
-  font-weight: 600;
-  margin-bottom: 1rem;
+  // Addition Info
+  h2 {
+    font-size: 40px;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
 }
 
 .addInfo {
@@ -263,8 +262,7 @@ input:checked + .slider:before {
       opacity: 0;
     }
 
-    .propertyUpload{
-
+    .propertyUpload {
       position: relative;
       .uploadedImg {
         margin-top: 1rem;
@@ -273,7 +271,7 @@ input:checked + .slider:before {
         width: 275px;
         height: 146px;
       }
-      .deleteBtn{
+      .deleteBtn {
         position: absolute;
         top: 8%;
         left: 90%;
