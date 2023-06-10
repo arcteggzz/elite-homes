@@ -7,6 +7,9 @@ import PublicPageLayout from "./layouts/PublicPageLayout";
 import AuthenticatedPageLayout from "./layouts/AuthenticatedPageLayout";
 import CredentialsPageLayout from "./layouts/CredentialsPageLayout";
 
+//Utilities
+// import PersistLogin from "./utils/PersistLogin.jsx";
+
 //Pages
 import SplashPage from "./pages/SplashPage";
 import LandingPage from "./pages/LandingPage";
@@ -48,6 +51,7 @@ const App = () => {
           </Route>
 
           {/* private routes */}
+
           <Route element={<AuthenticatedPageLayout />}>
             <Route
               path="/properties/property-listings"

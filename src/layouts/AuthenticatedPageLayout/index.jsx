@@ -21,12 +21,6 @@ export default function AuthenticatedPageLayout() {
     });
   }, []);
 
-  // if (token) {
-  //   return (
-
-  //   )
-  // }
-
   return (
     <>
       {currentAccessToken ? (
