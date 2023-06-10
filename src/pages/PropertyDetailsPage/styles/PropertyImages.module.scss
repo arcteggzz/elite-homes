@@ -7,6 +7,7 @@
   row-gap: pixRem(48);
   padding: 0 pixRem(100);
   @include sm() {
+    padding: 0 pixRem(18);
   }
 
   .Image_Carousel_Parent_Container {
@@ -18,6 +19,9 @@
       width: 50%;
       // border: 2px solid yellow;
       // aspect-ratio: 3/2;
+      @include sm() {
+        width: 100%;
+      }
     }
   }
 

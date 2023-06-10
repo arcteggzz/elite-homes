@@ -3,13 +3,15 @@ import { Outlet, useLocation } from "react-router-dom";
 import styles from "./PublicPageLayout.module.scss";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { selectCurrentAccessToken } from "../../redux/features/auth/authSlice";
+import { closeNavbar } from "../../redux/features/mobileNav/mobileNavSlice";
 
 export default function PublicPageLayout() {
   const location = useLocation();
   const routeName = location.pathname.substring(1, location.pathname.length);
   const currentAccessToken = useSelector(selectCurrentAccessToken);
+  const dispatch = useDispatch();
 
   // get the data state of authentication fromt eh auth slice in the redux store and pass into navbar
 
@@ -19,6 +21,9 @@ export default function PublicPageLayout() {
       left: 0,
       behavior: "smooth",
     });
+
+    dispatch(closeNavbar());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

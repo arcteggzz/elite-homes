@@ -4,7 +4,8 @@ import {
   resetCredentials,
 } from "../../features/auth/authSlice";
 
-const BASE_URL = "http://localhost:3500";
+// const BASE_URL = "http://localhost:3500";
+const BASE_URL = "https://elitehomestest.onrender.com/api/v1";
 const REFRESH_ENDPOINT_URL = "/refresh";
 
 const baseQuery = fetchBaseQuery({

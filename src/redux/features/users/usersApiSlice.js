@@ -9,7 +9,8 @@ export const userApiSlice = apiSlice.injectEndpoints({
     //signup route from backend
     registerUser: builder.mutation({
       query: (userObject) => ({
-        url: "/users",
+        // url: "/users",
+        url: "/register",
         method: "POST",
         body: userObject,
       }),
