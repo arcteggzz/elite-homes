@@ -95,6 +95,12 @@
       border: none;
       cursor: pointer;
       transition: all ease 0.5s;
+      font-family: "Montserrat", sans-serif;
+      @include sm() {
+        font-size: 14px;
+        line-height: 16px;
+        padding: 14px 0;
+      }
     }
 
     button:hover {
@@ -167,6 +173,12 @@
       border: none;
       cursor: pointer;
       transition: all ease 0.5s;
+      font-family: "Montserrat", sans-serif;
+      @include sm() {
+        font-size: 14px;
+        line-height: 16px;
+        padding: 14px 0;
+      }
     }
 
     button:hover {
