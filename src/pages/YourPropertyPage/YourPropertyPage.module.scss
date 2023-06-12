@@ -1,5 +1,49 @@
 @use "../../assets/styles/" as *;
 
-.YourPropertyPage {
-  display: flex;
+.PropertyListingsPage {
+  .container {
+    width: 100%;
+    max-width: 1140px;
+    margin: auto;
+    box-sizing: border-box;
+
+    h1 {
+      font-size: 45px;
+      margin-left: 20px;
+      margin-bottom: 1.5rem;
+    }
+  }
+}
+
+@include md() {
+  .PropertyListingsPage {
+    .container {
+      width: 100%;
+      max-width: 900px;
+      margin: auto;
+      box-sizing: border-box;
+
+      h1 {
+        font-size: 30px;
+        margin-left: 30px;
+        margin-bottom: 1rem;
+      }
+    }
+  }
+}
+
+@include sm() {
+  .PropertyListingsPage {
+    .container {
+      width: 100%;
+      max-width: 97vw;
+      margin: auto;
+      box-sizing: border-box;
+
+      h1 {
+        font-size: 15px;
+        margin-bottom: 1rem;
+      }
+    }
+  }
 }

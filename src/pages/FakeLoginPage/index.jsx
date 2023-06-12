@@ -1,18 +1,17 @@
-import styles from "./LoginPage.module.scss";
+import styles from "./FakeLoginPage.module.scss";
 import login_image from "./LoginAssets/loginimage.png";
 import AnimatedFadeInPage from "../../utils/AnimatedFadeInPage";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setCredentials } from "../../redux/features/auth/authSlice";
-import { useLoginMutation } from "../../redux/features/auth/authApiSlice";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import LoadingScreen from "../../utils/LoadingScreen";
 
-const LoginPage = () => {
+const FakeLoginPage = () => {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [password, setPasword] = useState("");
   const [errMsg, setErrMsg] = useState("");
   const [accountLoginLoading, setAccountLoginLoading] = useState(false);
 
@@ -21,7 +20,6 @@ const LoginPage = () => {
   const from =
     location.state?.from?.pathname || "/properties/property-listings";
   const dispatch = useDispatch();
-  const [login] = useLoginMutation();
 
   const validateEmail = (_email) => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -50,46 +48,36 @@ const LoginPage = () => {
     }
 
     setAccountLoginLoading(true);
-    try {
-      const response = await login({
-        email,
-        password,
-      }).unwrap();
-      if (response.token) {
+
+    setTimeout(() => {
+      if (
+        password === "zojatechDevTeam" ||
+        email === "zojatechDevTeam@zojatech.com"
+      ) {
         toast.success(`Login Successful. Routing to Dashboard.`, {
           autoClose: 1800,
         });
         dispatch(
           setCredentials({
-            username: `${response.data.firstName} ${response.data.lastName}`,
-            accessToken: response.token,
-            userImage: response.data.profilePicture,
-            userId: response.data.userId,
+            username: `ZojaTech Dev Team`,
+            accessToken: `eytbh_false_token`,
+            userImage: null,
+            userId: `false user Id`,
           })
         );
         setAccountLoginLoading(false);
         setTimeout(() => {
           navigate(from, { replace: true });
-        }, 2000);
-      }
-    } catch (err) {
-      if (!err?.originalStatus) {
-        // isLoading: true until timeout occurs
-        setAccountLoginLoading(false);
-        setErrMsg("No Server Response");
-      } else if (err.originalStatus === 400) {
-        setErrMsg("Missing Username or Password");
-      } else if (err.originalStatus === 401) {
-        setErrMsg("Unauthorized");
+        }, 1800);
       } else {
-        setErrMsg("Login Failed");
+        toast.error(`Username and password mismatch!.`, {
+          autoClose: 1800,
+        });
+        setAccountLoginLoading(false);
+        setErrMsg("Username and password mismatch!.");
+        setPasword("");
       }
-      toast.error(`Something went wrong. Login failed.`, {
-        autoClose: 3000,
-      });
-      setEmail("");
-      setPassword("");
-    }
+    }, 2100);
   };
 
   useEffect(() => {
@@ -109,7 +97,9 @@ const LoginPage = () => {
               <h3>
                 <span>Hello!</span> Welcome back
               </h3>
-              <p>Log in with the data you entered during sign up</p>
+              <p>Fake Login Page to test Authenticated Pages</p>
+              <p>Email:- zojatechDevTeam@zojatech.com</p>
+              <p>Password:- zojatechDevTeam</p>
 
               <form onSubmit={handleSubmit} id="loginForm">
                 <h6 className={styles.errorText} id="errorText">
@@ -128,7 +118,7 @@ const LoginPage = () => {
                   id="password"
                   type="password"
                   placeholder="Password"
-                  onChange={(e) => setPassword(e.target.value)}
+                  onChange={(e) => setPasword(e.target.value)}
                   value={password}
                 />
                 <div className={styles.split}>
@@ -171,4 +161,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default FakeLoginPage;
