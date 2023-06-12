@@ -16,6 +16,7 @@ import LandingPage from "./pages/LandingPage";
 import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignUpPage";
 import FakeUsersPage from "./pages/FakeUsersPage";
+import FakeLoginPage from "./pages/FakeLoginPage";
 
 //lazyLoading for pages
 const OffersPage = lazy(() => import("./pages/OffersPage/"));
@@ -38,6 +39,7 @@ const App = () => {
           {/* Authentication routes */}
           <Route element={<CredentialsPageLayout />}>
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/fakeLogin" element={<FakeLoginPage />} />
             <Route path="/signup" element={<SignUpPage />} />
           </Route>
 
