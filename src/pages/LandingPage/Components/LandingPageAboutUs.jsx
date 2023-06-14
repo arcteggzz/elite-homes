@@ -6,7 +6,7 @@ const LandingPageAboutUs = () => {
   return (
     <section className={styles.flex}>
       <div>
-        <img src={img} alt="" />
+        <img src={img} alt="" className={styles.image} />
       </div>
       <div className={styles.backgroundColor}>
         <h1>
@@ -17,8 +17,8 @@ const LandingPageAboutUs = () => {
         <p className={styles.lgText}>
           Elite-Home is a property upload and check platform that allow owner
           upload their properties on the platform and allow users explore
-          through the list of verified properties, apartments from the comfort of
-          your home.
+          through the list of verified properties, apartments from the comfort
+          of your home.
         </p>
 
         <div className={styles.container}>

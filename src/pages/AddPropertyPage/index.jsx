@@ -150,66 +150,71 @@ const AddPropertyPage = () => {
             {/* Additional Info */}
             <h2>Addition Info</h2>
             <div className={styles.addInfo}>
-              <div>
-                <p className={styles.category}>Property Category</p>
-                <div className={styles.checks}>
-                  <p>For Rent</p>
-                  <label className={styles.switch}>
-                    <input type="checkbox" />
-                    <span className={styles.slider}></span>
-                  </label>
-                </div>
-                <div className={styles.checks}>
-                  <p>For Sale</p>
-                  <label className={styles.switch}>
-                    <input type="checkbox" />
-                    <span className={styles.slider}></span>
-                  </label>
-                </div>
-                <div className={styles.checks}>
-                  <p>For Lease</p>
-                  <label className={styles.switch}>
-                    <input type="checkbox" />
-                    <span className={styles.slider}></span>
-                  </label>
+              <div className={styles.smFlex}>
+                <div >
+                  <p className={styles.category}>Property Category</p>
+                  <div className={styles.checks}>
+                    <p>For Rent</p>
+                    <label className={styles.switch}>
+                      <input type="checkbox" />
+                      <span className={styles.slider}></span>
+                    </label>
+                  </div>
+                  <div className={styles.checks}>
+                    <p>For Sale</p>
+                    <label className={styles.switch}>
+                      <input type="checkbox" />
+                      <span className={styles.slider}></span>
+                    </label>
+                  </div>
+                  <div className={styles.checks}>
+                    <p>For Lease</p>
+                    <label className={styles.switch}>
+                      <input type="checkbox" />
+                      <span className={styles.slider}></span>
+                    </label>
+                  </div>
                 </div>
 
-                <p className={styles.types}>Property Types</p>
-                <div className={styles.checks}>
-                  <p>Apartment</p>
-                  <label className={styles.switch}>
-                    <input type="checkbox" />
-                    <span className={styles.slider}></span>
-                  </label>
+                <div>
+                  <p className={styles.types}>Property Types</p>
+                  <div className={styles.checks}>
+                    <p>Apartment</p>
+                    <label className={styles.switch}>
+                      <input type="checkbox" />
+                      <span className={styles.slider}></span>
+                    </label>
+                  </div>
+                  <div className={styles.checks}>
+                    <p>Bungalow</p>
+                    <label className={styles.switch}>
+                      <input type="checkbox" />
+                      <span className={styles.slider}></span>
+                    </label>
+                  </div>
+                  <div className={styles.checks}>
+                    <p>Residential Area</p>
+                    <label className={styles.switch}>
+                      <input type="checkbox" />
+                      <span className={styles.slider}></span>
+                    </label>
+                  </div>
+                  <div className={styles.checks}>
+                    <p>Mansion</p>
+                    <label className={styles.switch}>
+                      <input type="checkbox" />
+                      <span className={styles.slider}></span>
+                    </label>
+                  </div>
+                  <div className={styles.checks}>
+                    <p>Island</p>
+                    <label className={styles.switch}>
+                      <input type="checkbox" />
+                      <span className={styles.slider}></span>
+                    </label>
+                  </div>
                 </div>
-                <div className={styles.checks}>
-                  <p>Bungalow</p>
-                  <label className={styles.switch}>
-                    <input type="checkbox" />
-                    <span className={styles.slider}></span>
-                  </label>
-                </div>
-                <div className={styles.checks}>
-                  <p>Residential Area</p>
-                  <label className={styles.switch}>
-                    <input type="checkbox" />
-                    <span className={styles.slider}></span>
-                  </label>
-                </div>
-                <div className={styles.checks}>
-                  <p>Mansion</p>
-                  <label className={styles.switch}>
-                    <input type="checkbox" />
-                    <span className={styles.slider}></span>
-                  </label>
-                </div>
-                <div className={styles.checks}>
-                  <p>Island</p>
-                  <label className={styles.switch}>
-                    <input type="checkbox" />
-                    <span className={styles.slider}></span>
-                  </label>
-                </div>
+                
                 <button className={styles.btn}>Add Property</button>
               </div>
 

@@ -17,20 +17,24 @@ const LandingPageExplore = () => {
           <div className={styles.lgImg}>
             <img src={img1} alt="" />
           </div>
-          <div>
-            <img src={img2} alt="" />
-          </div>
-          <div>
-            <img src={img3} alt="" />
+          <div className={styles.display}>
+            <div>
+              <img src={img2} alt="" />
+            </div>
+            <div>
+              <img src={img3} alt="" />
+            </div>
           </div>
         </div>
 
         <div className={styles.card}>
-          <div>
-            <img src={img4} alt="" />
-          </div>
-          <div>
-            <img src={img5} alt="" />
+          <div className={styles.display}>
+            <div>
+              <img src={img4} alt="" />
+            </div>
+            <div>
+              <img src={img5} alt="" />
+            </div>
           </div>
           <div className={styles.lgImg}>
             <img src={img6} alt="" />

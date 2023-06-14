@@ -1,11 +1,11 @@
 @use "../../../assets/styles/" as *;
 
 .propertyList {
-  width: 1100px;
+  width: 78vw;
   margin: auto;
   display: grid;
   grid-template-columns: auto auto;
-  column-gap: 10rem;
+  column-gap: 13vw;
 
   .leftPositioned {
     width: 400px;
@@ -37,7 +37,7 @@
   }
 
   .rightPositioned {
-    width: 520px;
+    width: 36vw;
     div {
       display: flex;
       margin-top: 4px;
@@ -57,8 +57,8 @@
       margin-top: 0.5rem;
     }
     .longText {
-      margin-top: 1rem;
-      font-size: 28px;
+      margin-top: 0.5rem;
+      font-size: 25px;
       font-weight: 400;
       height: 9.5rem;
       color: rgba($color: #000000, $alpha: 0.4);
@@ -66,24 +66,29 @@
     .btnFlex {
       display: grid;
       grid-template-columns: auto auto;
+      width: 30vw;
 
       .removeBtn {
         border-radius: 0;
         padding: 20px 20px;
+        background-color: $primary;
+        border: none;
+        color: white;
       }
 
       .viewBtn {
         background-color: white;
         color: #000000;
-        padding: 20px 32px;
+        padding: 20px 20px;
         border-radius: 0;
+        border: none;
       }
     }
   }
 }
 
 .horizontalRule {
-  width: 1160px;
+  width: 84vw;
   margin: 1rem auto 2rem;
   height: 2px;
   background-color: rgba($color: #000000, $alpha: 0.2);
@@ -150,13 +155,13 @@
             margin-top: 4px;
             font-size: 18px;
             font-weight: 400;
-            height: 85px;
+            height: 11vw;
             color: rgba($color: #000000, $alpha: 0.4);
           }
           .btnFlex {
             display: grid;
             grid-template-columns: auto auto;
-      
+            width: 35vw;
             .removeBtn {
               border-radius: 0;
               padding: 12px 16px;
@@ -176,7 +181,7 @@
       
       .horizontalRule {
         width: 90vw;
-        margin: 0 auto 15px;
+        margin: 1rem auto 15px;
         height: 2px;
         background-color: rgba($color: #000000, $alpha: 0.2);
       }
@@ -219,7 +224,7 @@
         }
       
         .rightPositioned {
-          width: 177px;
+          width: 170px;
           div {
             display: flex;
             margin-top: 1.3px;
@@ -242,7 +247,7 @@
             margin-top: 4px;
             font-size: 9px;
             font-weight: 400;
-            height: 36px;
+            height: 44px;
             color: rgba($color: #000000, $alpha: 0.4);
           }
           .btnFlex {
@@ -268,7 +273,7 @@
       
       .horizontalRule {
         width: 90vw;
-        margin: 0 auto 15px;
+        margin: 2vw auto 15px;
         height: 2px;
         background-color: rgba($color: #000000, $alpha: 0.2);
       }

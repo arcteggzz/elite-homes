@@ -2,77 +2,224 @@
 
 .Footer {
   display: flex;
-  padding: pixRem(100) pixRem(100) 50px pixRem(100);
+  padding: pixRem(0) pixRem(100) 50px pixRem(100);
   justify-content: space-between;
   align-items: start;
   color: #524f4f;
   width: 100%;
+  margin-top: 2rem;
   @include sm() {
+    width: 88vw;
+    padding: 0;
+    flex-direction: column;
+  }
+
+  @include md() {
+    width: 88vw;
+    padding: 0;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    margin-bottom: 3rem;
   }
 }
-h3{
+
+h3 {
   color: #333333;
 }
-.socialIcons{
+
+.socialIcons {
   display: flex;
   justify-content: space-between;
   width: 152px;
+  @include sm() {
+    margin-left: 23vw;
+    margin-bottom: 20px;
+  }
+  @include md() {
+    margin-bottom: 20px;
+  }
 }
-.EliteHomes{
+
+.EliteHomes {
   width: 248px;
   height: 117px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   text-align: left;
- font-size: 35px;
- color: #333333;
- font-weight: 800
+  font-size: 35px;
+  color: #333333;
+  font-weight: 800;
+  @include sm() {
+    P {
+      width: 88vw;
+      text-align: center;
+      font-size: 10vw;
+      font-weight: 600;
+    }
+  }
+  @include md() {
+    P {
+      font-size: 35px;
+      font-weight: 600;
+    }
+  }
 }
-.phone{
+.phone {
   display: flex;
   align-items: center;
   width: 180px;
   justify-content: space-between;
+  @include sm() {
+    width: 68vw;
+    font-size: 20px;
+    margin-left: 12vw;
+  }
+  @include md() {
+    width: 26vw;
+  }
 }
-.mail{
+.mail {
   display: flex;
   align-items: center;
   width: 224px;
   justify-content: space-between;
+  @include sm() {
+    width: 68vw;
+    font-size: 20px;
+    margin-left: 10vw;
+  }
+  @include md() {
+    width: 33vw;
+    font-size: 20px;
+  }
 }
-.contact{
+
+.contact {
   width: 296px;
   height: 202px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  
+
+  @include sm() {
+    text-align: center;
+  }
+  h3 {
+    @include sm() {
+      font-size: 28px;
+    }
+  }
+  h3 {
+    @include md() {
+      font-size: 35px;
+    }
+  }
+  p {
+    @include sm() {
+      width: 88vw;
+      font-size: 21px;
+      font-weight: 500;
+    }
+  }
 }
-.address{
-  width:256px
+.address {
+  width: 256px;
 }
-.Account{
+.Account {
   width: 130px;
   height: 226px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  
+  @include sm() {
+    width: 88vw;
+  }
+  @include sm() {
+    h3 {
+      margin-left: 27vw;
+      margin-top: 2rem;
+      font-size: 28px;
+    }
+    a {
+      font-size: 20px;
+      text-align: center;
+    }
+  }
+  @include md() {
+    h3 {
+      // margin-left: 27vw;
+      // margin-top: 2rem;
+      font-size: 35px;
+    }
+    a {
+      font-size: 20px;
+      text-align: center;
+    }
+  }
 }
-.Company{
+.Company {
   width: 182px;
   height: 130px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  
+  @include sm() {
+    width: 88vw;
+  }
+  @include sm() {
+    h3 {
+      margin-left: 27vw;
+      margin-top: 2rem;
+      font-size: 28px;
+    }
+    a {
+      font-size: 20px;
+      text-align: center;
+      margin-top: 10px;
+    }
+  }
+  @include md() {
+    h3 {
+      margin-top: 1rem;
+      font-size: 35px;
+    }
+    a {
+      font-size: 20px;
+      margin-top: 10px;
+    }
+  }
 }
-.Resources{
+.Resources {
   width: 160px;
   height: 178px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  
+  @include sm() {
+    width: 88vw;
+    margin-bottom: 5rem;
+  }
+  @include sm() {
+    h3 {
+      margin-left: 27vw;
+      margin-top: 2rem;
+      font-size: 28px;
+    }
+    a {
+      font-size: 20px;
+      text-align: center;
+      margin-top: 10px;
+    }
+  }
+  @include md() {
+    h3 {
+      margin-top: 1rem;
+      font-size: 35px;
+    }
+    a {
+      font-size: 20px;
+      margin-top: 10px;
+    }
+  }
 }

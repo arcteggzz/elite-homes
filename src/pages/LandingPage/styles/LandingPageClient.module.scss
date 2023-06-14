@@ -2,20 +2,21 @@
 
 .screen {
   position: relative;
-  margin-bottom: 9rem;
+  margin-bottom: 13vw;
   img {
     margin-top: -5px;
-    width: 100%;
+    width: 100vw;
   }
 
   h1 {
     position: absolute;
-    top: 59px;
-    left: calc(50% - 516px / 2);
+    top: 4vw;
+    left: calc(30vw - 5vw / 2);
     font-weight: 700;
     color: white;
     z-index: 1;
-    font-size: 48px;
+    font-size: 4vw;
+    
   }
 
   .backgroundColor {
@@ -26,61 +27,61 @@
     top: 0px;
     margin-top: -5px;
   }
-}
 
-.container {
-  max-width: 1200px;
-  box-sizing: border-box;
-  z-index: 10;
-  position: absolute;
-  top: calc(100% - 97%/2);
-  left: calc(50% - 1210px / 2);
-
-  .testimonial {
-    display: grid;
-    grid-template-columns: auto auto auto;
-    column-gap: 1.8rem;
+  .container {
+    max-width: 83vw;
     box-sizing: border-box;
-    .card {
-      box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-      border-radius: 20px;
-      padding: 40px 30px;
-      height: 250px;
-      background-color: #ffffff;
-      .profile {
-        display: flex;
-        justify-content: space-between;
-        align-items: start;
-        .profileBlog {
+    z-index: 10;
+    position: absolute;
+    top: calc(50vw - 70vw / 2);
+    left: calc(68vw - 120vw / 2);
+
+    .testimonial {
+      display: grid;
+      grid-template-columns: auto auto auto;
+      column-gap: 1.8vw;
+      box-sizing: border-box;
+      .card {
+        box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 2vw;
+        padding: 4vw 3vw;
+        height: 20vw;
+        background-color: #ffffff;
+        .profile {
           display: flex;
-          align-items: center;
-          .profileImg {
-            border-radius: 50%;
-            width: 65px;
-            height: 65px;
+          justify-content: space-between;
+          align-items: start;
+          .profileBlog {
+            display: flex;
+            align-items: center;
+            .profileImg {
+              border-radius: 5vw;
+              width: 5.5vw;
+              height: 5.5vw;
+            }
+            .text {
+              margin-left: 1vw;
+              h3 {
+                font-size: 1vw;
+              }
+              p {
+                text-transform: capitalize;
+                color: rgba($color: #000000, $alpha: 0.4);
+                font-size: 0.7vw;
+              }
+            }
           }
-          .text {
-            margin-left: 10px;
-            h3 {
-              font-size: 15px;
-            }
-            p {
-              text-transform: capitalize;
-              color: rgba($color: #000000, $alpha: 0.4);
-              font-size: 13.323px;
-            }
+          .quote {
+            width: 4vw;
+            height: 3vw;
           }
         }
-        .quote {
-          width: 50px;
-          height: 40px;
+        .lgText {
+          font-size: 0.9vw;
+          text-transform: capitalize;
+          font-style: normal;
+          margin-top: 1vw;
         }
-      }
-      .lgText {
-        font-size: 12px;
-        text-transform: capitalize;
-        font-style: normal;
-        margin-top: 1rem;
       }
     }
   }
