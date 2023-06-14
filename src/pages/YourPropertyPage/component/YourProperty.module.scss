@@ -71,6 +71,8 @@
         border-radius: 0;
         padding: 20px 20px;
         background-color: $deleteButtonInactive;
+        border: none;
+        color: white;
       }
 
       .buyersBtn {
@@ -105,6 +107,7 @@
             border-bottom-left-radius: 15px;
             border-bottom-right-radius: 15px;
             color: white;
+            border: none;
           }
         }
       }
@@ -234,7 +237,7 @@
 
   .horizontalRule {
     width: 90vw;
-    margin: 0 auto 15px;
+    margin: 1.5vw auto 15px;
     height: 2px;
     background-color: rgba($color: #000000, $alpha: 0.2);
   }
@@ -306,8 +309,8 @@
       .btnFlex {
         display: grid;
         grid-template-columns: auto auto;
-        gap: 1rem;
-
+        gap: 0.5rem;
+        width: 45vw;
         .removeBtn {
           border-radius: 0;
           padding: 6px 8px;
@@ -317,13 +320,12 @@
         .buyersBtn {
           display: flex;
           align-items: center;
-          margin-bottom: 13px;
+          margin-bottom: 4px;
           cursor: pointer;
           .buyersText {
             font-weight: 500;
             font-size: 8px;
-            margin-left: 0;
-            margin-right: 10px;
+            margin: 5px 8px 0 0;
             padding: 4px 0;
             color: rgba($color: #000000, $alpha: 0.4);
           }
@@ -335,7 +337,7 @@
             }
             p {
               position: absolute;
-              bottom: 3px;
+              bottom: 4px;
               left: 3px;
               font-weight: 500;
               font-size: 4px;

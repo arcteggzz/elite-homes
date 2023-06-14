@@ -2,41 +2,103 @@
 
 .flex {
   display: flex;
-  margin-top: 3.5rem;
-}
-
-.backgroundColor {
-  background-color: #ecf4ff;
-  height: 557px;
-  width: 100%;
-  padding: 55px 80px;
-  box-sizing: border-box;
-  h1{
-    font-weight: 600;
-    font-size: 48px;
-  }
-  .lgText{
-    font-size: pixRem(17);
-    margin-top: 1rem;
-    color: rgba($color: #000000, $alpha: 0.4);
-  }
-}
-
-.container {
-    width: 80vh;
-  div {
-    display: flex;
-    align-items: baseline;
-    .rounded {
-      background-color: #2e70cb;
-      padding: 14px 12px;
-      border-radius: 100%;
-      margin-top: 1.5rem;
+  margin-top: 1rem;
+  
+  .image {
+    @include sm() {
+      display: none;
     }
-    .text {
-      margin-left: 20px;
+
+    @include md() {
+      display: none;
+    }
+  }
+
+  .backgroundColor {
+    background-color: #ecf4ff;
+    height: 557px;
+    width: 100%;
+    padding: 55px 80px;
+    box-sizing: border-box;
+    @include sm() {
+      padding: 0;
+      height: 40vh;
+    }
+    @include md() {
+      padding: 20px 48px;
+    }
+
+    h1 {
+      font-weight: 600;
+      font-size: 48px;
+      @include sm() {
+        font-size: 20px;
+        text-align: center;
+        width: 100vw;
+        margin-top: 2rem;
+      }
+      @include md() {
+        width: 83vw;
+        margin-top: 1.5rem;
+      }
+    }
+    .lgText {
+      font-size: pixRem(17);
+      margin-top: 0.8rem;
       color: rgba($color: #000000, $alpha: 0.4);
-      font-size: 24px;
+      @include sm() {
+        font-size: 10px;
+        width: 83vw;
+        margin: 1rem auto;
+        text-align: center;
+      }
+      
+    }
+    .container {
+      width: 40vw;
+      @include sm() {
+        width: 55vw;
+        margin: auto;
+      }
+      @include md() {
+        width: 88vw;
+        margin: auto;
+      }
+      div {
+        display: flex;
+        align-items: baseline;
+        @include sm(){
+          align-items: center;
+          margin-top: 0.3rem;
+        }
+        .rounded {
+          background-color: #2e70cb;
+          padding: 14px 12px;
+          border-radius: 100%;
+          margin-top: 1.5rem;
+          img{
+            @include sm() {
+             width: 8px;
+             height: 7px;
+            }
+          }
+          
+          @include sm() {
+            padding: 4px 5px;
+            border-radius: 100%;
+            margin-top: 0.2rem;
+          }
+        }
+        .text {
+          margin-left: 20px;
+          color: rgba($color: #000000, $alpha: 0.4);
+          font-size: 24px;
+          @include sm() {
+            font-size: 12px;
+            margin-left: 8px;
+          }
+        }
+      }
     }
   }
 }

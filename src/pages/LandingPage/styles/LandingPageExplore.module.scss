@@ -1,46 +1,105 @@
 @use "../../../assets/styles/" as *;
 
 .container {
-  width: 100%;
-  max-width: 1200px;
+  max-width: 83vw;
   margin: 0 auto 1rem;
   box-sizing: border-box;
-}
-
-.title {
-  font-size: pixRem(43);
-  margin-bottom: 1rem;
-  text-transform: capitalize;
-  margin-top: 4rem;
-  font-weight: 600;
-  color: $primary;
-  text-align: center;
-}
-
-.subTitle {
-  font-size: 25px;
-  text-align: center;
-  margin-bottom: 2.5rem;
-}
-
-
-.card{
-  display: grid;
-  grid-template-columns: auto auto auto ;
-  column-gap: 1rem;
-  row-gap: 1rem;
-  box-sizing: border-box;
-  margin-bottom: 2rem;
-
-  .lgImg {
-    img{
-      width: 580px;
-    height: 258px;
+  @include sm() {
+    max-width: 88vw;
+  }
+  @include md() {
+    max-width: 88vw;
+  }
+  .title {
+    font-size: pixRem(43);
+    margin-bottom: 1rem;
+    text-transform: capitalize;
+    margin-top: 4rem;
+    font-weight: 600;
+    color: $primary;
+    text-align: center;
+    @include sm() {
+      font-size: 20px;
+      margin-top: 1.5rem;
+      margin-bottom: 0.3rem;
+    }
+    @include md() {
+      font-size: 40px;
+      margin-top: 1.5rem;
+      margin-bottom: 0.3rem;
     }
   }
 
-  img{
-    width: 292px;
-    height: 258px;
+  .subTitle {
+    font-size: 25px;
+    text-align: center;
+    margin-bottom: 2.5rem;
+    @include sm() {
+      font-size: 10px;
+      margin-bottom: 1rem;
+    }
+    
+    @include md() {
+      font-size: 20px;
+      margin-bottom: 1rem;
+    }
+  }
+
+  .card {
+    display: grid;
+    grid-template-columns: auto auto;
+    @include sm() {
+      grid-template-columns: auto;
+      margin-bottom: 1rem;
+    }
+    @include md() {
+      grid-template-columns: auto;
+      margin-bottom: 1rem;
+    }
+    column-gap: 1rem;
+    row-gap: 1rem;
+    box-sizing: border-box;
+
+    .display {
+      display: grid;
+      grid-template-columns: auto auto;
+      column-gap: 1rem;
+      @include sm() {
+        column-gap: 0.3rem;
+        order: 1;
+      }
+      @include md() {
+        column-gap: 0.8rem;
+        order: 1;
+      }
+    }
+
+    .lgImg {
+      img {
+        width: 500px;
+        height: 240px;
+        @include sm() {
+          width: 88vw;
+          height: 35vw;
+        }
+        @include md() {
+          width: 89vw;
+          height: 35vw;
+        }
+      }
+    }
+
+    img {
+      width: 260px;
+      height: 240px;
+      @include sm() {
+        width: 42vw;
+        height: 35vw;
+      }
+      @include md() {
+        width: 44vw;
+        height: 35vw;
+      }
+    }
   }
 }
