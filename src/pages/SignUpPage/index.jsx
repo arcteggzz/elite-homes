@@ -195,7 +195,7 @@ const SignUpPage = () => {
     console.log(cloudinaryResponse);
 
     const finalRegistrationObject = {
-      userCloudinaryURL: cloudinaryResponse,
+      profile_picture: cloudinaryResponse,
       is_landlord: isLandlord,
       ...registerDetails,
     };
