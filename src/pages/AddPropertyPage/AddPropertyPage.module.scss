@@ -50,7 +50,7 @@
 
   .fullText {
     height: 13rem;
-    @include sm(){
+    @include sm() {
       height: 10rem;
     }
   }
@@ -84,7 +84,7 @@
   .smFlex {
     @include sm() {
       display: grid;
-      grid-template-columns:auto auto auto;
+      grid-template-columns: auto auto auto;
     }
   }
 
@@ -101,16 +101,15 @@
       display: grid;
       grid-template-columns: auto auto auto;
       gap: 1rem;
-      @include sm(){
+      @include sm() {
         gap: 0.8rem;
       }
-     
 
       div {
-        @include sm(){
+        @include sm() {
           display: flex;
           align-items: baseline;
-          label{
+          label {
             font-size: 12px;
           }
         }
@@ -120,7 +119,7 @@
           width: 4.1rem;
           padding: 15px 5px;
           margin-left: 1rem;
-          @include sm(){
+          @include sm() {
             width: 1.5rem;
             padding: 10px 2px;
             height: 1rem;
@@ -132,7 +131,7 @@
           padding: 15px 5px;
           width: 5rem;
           margin-left: 1rem;
-          @include sm(){
+          @include sm() {
             width: 1.5rem;
             padding: 10px 2px;
             height: 1rem;
@@ -147,29 +146,29 @@
       gap: 3rem;
       width: 64vw;
       margin-top: 0.6rem;
-      div{
-        label{
-          @include sm(){
+      div {
+        label {
+          @include sm() {
             font-size: 17px;
           }
         }
       }
-      @include sm(){
+      @include sm() {
         gap: 0.5rem;
         margin-top: 0rem;
       }
-      @include md(){
+      @include md() {
         gap: 0;
         margin-top: 0rem;
       }
 
       .floorPlan {
         height: 10.5rem;
-        @include sm(){
+        @include sm() {
           width: 44vw;
           height: 6rem;
         }
-        @include md(){
+        @include md() {
           width: 30vw;
           height: 8rem;
         }
@@ -179,21 +178,27 @@
         position: relative;
         overflow: hidden;
         display: inline-block;
+        margin-top: 1.5rem;
+
+        .uploadImg {
+          width: auto;
+          height: auto;
+        }
       }
 
       .uploadImg {
-        border: 2px solid rgba($color: gray, $alpha: 0.02);
-        border-radius: 8px;
-        width: 28vw;
-        height: 196px;
-        margin-top: 1.4rem;
-        @include sm(){
-          width: 40vw;
-          height: 6.3rem;
+        // border: 2px solid rgba($color: gray, $alpha: 0.02);
+        // border-radius: 8px;
+        width: auto;
+        height: auto;
+        // margin-top: 1.4rem;
+        @include sm() {
+          width: auto;
+          height: auto;
         }
-        @include md(){
-          width: 32vw;
-          height: 8.3rem;
+        @include md() {
+          width: auto;
+          height: auto;
           padding-right: 30px;
         }
       }
@@ -213,7 +218,7 @@
   margin-bottom: 0.9rem;
   font-weight: 500;
   font-size: 16px;
-  @include sm(){
+  @include sm() {
     margin-top: 15px;
   }
 }
@@ -318,7 +323,7 @@ input:checked + .slider:before {
   font-size: 16px;
   margin: 1.5rem 0;
   cursor: pointer;
-  grid-column: 1 / span 3
+  grid-column: 1 / span 3;
 }
 
 .verticalRule {
@@ -337,16 +342,15 @@ input:checked + .slider:before {
 // Upload
 .upload {
   width: 88vw;
-  @include md(){
+  @include md() {
     width: 66vw;
   }
   h3 {
     font-size: 28px;
     margin-bottom: 0.8rem;
-    @include sm(){
+    @include sm() {
       font-size: 19px;
       margin-bottom: 0.4rem;
-
     }
   }
 
@@ -366,11 +370,11 @@ input:checked + .slider:before {
     display: grid;
     grid-template-columns: auto auto auto;
     gap: 0.6rem;
-    @include sm(){
+    @include sm() {
       grid-template-columns: auto auto;
       gap: 0rem;
     }
-    @include md(){
+    @include md() {
       grid-template-columns: auto auto;
       gap: 1rem;
       width: 15vw;
@@ -388,13 +392,13 @@ input:checked + .slider:before {
       border-radius: 8px;
       width: 18vw;
       height: 146px;
-      @include sm(){
+      @include sm() {
         width: 40vw;
-      height: 30vw;
+        height: 30vw;
       }
-      @include md(){
+      @include md() {
         width: 28.5vw;
-      height: 20vw;
+        height: 20vw;
       }
     }
 
@@ -412,30 +416,36 @@ input:checked + .slider:before {
         margin-top: 1rem;
         border: 2px solid rgba($color: gray, $alpha: 0.02);
         border-radius: 8px;
-        width: 18vw;
-        height: 146px;
-        @include sm(){
-          width: 40vw;
-        height: 30vw;
+        width: 10vw;
+        height: auto;
+        @include sm() {
+          width: 60vw;
+          height: auto;
         }
-        @include md(){
+        @include md() {
           width: 28.5vw;
-        height: 20vw;
+          height: auto;
         }
       }
       .deleteBtn {
         position: absolute;
         top: 1vw;
         left: 17vw;
-        @include sm(){
+        @include sm() {
           top: 3vw;
-        left: 35vw;
+          left: 35vw;
         }
-        @include md(){
+        @include md() {
           top: 1.5vw;
-        left: 26vw;
+          left: 26vw;
         }
       }
     }
   }
+}
+
+.errorText {
+  font-size: 18px;
+  color: red;
+  font-weight: 600;
 }

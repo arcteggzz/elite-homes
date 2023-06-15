@@ -181,6 +181,12 @@
         row-gap: 12px;
         padding: 0 18px;
 
+        img {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+        }
+
         .logout_btn_mobile {
           width: 100%;
           text-align: center;
