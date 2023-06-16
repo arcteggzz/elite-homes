@@ -1,0 +1,142 @@
+@use "../../assets/styles/" as *;
+
+.SinglePropertySummary {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  column-gap: 60px;
+
+  .left {
+    width: 40%;
+    position: relative;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+
+    p {
+      position: absolute;
+      top: 30px;
+      left: 0;
+      font-weight: 500;
+      font-size: 19.894px;
+      line-height: 24px;
+      background: #d9d9d9;
+      border-radius: 0px 6.63132px 6.63132px 0px;
+      padding: 8px 8px 8px 24px;
+    }
+  }
+
+  .right {
+    display: flex;
+    flex-direction: column;
+    row-gap: 18px;
+    width: 60%;
+
+    .right_top {
+      display: flex;
+      column-gap: 14px;
+      width: 100%;
+
+      img {
+        width: auto;
+        height: auto;
+      }
+
+      p {
+        font-weight: 400;
+        font-size: 24.9001px;
+        line-height: 30px;
+        color: #000000;
+      }
+    }
+
+    h2 {
+      font-weight: 500;
+      font-size: 42.7132px;
+      line-height: 52px;
+      color: #000000;
+    }
+
+    p {
+      font-weight: 400;
+      font-size: 28.4755px;
+      line-height: 35px;
+    }
+
+    .buttons_container {
+      display: flex;
+      align-items: center;
+      column-gap: 24px;
+
+      .remove_button {
+        background: #2e70cb;
+        padding: 28px 30px;
+        border: none;
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 24px;
+        text-transform: capitalize;
+        color: #ffffff;
+        transition: all ease 0.5s;
+        cursor: pointer;
+      }
+
+      .remove_button:hover {
+        background: #799bca;
+      }
+
+      .view_button {
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 25px;
+        line-height: 30px;
+        text-transform: capitalize;
+        color: #000000;
+        cursor: pointer;
+      }
+
+      .potential_buyers {
+        display: flex;
+        align-items: center;
+        column-gap: 16px;
+        position: relative;
+
+        p {
+          font-weight: 500;
+          font-size: 26.9798px;
+          line-height: 33px;
+          color: #000000;
+        }
+
+        .potential_buyers_count {
+          position: absolute;
+          right: -12px;
+          top: -6px;
+          font-weight: 500;
+          font-size: 12.3528px;
+          line-height: 15px;
+          color: #ffe8e8;
+          background: #ff0000;
+          border-radius: 13.5881px;
+          padding: 2px 6px;
+        }
+      }
+
+      .delete_button {
+        background: rgba(255, 0, 0, 0.6);
+        padding: 28px 30px;
+        border: none;
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 24px;
+        text-transform: capitalize;
+        color: #ffffff;
+        transition: all ease 0.5s;
+        cursor: pointer;
+      }
+    }
+  }
+}
