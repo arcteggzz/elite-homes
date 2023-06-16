@@ -40,8 +40,10 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   padding: pixRem(10) 0 pixRem(40) 0;
-  gap: 1rem;
-  row-gap: 2rem;
+  column-gap: 40px;
+  row-gap: 100px;
+  min-height: 50vh;
+  justify-items: center;
 
   @include sm() {
     padding: pixRem(20) 0;
@@ -52,7 +54,7 @@
     padding: pixRem(20) 0;
     row-gap: 44px;
     grid-template-columns: 1fr 1fr;
-    gap: 2rem;
+    column-gap: 1rem;
   }
 }
 

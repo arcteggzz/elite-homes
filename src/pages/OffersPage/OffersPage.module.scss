@@ -9,7 +9,9 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     width: 100%;
+    min-height: 50vh;
     padding: pixRem(100);
+    column-gap: 40px;
     row-gap: 100px;
     justify-items: center;
 
