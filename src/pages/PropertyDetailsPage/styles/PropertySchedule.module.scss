@@ -25,6 +25,10 @@
       column-gap: 14px;
       width: 100%;
 
+      img {
+        border-radius: 8px;
+      }
+
       .owner_name_tag {
         display: flex;
         flex-direction: column;
