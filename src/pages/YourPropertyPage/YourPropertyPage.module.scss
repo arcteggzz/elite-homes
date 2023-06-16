@@ -1,49 +1,29 @@
 @use "../../assets/styles/" as *;
 
-.PropertyListingsPage {
-  .container {
-    width: 100%;
-    max-width: 1140px;
-    margin: auto;
-    box-sizing: border-box;
+.YourPropertyPage {
+  padding: pixRem(20) pixRem(120);
+  display: flex;
+  flex-direction: column;
+  row-gap: 48px;
+  column-gap: 12px;
 
-    h1 {
-      font-size: 45px;
-      margin-left: 20px;
-      margin-bottom: 1.5rem;
-    }
+  width: 100%;
+  min-height: 50vh;
+  @include sm() {
+    padding: pixRem(26) pixRem(24);
+    display: grid;
+    grid-template-columns: 1fr 1Fr 1Fr;
+    column-gap: 8px;
   }
-}
 
-@include md() {
-  .PropertyListingsPage {
-    .container {
-      width: 100%;
-      max-width: 900px;
-      margin: auto;
-      box-sizing: border-box;
+  h1 {
+    font-size: 45px;
 
-      h1 {
-        font-size: 30px;
-        margin-left: 30px;
-        margin-bottom: 1rem;
-      }
+    @include md() {
+      font-size: 30px;
     }
-  }
-}
-
-@include sm() {
-  .PropertyListingsPage {
-    .container {
-      width: 100%;
-      max-width: 97vw;
-      margin: auto;
-      box-sizing: border-box;
-
-      h1 {
-        font-size: 15px;
-        margin-bottom: 1rem;
-      }
+    @include sm() {
+      font-size: 15px;
     }
   }
 }

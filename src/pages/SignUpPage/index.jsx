@@ -191,11 +191,17 @@ const SignUpPage = () => {
       return;
     }
 
+    if (profileImage.size > 1100000) {
+      setFormValidationError(
+        "Profile Image File size too big. Plese select a profile image less than 1mb"
+      );
+      return;
+    }
+
     const cloudinaryResponse = await uploadImageToCloudinaryAndGetImageURL();
-    console.log(cloudinaryResponse);
 
     const finalRegistrationObject = {
-      userCloudinaryURL: cloudinaryResponse,
+      profile_picture: cloudinaryResponse,
       is_landlord: isLandlord,
       ...registerDetails,
     };

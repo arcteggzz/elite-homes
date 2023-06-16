@@ -4,6 +4,9 @@
   max-width: 1140px;
   margin: 0 auto 1rem;
   box-sizing: border-box;
+  @include md(){
+    width: 88vw;
+  }
 
   button {
     width: 100%;
@@ -44,6 +47,14 @@
 .LoginPage {
   display: flex;
   justify-content: space-between;
+  @include md(){
+    flex-direction: column;
+  }
+  .sm {
+    @include md(){
+      margin: 0 auto 4rem;
+    }
+  }
 }
 
 .loginImage {
@@ -58,6 +69,9 @@
     font-weight: 600;
     font-size: 46px;
     margin-bottom: 0.5rem;
+    @include md(){
+      display: none;
+    }
   }
 
   h3 {

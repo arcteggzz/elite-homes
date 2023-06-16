@@ -1,19 +1,25 @@
 @use "../../assets/styles/" as *;
 
 .container {
-  max-width: 1150px;
+  max-width: 83vw;
   margin: auto;
   h1 {
     font-size: 48px;
     font-weight: 60px;
     margin-bottom: 1rem;
+    @include sm() {
+      display: none;
+    }
   }
 
   .grid {
     display: grid;
     grid-template-columns: auto auto;
-    // grid-template-rows: auto auto;
     gap: 3rem;
+    @include sm() {
+      grid-template-columns: auto;
+      gap: 0;
+    }
   }
 
   input {
@@ -44,6 +50,9 @@
 
   .fullText {
     height: 13rem;
+    @include sm() {
+      height: 10rem;
+    }
   }
 
   label {
@@ -59,32 +68,74 @@
     font-size: 40px;
     font-weight: 600;
     margin-bottom: 1rem;
+    @include sm() {
+      font-size: 23px;
+    }
   }
 }
 
 .addInfo {
   display: flex;
   flex-wrap: nowrap;
+  @include sm() {
+    flex-direction: column-reverse;
+  }
+
+  .smFlex {
+    @include sm() {
+      display: grid;
+      grid-template-columns: auto auto auto;
+    }
+  }
 
   .flexRightContainer {
     margin-left: 2.4rem;
+    @include sm() {
+      margin-left: 0;
+    }
+    @include md() {
+      margin-left: 0;
+    }
     .flexRightContent {
-      width: 112%;
+      width: 65vw;
       display: grid;
       grid-template-columns: auto auto auto;
       gap: 1rem;
+      @include sm() {
+        gap: 0.8rem;
+      }
+
       div {
+        @include sm() {
+          display: flex;
+          align-items: baseline;
+          label {
+            font-size: 12px;
+          }
+        }
+
         .bedroomInput {
           border-radius: 0;
           width: 4.1rem;
           padding: 15px 5px;
           margin-left: 1rem;
+          @include sm() {
+            width: 1.5rem;
+            padding: 10px 2px;
+            height: 1rem;
+            margin-left: 0.3rem;
+          }
         }
         .propertySize {
           border-radius: 0;
           padding: 15px 5px;
           width: 5rem;
           margin-left: 1rem;
+          @include sm() {
+            width: 1.5rem;
+            padding: 10px 2px;
+            height: 1rem;
+          }
         }
       }
     }
@@ -93,25 +144,63 @@
       display: grid;
       grid-template-columns: auto auto;
       gap: 3rem;
-      width: 110%;
+      width: 64vw;
       margin-top: 0.6rem;
+      div {
+        label {
+          @include sm() {
+            font-size: 17px;
+          }
+        }
+      }
+      @include sm() {
+        gap: 0.5rem;
+        margin-top: 0rem;
+      }
+      @include md() {
+        gap: 0;
+        margin-top: 0rem;
+      }
 
       .floorPlan {
         height: 10.5rem;
+        @include sm() {
+          width: 44vw;
+          height: 6rem;
+        }
+        @include md() {
+          width: 30vw;
+          height: 8rem;
+        }
       }
 
       .uploadBtnWrapper {
         position: relative;
         overflow: hidden;
         display: inline-block;
+        margin-top: 1.5rem;
+
+        .uploadImg {
+          width: auto;
+          height: auto;
+        }
       }
 
       .uploadImg {
-        border: 2px solid rgba($color: gray, $alpha: 0.02);
-        border-radius: 8px;
-        width: 377px;
-        height: 199px;
-        margin-top: 1.4rem;
+        // border: 2px solid rgba($color: gray, $alpha: 0.02);
+        // border-radius: 8px;
+        width: auto;
+        height: auto;
+        // margin-top: 1.4rem;
+        @include sm() {
+          width: auto;
+          height: auto;
+        }
+        @include md() {
+          width: auto;
+          height: auto;
+          padding-right: 30px;
+        }
       }
 
       .uploadBtnWrapper input[type="file"] {
@@ -128,14 +217,20 @@
 .category {
   margin-bottom: 0.9rem;
   font-weight: 500;
-  font-size: 23px;
+  font-size: 16px;
+  @include sm() {
+    margin-top: 15px;
+  }
 }
 
 .types {
   margin-top: 2rem;
   margin-bottom: 0.9rem;
   font-weight: 500;
-  font-size: 23px;
+  font-size: 16px;
+  @include sm() {
+    margin-top: 15px;
+  }
 }
 
 .switch {
@@ -143,6 +238,10 @@
   display: inline-block;
   width: 26px;
   height: 12.5px;
+  @include sm() {
+    width: 15px;
+    height: 8.5px;
+  }
   input {
     opacity: 0;
     width: 0;
@@ -154,13 +253,16 @@
   position: absolute;
   cursor: pointer;
   top: 0;
-  left: 0;
+  left: 0px;
   right: 0;
   bottom: 0;
   background-color: #ccc;
   -webkit-transition: 0.4s;
   transition: 0.4s;
   border-radius: 50px;
+  @include sm() {
+    left: -6px;
+  }
 }
 
 .slider:before {
@@ -174,6 +276,10 @@
   -webkit-transition: 0.4s;
   transition: 0.4s;
   border-radius: 34px;
+  @include sm() {
+    width: 6px;
+    height: 6px;
+  }
 }
 
 input:checked + .slider {
@@ -195,8 +301,15 @@ input:checked + .slider:before {
   align-items: center;
   margin-bottom: 0.7rem;
   width: 190px;
+  @include sm() {
+    width: 100%;
+  }
   p {
     margin-right: 8px;
+    font-size: 12px;
+    @include sm() {
+      margin-right: 10px;
+    }
   }
 }
 
@@ -204,12 +317,13 @@ input:checked + .slider:before {
   background-color: $secondary;
   border: none;
   color: white;
-  padding: 25px 0px;
+  padding: 20px 19px;
   text-align: center;
   text-decoration: none;
   font-size: 16px;
   margin: 1.5rem 0;
   cursor: pointer;
+  grid-column: 1 / span 3;
 }
 
 .verticalRule {
@@ -217,13 +331,27 @@ input:checked + .slider:before {
   height: 800px;
   margin-left: 3rem;
   background-color: rgba($color: black, $alpha: 0.2);
+  @include sm() {
+    display: none;
+  }
+  @include md() {
+    display: none;
+  }
 }
 
 // Upload
 .upload {
+  width: 88vw;
+  @include md() {
+    width: 66vw;
+  }
   h3 {
     font-size: 28px;
     margin-bottom: 0.8rem;
+    @include sm() {
+      font-size: 19px;
+      margin-bottom: 0.4rem;
+    }
   }
 
   p {
@@ -233,12 +361,24 @@ input:checked + .slider:before {
     span {
       color: red;
     }
+    @include sm() {
+      font-size: 13px;
+    }
   }
 
   .uploadImage {
     display: grid;
     grid-template-columns: auto auto auto;
     gap: 0.6rem;
+    @include sm() {
+      grid-template-columns: auto auto;
+      gap: 0rem;
+    }
+    @include md() {
+      grid-template-columns: auto auto;
+      gap: 1rem;
+      width: 15vw;
+    }
 
     .uploadBtnWrapper {
       position: relative;
@@ -250,8 +390,16 @@ input:checked + .slider:before {
       margin-top: 1rem;
       border: 2px solid rgba($color: gray, $alpha: 0.02);
       border-radius: 8px;
-      width: 275px;
+      width: 18vw;
       height: 146px;
+      @include sm() {
+        width: 40vw;
+        height: 30vw;
+      }
+      @include md() {
+        width: 28.5vw;
+        height: 20vw;
+      }
     }
 
     .uploadBtnWrapper input[type="file"] {
@@ -268,14 +416,36 @@ input:checked + .slider:before {
         margin-top: 1rem;
         border: 2px solid rgba($color: gray, $alpha: 0.02);
         border-radius: 8px;
-        width: 275px;
-        height: 146px;
+        width: 10vw;
+        height: auto;
+        @include sm() {
+          width: 60vw;
+          height: auto;
+        }
+        @include md() {
+          width: 28.5vw;
+          height: auto;
+        }
       }
       .deleteBtn {
         position: absolute;
-        top: 8%;
-        left: 90%;
+        top: 1vw;
+        left: 17vw;
+        @include sm() {
+          top: 3vw;
+          left: 35vw;
+        }
+        @include md() {
+          top: 1.5vw;
+          left: 26vw;
+        }
       }
     }
   }
+}
+
+.errorText {
+  font-size: 18px;
+  color: red;
+  font-weight: 600;
 }

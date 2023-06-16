@@ -101,6 +101,12 @@
         text-align: center;
       }
 
+      img {
+        width: 31px;
+        height: 30px;
+        border-radius: 50%;
+      }
+
       .logout_btn {
         padding: pixRem(10) pixRem(24);
         background: $primary;
@@ -174,6 +180,12 @@
         align-items: center;
         row-gap: 12px;
         padding: 0 18px;
+
+        img {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+        }
 
         .logout_btn_mobile {
           width: 100%;
