@@ -1,43 +1,42 @@
 import styles from "./PropertyListingsPage.module.scss";
 import AnimatedFadeInPage from "../../utils/AnimatedFadeInPage";
-import { useSelector } from "react-redux";
-import {
-  selectCurrentUserName,
-  selectCurrentAccessToken,
-} from "../../redux/features/auth/authSlice";
-import PropertyList from "./component/PropertyList";
-
-import img from "./images/propertyA.png";
-
-const listOfProperty = [
-  {
-    property: img,
-    title: "somolu",
-  },
-  {
-    property: img,
-    title: "somolu",
-  },
-  {
-    property: img,
-    title: "somolu",
-  },
-];
+import SinglePropertySummary from "../../components/SinglePropertySummary";
 
 const PropertyListingsPage = () => {
-  const userName = useSelector(selectCurrentUserName);
-  const userAccessToken = useSelector(selectCurrentAccessToken);
+  const isLoading = false;
+  const list = [];
 
   return (
     <>
       <AnimatedFadeInPage>
         <main className={styles.PropertyListingsPage}>
-          <h1>{userName}</h1>
-          <h1>{userAccessToken}</h1>
-          <section className={styles.container}>
-            <h1>List Of Properties</h1>
-            <PropertyList listOfProperty={listOfProperty} />
-          </section>
+          <h1>List Of Properties</h1>
+          {isLoading ? (
+            <>
+              <h2>Loading...</h2>
+            </>
+          ) : list.length < 1 ? (
+            <>
+              <h3>You are not tracking any properties yet.</h3>
+            </>
+          ) : (
+            <>
+              {" "}
+              <SinglePropertySummary
+                propertyId="1"
+                propertyAddress={"Lagos"}
+                propertyCategory={2}
+                propertyImage={
+                  "https://res.cloudinary.com/dhf9w2zpm/image/upload/v1686868514/jdxniwfixlb0aud8zlol.jpg"
+                }
+                propertyName={"Ikoyi Lagos"}
+                propertySummary={
+                  "Own this magnificent building and experience the epitome of luxury and grandeur."
+                }
+                pageMount="Property Listings"
+              />
+            </>
+          )}
         </main>
       </AnimatedFadeInPage>
     </>
