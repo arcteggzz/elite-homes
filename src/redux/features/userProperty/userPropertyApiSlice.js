@@ -2,9 +2,9 @@ import { apiSlice } from "../../app/api/apiSlice";
 
 export const userPropertyApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    // getAllPropertiesSelling: builder.query({
-    //   query: (userId) => `/properties/selling/${userId}`,
-    // }),
+    getAllPropertiesSelling: builder.query({
+      query: (userId) => `/users/${userId}/properties`,
+    }),
     // getAllPropertiesBuying: builder.query({
     //   query: (userId) => `/properties/buying/${userId}`,
     // }),
@@ -19,7 +19,7 @@ export const userPropertyApiSlice = apiSlice.injectEndpoints({
 });
 
 export const {
-  // useGetAllPropertiesSellingQuery,
+  useGetAllPropertiesSellingQuery,
   // useGetAllPropertiesBuyingQuery,
   useCreatePropertyMutation,
 } = userPropertyApiSlice;

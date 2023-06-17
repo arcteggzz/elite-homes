@@ -5,10 +5,8 @@
   flex-direction: column;
   width: 100%;
   row-gap: pixRem(10);
-  padding: pixRem(28) pixRem(100);
 
   @include sm() {
-    padding: 28px 18px;
   }
 
   .Property_Name_Price {

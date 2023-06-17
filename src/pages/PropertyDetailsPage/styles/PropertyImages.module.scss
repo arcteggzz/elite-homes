@@ -5,9 +5,7 @@
   flex-direction: column;
   width: 100%;
   row-gap: pixRem(48);
-  padding: 0 pixRem(100);
   @include sm() {
-    padding: 0 pixRem(18);
   }
 
   .Image_Carousel_Parent_Container {

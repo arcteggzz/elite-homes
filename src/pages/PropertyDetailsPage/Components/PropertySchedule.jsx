@@ -3,6 +3,11 @@ import styles from "../styles/PropertySchedule.module.scss";
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 import { selectCurrentUserName } from "../../../redux/features/auth/authSlice";
+import { usePropertyBookingMutation } from "../../../redux/features/users/usersApiSlice";
+import LoadingScreen from "../../../utils/LoadingScreen";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
 const PropertySchedule = ({
   ownerEmail,
@@ -11,15 +16,63 @@ const PropertySchedule = ({
   ownerName,
   ownerId,
   ownerImage,
+  propertyId,
 }) => {
   const currentUserName = useSelector(selectCurrentUserName);
   const [fullName, setFullName] = useState(currentUserName);
   const [userEmail, setUserEmail] = useState("");
   const [userPhoneNumber, setUserPhoneNumber] = useState("");
   const [userMessage, setUserMessage] = useState("");
+  const [propertyBooking] = usePropertyBookingMutation();
+  const [errMsg, setErrMsg] = useState("");
+  const [bookingLoading, setBookingLoading] = useState(false);
 
-  const formSubmithandler = (e) => {
+  const navigate = useNavigate();
+
+  const validateFieldIsNotEmpty = (name) => {
+    return name.length < 1;
+  };
+
+  const formSubmithandler = async (e) => {
     e.preventDefault();
+
+    if (validateFieldIsNotEmpty(fullName)) {
+      setErrMsg("Full name Field Cannot be empty.");
+    } else if (validateFieldIsNotEmpty(userEmail)) {
+      setErrMsg("Please enter your email.");
+    } else if (validateFieldIsNotEmpty(userPhoneNumber)) {
+      setErrMsg("Please enter your phone number.");
+    } else if (validateFieldIsNotEmpty(userMessage)) {
+      setErrMsg("Please enter your message.");
+    } else {
+      setBookingLoading(true);
+
+      try {
+        const bookingObject = {
+          name: fullName.trim(),
+          email: userEmail.trim(),
+          message: userMessage,
+          phone_number: userPhoneNumber,
+          property_id: propertyId,
+        };
+        const response = await propertyBooking({ bookingObject });
+        if (response.data) {
+          toast.success(`Booking Successful.`, {
+            autoClose: 1800,
+          });
+          setBookingLoading(false);
+          setTimeout(() => {
+            navigate("/properties/property-listings");
+          }, 2000);
+        }
+      } catch (error) {
+        setBookingLoading(false);
+        setErrMsg(error.data.message);
+        toast.error(`Something went wrong. Booking failed.`, {
+          autoClose: 3000,
+        });
+      }
+    }
   };
 
   return (
@@ -60,6 +113,9 @@ const PropertySchedule = ({
             Please fill in the detail in other to book the meeting for the
             apartment.
           </p>
+          <h6 className={styles.errorText} id="errorText">
+            {errMsg}
+          </h6>
           <input
             type="text"
             name=""
@@ -99,6 +155,14 @@ const PropertySchedule = ({
           <button>Make Enquiry</button>
         </form>
       </section>
+      {bookingLoading ? (
+        <>
+          <LoadingScreen loading={bookingLoading} />
+        </>
+      ) : (
+        <></>
+      )}
+      <ToastContainer />
     </>
   );
 };
@@ -112,4 +176,5 @@ PropertySchedule.propTypes = {
   ownerPhoneNumber: PropTypes.string,
   ownerId: PropTypes.string,
   ownerEmail: PropTypes.string,
+  propertyId: PropTypes.string,
 };
