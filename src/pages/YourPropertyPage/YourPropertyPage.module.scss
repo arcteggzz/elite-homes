@@ -1,19 +1,21 @@
 @use "../../assets/styles/" as *;
 
 .YourPropertyPage {
-  padding: pixRem(20) pixRem(120);
+  padding: pixRem(80) pixRem(120) pixRem(160) pixRem(120);
   display: flex;
   flex-direction: column;
-  row-gap: 48px;
-  column-gap: 12px;
+  row-gap: 64px;
 
   width: 100%;
   min-height: 50vh;
   @include sm() {
-    padding: pixRem(26) pixRem(24);
-    display: grid;
-    grid-template-columns: 1fr 1Fr 1Fr;
-    column-gap: 8px;
+    padding: pixRem(28) pixRem(24) pixRem(64) pixRem(24);
+    display: flex;
+    flex-direction: column;
+    row-gap: 32px;
+
+    width: 100%;
+    min-height: 50vh;
   }
 
   h1 {
@@ -23,7 +25,7 @@
       font-size: 30px;
     }
     @include sm() {
-      font-size: 15px;
+      font-size: 18px;
     }
   }
 }

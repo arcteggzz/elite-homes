@@ -22,7 +22,7 @@ const LandingPageProperties = () => {
           return (
             <>
               <PropertySummary
-                key={propertyData.id}
+                key={propertyData.property_name}
                 propertyId={propertyData.id}
                 propertyImage={propertyData.property_other_image_url[0]}
                 bathroomNumber={propertyData.property_toilet_number}

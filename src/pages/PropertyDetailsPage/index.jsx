@@ -18,13 +18,11 @@ const PropertyDetailsPage = () => {
     error,
   } = useGetSinglePropertyQuery(propertyIdentifier);
 
-  console.log(propertyDetails);
-
   let content;
   if (isLoading) {
     content = (
       <>
-        <h3>Loading...</h3>
+        <h3>Loading Details of Property...</h3>
       </>
     );
   } else if (isSuccess) {
@@ -65,17 +63,6 @@ const PropertyDetailsPage = () => {
       </>
     );
   }
-
-  // let content = (
-  //   <>
-  //     <PropertyHeader />
-  //     <PropertyImages />
-  //     <section className={styles.Details_container}>
-  //       <PropertyDetails />
-  //       <PropertySchedule />
-  //     </section>
-  //   </>
-  // );
 
   return (
     <>
