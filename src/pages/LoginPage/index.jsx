@@ -68,7 +68,7 @@ const LoginPage = () => {
       } catch (err) {
         setAccountLoginLoading(false);
         setErrMsg(err.data.message);
-        toast.error(`Something went wrong. Login failed.`, {
+        toast.error(err.data.message, {
           autoClose: 3000,
         });
       }

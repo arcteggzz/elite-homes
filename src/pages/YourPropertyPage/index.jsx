@@ -24,7 +24,7 @@ const YourPropertyPage = () => {
   } else if (isSuccess && allPropertiesSelling.data.length > 1) {
     content = (
       <>
-        {allPropertiesSelling.data.map((propertyData) => {
+        {allPropertiesSelling?.data?.map((propertyData) => {
           return (
             <>
               <SinglePropertySummary

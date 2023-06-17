@@ -18,7 +18,7 @@ const LandingPageProperties = () => {
   } else if (isSuccess) {
     content = (
       <>
-        {allProperties.data.map((propertyData) => {
+        {allProperties?.data?.map((propertyData) => {
           return (
             <>
               <PropertySummary
