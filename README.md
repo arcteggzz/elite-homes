@@ -1,4 +1,4 @@
-# SLS PUBLIC WEB APPLICATION FRONTEND
+# ELITE HOMES WEB APPLICATION FRONTEND
 
 This is the main application for the public domain for Elite Homes.
 
