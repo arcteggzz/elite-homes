@@ -1,7 +1,6 @@
 import styles from "../styles/LandingPageProperties.module.scss";
 import PropertySummary from "../../OffersPage/Components/PropertySummary";
 import { useGetAllPropertiesQuery } from "../../../redux/features/property/propertyApiSlice";
-// import dummyImage from "../../OffersPage/images/dummy_property.png";
 
 const LandingPageProperties = () => {
   const {
@@ -9,7 +8,6 @@ const LandingPageProperties = () => {
     isLoading,
     isSuccess,
     isError,
-    error,
   } = useGetAllPropertiesQuery();
 
   let content;
@@ -18,11 +16,11 @@ const LandingPageProperties = () => {
   } else if (isSuccess) {
     content = (
       <>
-        {allProperties?.data?.map((propertyData) => {
+        {allProperties?.data?.map((propertyData, index) => {
           return (
             <>
               <PropertySummary
-                key={propertyData.property_name}
+                key={`${propertyData.property_name}${index}`}
                 propertyId={propertyData.id}
                 propertyImage={propertyData.property_other_image_url[0]}
                 bathroomNumber={propertyData.property_toilet_number}
@@ -40,7 +38,7 @@ const LandingPageProperties = () => {
       </>
     );
   } else if (isError) {
-    content = <h3>{error}</h3>;
+    content = <h3>Something went wrong. Can not display offers right now.</h3>;
   }
 
   return (

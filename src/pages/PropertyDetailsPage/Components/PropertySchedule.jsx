@@ -2,7 +2,10 @@ import { useState } from "react";
 import styles from "../styles/PropertySchedule.module.scss";
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
-import { selectCurrentUserName } from "../../../redux/features/auth/authSlice";
+import {
+  selectCurrentUserName,
+  selectCurrentAccessToken,
+} from "../../../redux/features/auth/authSlice";
 import { usePropertyBookingMutation } from "../../../redux/features/users/usersApiSlice";
 import LoadingScreen from "../../../utils/LoadingScreen";
 import { ToastContainer, toast } from "react-toastify";
@@ -19,6 +22,7 @@ const PropertySchedule = ({
   propertyId,
 }) => {
   const currentUserName = useSelector(selectCurrentUserName);
+  const currentAccessToken = useSelector(selectCurrentAccessToken);
   const [fullName, setFullName] = useState(currentUserName);
   const [userEmail, setUserEmail] = useState("");
   const [userPhoneNumber, setUserPhoneNumber] = useState("");
@@ -35,6 +39,16 @@ const PropertySchedule = ({
 
   const formSubmithandler = async (e) => {
     e.preventDefault();
+
+    if (!currentAccessToken) {
+      toast.error(`You have to be logged in to create a booking.`, {
+        autoClose: 1800,
+      });
+      setBookingLoading(false);
+      setTimeout(() => {
+        navigate("/login");
+      }, 2000);
+    }
 
     if (validateFieldIsNotEmpty(fullName)) {
       setErrMsg("Full name Field Cannot be empty.");
