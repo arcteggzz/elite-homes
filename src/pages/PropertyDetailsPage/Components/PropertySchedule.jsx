@@ -6,7 +6,7 @@ import {
   selectCurrentUserName,
   selectCurrentAccessToken,
 } from "../../../redux/features/auth/authSlice";
-import { usePropertyBookingMutation } from "../../../redux/features/users/usersApiSlice";
+// import { usePropertyBookingMutation } from "../../../redux/features/users/usersApiSlice";
 import LoadingScreen from "../../../utils/LoadingScreen";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -27,66 +27,133 @@ const PropertySchedule = ({
   const [userEmail, setUserEmail] = useState("");
   const [userPhoneNumber, setUserPhoneNumber] = useState("");
   const [userMessage, setUserMessage] = useState("");
-  const [propertyBooking] = usePropertyBookingMutation();
+  // const [propertyBooking, { isLoading }] = usePropertyBookingMutation();
   const [errMsg, setErrMsg] = useState("");
   const [bookingLoading, setBookingLoading] = useState(false);
 
   const navigate = useNavigate();
 
-  const validateFieldIsNotEmpty = (name) => {
-    return name.length < 1;
-  };
+  // const validateFieldIsNotEmpty = (name) => {
+  //   return name.length < 1;
+  // };
 
-  const formSubmithandler = async (e) => {
+  // const formSubmithandler = async (e) => {
+  //   e.preventDefault();
+
+  //   if (!currentAccessToken) {
+  //     toast.error(`You have to be logged in to create a booking.`, {
+  //       autoClose: 1800,
+  //     });
+  //     setTimeout(() => {
+  //       navigate("/login");
+  //     }, 2000);
+  //   }
+
+  //   if (validateFieldIsNotEmpty(fullName)) {
+  //     setErrMsg("Full name Field Cannot be empty.");
+  //   } else if (validateFieldIsNotEmpty(userEmail)) {
+  //     setErrMsg("Please enter your email.");
+  //   } else if (validateFieldIsNotEmpty(userPhoneNumber)) {
+  //     setErrMsg("Please enter your phone number.");
+  //   } else if (validateFieldIsNotEmpty(userMessage)) {
+  //     setErrMsg("Please enter your message.");
+  //   } else {
+  //     try {
+  //       const bookingObject = {
+  //         name: fullName.trim(),
+  //         email: userEmail.trim(),
+  //         message: userMessage,
+  //         phone_number: userPhoneNumber,
+  //         property_id: propertyId,
+  //       };
+  //       const response = await propertyBooking({ bookingObject }).unwrap();
+  //       if (response.data) {
+  //         toast.success(`Booking Successful.`, {
+  //           autoClose: 1800,
+  //         });
+  //         setTimeout(() => {
+  //           navigate("/properties/property-listings");
+  //         }, 2000);
+  //       } else {
+  //         setErrMsg("some error occurred");
+  //         window.scrollTo({
+  //           top: -200,
+  //           left: 0,
+  //           behavior: "smooth",
+  //         });
+  //         toast.error(`Something went wrong. Booking failed.`, {
+  //           autoClose: 3000,
+  //         });
+  //       }
+  //     } catch (error) {
+  //       setErrMsg(error.data.message);
+  //       window.scrollTo({
+  //         top: -200,
+  //         left: 0,
+  //         behavior: "smooth",
+  //       });
+  //       toast.error(`Something went wrong. Booking failed.`, {
+  //         autoClose: 3000,
+  //       });
+  //     }
+  //   }
+  // };
+
+  const formSubmithandler = (e) => {
     e.preventDefault();
 
-    if (!currentAccessToken) {
-      toast.error(`You have to be logged in to create a booking.`, {
-        autoClose: 1800,
-      });
-      setBookingLoading(false);
-      setTimeout(() => {
-        navigate("/login");
-      }, 2000);
-    }
+    const url = "https://elitehomestest.onrender.com/api/v1/booking";
+    const data = {
+      name: fullName.trim(),
+      email: userEmail.trim(),
+      message: userMessage,
+      phone_number: userPhoneNumber,
+      property_id: propertyId,
+    };
+    const authToken = currentAccessToken;
 
-    if (validateFieldIsNotEmpty(fullName)) {
-      setErrMsg("Full name Field Cannot be empty.");
-    } else if (validateFieldIsNotEmpty(userEmail)) {
-      setErrMsg("Please enter your email.");
-    } else if (validateFieldIsNotEmpty(userPhoneNumber)) {
-      setErrMsg("Please enter your phone number.");
-    } else if (validateFieldIsNotEmpty(userMessage)) {
-      setErrMsg("Please enter your message.");
-    } else {
-      setBookingLoading(true);
-
-      try {
-        const bookingObject = {
-          name: fullName.trim(),
-          email: userEmail.trim(),
-          message: userMessage,
-          phone_number: userPhoneNumber,
-          property_id: propertyId,
-        };
-        const response = await propertyBooking({ bookingObject });
-        if (response.data) {
+    setBookingLoading(true);
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${authToken}`,
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data) {
+          setBookingLoading(false);
+          window.scrollTo({
+            top: -200,
+            left: 0,
+            behavior: "smooth",
+          });
           toast.success(`Booking Successful.`, {
             autoClose: 1800,
           });
-          setBookingLoading(false);
           setTimeout(() => {
             navigate("/properties/property-listings");
           }, 2000);
         }
-      } catch (error) {
+      })
+      .catch((error) => {
+        console.log(error);
         setBookingLoading(false);
-        setErrMsg(error.data.message);
+        setErrMsg("Error, there was a problem.");
+        window.scrollTo({
+          top: -200,
+          left: 0,
+          behavior: "smooth",
+        });
         toast.error(`Something went wrong. Booking failed.`, {
           autoClose: 3000,
         });
-      }
-    }
+      })
+      .finally(() => {
+        setBookingLoading(false);
+      });
   };
 
   return (
