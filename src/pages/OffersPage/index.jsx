@@ -15,17 +15,17 @@ const OffersPage = () => {
 
   let content;
   if (isLoading) {
-    content = <h3>Loading...</h3>;
+    content = <h3>Loading available offers for you...</h3>;
   } else if (isSuccess) {
     content = (
       <>
-        {allProperties.data.map((propertyData, index) => {
+        {allProperties?.data?.map((propertyData) => {
           return (
             <>
               <PropertySummary
                 key={propertyData.property_name}
                 propertyId={propertyData.id}
-                propertyImage={propertyData.property_other_image_url[index]}
+                propertyImage={propertyData.property_other_image_url[0]}
                 bathroomNumber={propertyData.property_toilet_number}
                 bedroomNumber={propertyData.property_bedroom_number}
                 propertyAddress={propertyData.property_address}

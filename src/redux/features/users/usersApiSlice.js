@@ -15,7 +15,18 @@ export const userApiSlice = apiSlice.injectEndpoints({
         body: userObject,
       }),
     }),
+    propertyBooking: builder.mutation({
+      query: (bookingObject) => ({
+        url: "/booking",
+        method: "POST",
+        body: bookingObject,
+      }),
+    }),
   }),
 });
 
-export const { useGetAllUsersQuery, useRegisterUserMutation } = userApiSlice;
+export const {
+  useGetAllUsersQuery,
+  useRegisterUserMutation,
+  usePropertyBookingMutation,
+} = userApiSlice;

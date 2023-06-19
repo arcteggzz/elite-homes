@@ -37,58 +37,41 @@ const LoginPage = () => {
 
     if (validateEmailIsNotEmpty(email)) {
       setErrMsg("Email Field Cannot be empty.");
-      return;
-    }
-
-    if (!validateEmail(email)) {
+    } else if (!validateEmail(email)) {
       setErrMsg("Please enter a valid email address. joedoes@example.com");
-      return;
-    }
-    if (validateEmailIsNotEmpty(password)) {
+    } else if (validateEmailIsNotEmpty(password)) {
       setErrMsg("Password Field Cannot be empty.");
-      return;
-    }
-
-    setAccountLoginLoading(true);
-    try {
-      const response = await login({
-        email,
-        password,
-      }).unwrap();
-      if (response.token) {
-        toast.success(`Login Successful. Routing to Dashboard.`, {
-          autoClose: 1800,
+    } else {
+      setAccountLoginLoading(true);
+      try {
+        const response = await login({
+          email: email.trim(),
+          password: password.trim(),
+        }).unwrap();
+        if (response.token) {
+          toast.success(`Login Successful. Routing to Dashboard.`, {
+            autoClose: 1800,
+          });
+          dispatch(
+            setCredentials({
+              username: `${response.data.firstName} ${response.data.lastName}`,
+              accessToken: response.token,
+              userImage: response.data.profilePicture,
+              userId: response.data.userId,
+            })
+          );
+          setAccountLoginLoading(false);
+          setTimeout(() => {
+            navigate(from, { replace: true });
+          }, 2000);
+        }
+      } catch (err) {
+        setAccountLoginLoading(false);
+        setErrMsg(err.data.message);
+        toast.error(err.data.message, {
+          autoClose: 3000,
         });
-        dispatch(
-          setCredentials({
-            username: `${response.data.firstName} ${response.data.lastName}`,
-            accessToken: response.token,
-            userImage: response.data.profilePicture,
-            userId: response.data.userId,
-          })
-        );
-        setAccountLoginLoading(false);
-        setTimeout(() => {
-          navigate(from, { replace: true });
-        }, 2000);
       }
-    } catch (err) {
-      if (!err?.originalStatus) {
-        // isLoading: true until timeout occurs
-        setAccountLoginLoading(false);
-        setErrMsg("No Server Response");
-      } else if (err.originalStatus === 400) {
-        setErrMsg("Missing Username or Password");
-      } else if (err.originalStatus === 401) {
-        setErrMsg("Unauthorized");
-      } else {
-        setErrMsg("Login Failed");
-      }
-      toast.error(`Something went wrong. Login failed.`, {
-        autoClose: 3000,
-      });
-      setEmail("");
-      setPassword("");
     }
   };
 
