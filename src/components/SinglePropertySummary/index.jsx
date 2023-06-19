@@ -20,6 +20,18 @@ export default function SinglePropertySummary({
     return category;
   };
 
+  const getPropertySummary = (paragraph) => {
+    const words = paragraph.trim().split(/\s+/);
+    if (words.length >= 24) {
+      const first9Words = words.slice(0, 24);
+      const result = first9Words.join(" ");
+      const finalQuote = `${result}...`;
+      return finalQuote;
+    } else {
+      return paragraph;
+    }
+  };
+
   return (
     <>
       <article className={styles.SinglePropertySummary}>
@@ -34,7 +46,7 @@ export default function SinglePropertySummary({
             <p>{propertyAddress}</p>
           </div>
           <h2>{propertyName}</h2>
-          <p>{propertySummary}</p>
+          <p>{getPropertySummary(propertySummary)}</p>
           {pageMount === "Property Listings" ? (
             <div className={styles.buttons_container}>
               <button className={styles.remove_button}>Remove Property</button>

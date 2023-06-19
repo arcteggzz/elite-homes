@@ -15,7 +15,7 @@ const PropertyDetailsPage = () => {
     data: propertyDetails,
     isLoading,
     isSuccess,
-    error,
+    isError,
   } = useGetSinglePropertyQuery(propertyIdentifier);
 
   let content;
@@ -34,7 +34,10 @@ const PropertyDetailsPage = () => {
           propertyName={propertyDetails.data.property_name}
           propertyPrice={propertyDetails.data.property_price}
         />
-        <PropertyImages />
+        <PropertyImages
+          propertyOtherImages={propertyDetails.data.property_other_image_url}
+          propertyFloorPlan={propertyDetails.data.property_plan_image_url}
+        />
         <section className={styles.Details_container}>
           <PropertyDetails
             propertyAddress={propertyDetails.data.property_address}
@@ -57,10 +60,10 @@ const PropertyDetailsPage = () => {
         </section>
       </>
     );
-  } else if (error) {
+  } else if (isError) {
     content = (
       <>
-        <p>{error}</p>
+        <h3>Can not fetch details of Property right now.</h3>
       </>
     );
   }

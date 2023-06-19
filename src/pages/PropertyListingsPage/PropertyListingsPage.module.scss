@@ -8,7 +8,7 @@
   column-gap: 12px;
 
   width: 100%;
-  min-height: 50vh;
+  min-height: 75vh;
   @include sm() {
     padding: pixRem(26) pixRem(24);
     display: grid;

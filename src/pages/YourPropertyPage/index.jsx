@@ -12,16 +12,14 @@ const YourPropertyPage = () => {
     isLoading,
     isSuccess,
     isError,
-    error,
   } = useGetAllPropertiesSellingQuery(userId);
-  console.log(allPropertiesSelling);
 
   let content;
   if (isLoading) {
     content = <h3>Loading all your properties...</h3>;
-  } else if (isSuccess && allPropertiesSelling.data.length < 1) {
+  } else if (isSuccess && allPropertiesSelling?.data?.length < 1) {
     content = <h3>You have not created any properties yet.</h3>;
-  } else if (isSuccess && allPropertiesSelling.data.length > 1) {
+  } else if (isSuccess && allPropertiesSelling?.data?.length > 0) {
     content = (
       <>
         {allPropertiesSelling?.data?.map((propertyData) => {
@@ -44,7 +42,7 @@ const YourPropertyPage = () => {
       </>
     );
   } else if (isError) {
-    content = <h3>{error}</h3>;
+    content = <h3>Something went wrong. Serverside Error. Reload Browser.</h3>;
   }
 
   return (
