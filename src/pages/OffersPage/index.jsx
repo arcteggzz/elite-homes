@@ -2,7 +2,6 @@ import styles from "./OffersPage.module.scss";
 import AnimatedFadeInPage from "../../utils/AnimatedFadeInPage";
 import PropertySummary from "./Components/PropertySummary";
 import { useGetAllPropertiesQuery } from "../../redux/features/property/propertyApiSlice";
-// import dummyImage from "./images/dummy_property.png";
 
 const OffersPage = () => {
   const {
@@ -10,7 +9,6 @@ const OffersPage = () => {
     isLoading,
     isSuccess,
     isError,
-    error,
   } = useGetAllPropertiesQuery();
 
   let content;
@@ -19,11 +17,11 @@ const OffersPage = () => {
   } else if (isSuccess) {
     content = (
       <>
-        {allProperties?.data?.map((propertyData) => {
+        {allProperties?.data?.map((propertyData, index) => {
           return (
             <>
               <PropertySummary
-                key={propertyData.property_name}
+                key={`${propertyData.property_name}${index}`}
                 propertyId={propertyData.id}
                 propertyImage={propertyData.property_other_image_url[0]}
                 bathroomNumber={propertyData.property_toilet_number}
@@ -41,7 +39,7 @@ const OffersPage = () => {
       </>
     );
   } else if (isError) {
-    content = <h3>{error}</h3>;
+    content = <h3>Something went wrong. Can not display offers right now.</h3>;
   }
 
   return (

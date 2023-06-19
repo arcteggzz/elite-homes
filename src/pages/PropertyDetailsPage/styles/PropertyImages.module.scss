@@ -23,6 +23,22 @@
     }
   }
 
+  .Image_FloorPlan {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      width: 55%;
+      height: auto;
+      @include sm() {
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
+
   .Image_Slider_Container {
     width: 100%;
     height: auto;

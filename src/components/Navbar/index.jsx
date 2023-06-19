@@ -53,7 +53,7 @@ export default function Navbar({ isAuthenticated, isHomepageNavbar }) {
   const logoutHandler = async () => {
     dispatch(resetCredentials());
     dispatch(closeNavbar());
-    navigate("/home");
+    navigate("/login");
   };
 
   const navbarHandler = () => {

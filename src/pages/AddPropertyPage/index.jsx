@@ -186,7 +186,7 @@ const AddPropertyPage = () => {
         });
         setPropertyCreationLoading(false);
         setTimeout(() => {
-          navigate("/properties/property-listings");
+          navigate("/properties/your-property");
         }, 2100);
       }
     } catch (err) {
