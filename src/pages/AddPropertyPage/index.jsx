@@ -454,6 +454,7 @@ const AddPropertyPage = () => {
                           name="otherImages"
                           multiple={true}
                           onChange={handleOtherImagesChange}
+                          accept="image/png, image/jpeg, image/jpg"
                         />
                       </div>
                     </div>

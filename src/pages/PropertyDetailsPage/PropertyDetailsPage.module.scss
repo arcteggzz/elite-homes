@@ -4,21 +4,23 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+  padding: pixRem(48) pixRem(100);
+  row-gap: pixRem(64);
 
   @include sm() {
+    padding: 40px 18px;
+    row-gap: pixRem(20);
   }
 
   .Details_container {
     display: grid;
     grid-template-columns: 65% 30%;
-    padding: pixRem(48) pixRem(100);
     gap: 5%;
     width: 100%;
 
     @include sm() {
       display: flex;
       flex-direction: column;
-      padding: 40px 18px;
     }
   }
 }

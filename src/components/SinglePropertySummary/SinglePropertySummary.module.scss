@@ -7,6 +7,10 @@
   height: auto;
   column-gap: 60px;
 
+  @include sm() {
+    column-gap: 16px;
+  }
+
   .left {
     width: 40%;
     position: relative;
@@ -26,6 +30,15 @@
       background: #d9d9d9;
       border-radius: 0px 6.63132px 6.63132px 0px;
       padding: 8px 8px 8px 24px;
+
+      @include sm() {
+        top: 8px;
+        font-weight: 500;
+        font-size: 8px;
+        line-height: 10px;
+        border-radius: 0px 2px 2px 0px;
+        padding: 2px 2px 2px 6px;
+      }
     }
   }
 
@@ -34,15 +47,25 @@
     flex-direction: column;
     row-gap: 18px;
     width: 60%;
+    @include sm() {
+      row-gap: 4px;
+    }
 
     .right_top {
       display: flex;
       column-gap: 14px;
       width: 100%;
+      align-items: center;
+      @include sm() {
+        column-gap: 3px;
+      }
 
       img {
         width: auto;
         height: auto;
+        @include sm() {
+          width: 10px;
+        }
       }
 
       p {
@@ -50,6 +73,10 @@
         font-size: 24.9001px;
         line-height: 30px;
         color: #000000;
+        @include sm() {
+          font-size: 6.71659px;
+          line-height: 8px;
+        }
       }
     }
 
@@ -58,18 +85,29 @@
       font-size: 42.7132px;
       line-height: 52px;
       color: #000000;
+      @include sm() {
+        font-size: 11.5215px;
+        line-height: 14px;
+      }
     }
 
     p {
       font-weight: 400;
       font-size: 28.4755px;
       line-height: 35px;
+      @include sm() {
+        font-size: 7.68103px;
+        line-height: 9px;
+      }
     }
 
     .buttons_container {
       display: flex;
       align-items: center;
       column-gap: 24px;
+      @include sm() {
+        column-gap: 20px;
+      }
 
       .remove_button {
         background: #2e70cb;
@@ -82,6 +120,11 @@
         color: #ffffff;
         transition: all ease 0.5s;
         cursor: pointer;
+        @include sm() {
+          padding: 7px 8px;
+          font-size: 5.44175px;
+          line-height: 7px;
+        }
       }
 
       .remove_button:hover {
@@ -96,6 +139,10 @@
         text-transform: capitalize;
         color: #000000;
         cursor: pointer;
+        @include sm() {
+          font-size: 5.44175px;
+          line-height: 7px;
+        }
       }
 
       .potential_buyers {
@@ -103,12 +150,25 @@
         align-items: center;
         column-gap: 16px;
         position: relative;
+        @include sm() {
+          column-gap: 4px;
+        }
 
         p {
           font-weight: 500;
           font-size: 26.9798px;
           line-height: 33px;
           color: #000000;
+          @include sm() {
+            font-size: 7.27759px;
+            line-height: 9px;
+          }
+        }
+
+        img {
+          @include sm() {
+            width: 15px;
+          }
         }
 
         .potential_buyers_count {
@@ -122,6 +182,10 @@
           background: #ff0000;
           border-radius: 13.5881px;
           padding: 2px 6px;
+          @include sm() {
+            font-size: 8px;
+            line-height: 9px;
+          }
         }
       }
 
@@ -136,6 +200,11 @@
         color: #ffffff;
         transition: all ease 0.5s;
         cursor: pointer;
+        @include sm() {
+          padding: 7px 8px;
+          font-size: 5.44175px;
+          line-height: 7px;
+        }
       }
     }
   }
