@@ -8,7 +8,7 @@ import Quote from "../images/QuoteIcon.png";
 const LandingPageClient = () => {
   return (
     <section className={styles.screen}>
-      <img src={img} alt="" />
+      <img src={img} alt="" loading="lazy" />
       <h1>What our clients say</h1>
       <div className={styles.backgroundColor}></div>
 

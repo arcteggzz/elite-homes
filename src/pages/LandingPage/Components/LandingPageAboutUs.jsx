@@ -6,7 +6,7 @@ const LandingPageAboutUs = () => {
   return (
     <section className={styles.flex}>
       <div>
-        <img src={img} alt="" className={styles.image} />
+        <img src={img} alt="" className={styles.image} loading="lazy" />
       </div>
       <div className={styles.backgroundColor}>
         <h1>
