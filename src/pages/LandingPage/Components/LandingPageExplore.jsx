@@ -15,14 +15,14 @@ const LandingPageExplore = () => {
       <div>
         <div className={styles.card}>
           <div className={styles.lgImg}>
-            <img src={img1} alt="" />
+            <img src={img1} alt="" loading="lazy" />
           </div>
           <div className={styles.display}>
             <div>
-              <img src={img2} alt="" />
+              <img src={img2} alt="" loading="lazy" />
             </div>
             <div>
-              <img src={img3} alt="" />
+              <img src={img3} alt="" loading="lazy" />
             </div>
           </div>
         </div>
@@ -30,14 +30,14 @@ const LandingPageExplore = () => {
         <div className={styles.card}>
           <div className={styles.display}>
             <div>
-              <img src={img4} alt="" />
+              <img src={img4} alt="" loading="lazy" />
             </div>
             <div>
-              <img src={img5} alt="" />
+              <img src={img5} alt="" loading="lazy" />
             </div>
           </div>
           <div className={styles.lgImg}>
-            <img src={img6} alt="" />
+            <img src={img6} alt="" loading="lazy" />
           </div>
         </div>
       </div>

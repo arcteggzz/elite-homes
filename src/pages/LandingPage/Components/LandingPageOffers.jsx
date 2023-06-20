@@ -29,7 +29,7 @@ const LandingPageOffers = () => {
 
         <div className={styles.container}>
           <div>
-            <img src={img2} alt="" />
+            <img src={img2} alt="" loading="lazy" />
           </div>
           <p className={styles.offerType}>Direct Contact</p>
           <p className={styles.offerSummary}>
@@ -39,7 +39,7 @@ const LandingPageOffers = () => {
         </div>
         <div className={styles.container}>
           <div>
-            <img src={img3} alt="" />
+            <img src={img3} alt="" loading="lazy" />
           </div>
           <p className={styles.offerType}>Viewing without Agent</p>
           <p className={styles.offerSummary}>

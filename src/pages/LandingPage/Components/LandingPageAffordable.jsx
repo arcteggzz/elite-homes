@@ -59,13 +59,13 @@ const LandingPageAffordable = () => {
         </div>
         <div className={styles.rightGrid}>
           <div className={styles.positionMain}>
-            <img src={img1} alt="" className={styles.img}/>
+            <img src={img1} alt="" className={styles.img} loading="lazy" />
           </div>
           <div className={styles.positionTop}>
-            <img src={img2} alt="" />
+            <img src={img2} alt="" loading="lazy" />
           </div>
           <div className={styles.positionBottom}>
-            <img src={img3} alt="" />
+            <img src={img3} alt="" loading="lazy" />
           </div>
         </div>
       </div>
