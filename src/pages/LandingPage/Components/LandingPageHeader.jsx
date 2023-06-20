@@ -1,16 +1,16 @@
 import styles from "../styles/LandingPageHeader.module.scss";
-import header_landingpage_bg01 from "../images/header_landingpage_bg01.png";
-import header_landingpage_bg02 from "../images/header_landingpage_bg02.png";
-import header_landingpage_bg03 from "../images/header_landingpage_bg03.png";
-import header_landingpage_bg04 from "../images/header_landingpage_bg04.png";
+// import header_landingpage_bg01 from "../images/header_landingpage_bg01.png";
+// import header_landingpage_bg02 from "../images/header_landingpage_bg02.png";
+// import header_landingpage_bg03 from "../images/header_landingpage_bg03.png";
+// import header_landingpage_bg04 from "../images/header_landingpage_bg04.png";
 import { useEffect, useState, useRef } from "react";
 
 const LandingPageHeader = () => {
   const backgroundImages = [
-    header_landingpage_bg01,
-    header_landingpage_bg02,
-    header_landingpage_bg03,
-    header_landingpage_bg04,
+    "https://res.cloudinary.com/dhf9w2zpm/image/upload/v1687262541/header_landingpage_bg01_a3plsh.png",
+    "https://res.cloudinary.com/dhf9w2zpm/image/upload/v1687262539/header_landingpage_bg02_ckwxpe.png",
+    "https://res.cloudinary.com/dhf9w2zpm/image/upload/v1687262541/header_landingpage_bg03_muabcg.png",
+    "https://res.cloudinary.com/dhf9w2zpm/image/upload/v1687262541/header_landingpage_bg04_nzpab9.png",
   ];
   const [currentBackgroundImage, setCurrentBackgroundImage] = useState(0);
   const timerRef = useRef(null);
