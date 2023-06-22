@@ -1,7 +1,7 @@
 import styles from "./LoginPage.module.scss";
 import login_image from "./LoginAssets/loginimage.png";
 import AnimatedFadeInPage from "../../utils/AnimatedFadeInPage";
-import { useNavigate, useLocation, Link } from "react-router-dom";
+import { useNavigate, Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setCredentials } from "../../redux/features/auth/authSlice";
@@ -18,8 +18,7 @@ const LoginPage = () => {
 
   const navigate = useNavigate();
   const location = useLocation();
-  const from =
-    location.state?.from?.pathname || "/properties/property-listings";
+  const from = location.state?.from?.pathname || "/properties/your-property";
   const dispatch = useDispatch();
   const [login] = useLoginMutation();
 
@@ -48,12 +47,21 @@ const LoginPage = () => {
           email: email.trim(),
           password: password.trim(),
         }).unwrap();
+        // console.log(response);
+        // toast.success(`Login Successful. Routing to Dashboard.`, {
+        //   autoClose: 1800,
+        // });
+        // setAccountLoginLoading(false);
         if (response.token) {
           toast.success(`Login Successful. Routing to Dashboard.`, {
             autoClose: 1800,
           });
           dispatch(
             setCredentials({
+              // username: `${response._username}`,
+              // accessToken: response.accessToken,
+              // userImage: response.accessToken,
+              // userId: response._id,
               username: `${response.data.firstName} ${response.data.lastName}`,
               accessToken: response.token,
               userImage: response.data.profilePicture,
@@ -61,14 +69,18 @@ const LoginPage = () => {
             })
           );
           setAccountLoginLoading(false);
+          // setTimeout(() => {
+          //   navigate("/fakeUsers");
+          // }, 2000);
           setTimeout(() => {
             navigate(from, { replace: true });
           }, 2000);
         }
       } catch (err) {
+        console.log(err);
         setAccountLoginLoading(false);
-        setErrMsg(err.data.message);
-        toast.error(err.data.message, {
+        setErrMsg("Login Failed.");
+        toast.error("Login Failed", {
           autoClose: 3000,
         });
       }

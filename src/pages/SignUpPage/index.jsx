@@ -8,6 +8,7 @@ import { useRegisterUserMutation } from "../../redux/features/users/usersApiSlic
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import LoadingScreen from "../../utils/LoadingScreen";
+// import { BASE_URL } from "../../redux/app/api/apiSlice";
 
 const SignUpPage = () => {
   const navigate = useNavigate();
@@ -198,6 +199,8 @@ const SignUpPage = () => {
       return;
     }
 
+    setAccountCreationLoading(true);
+
     const cloudinaryResponse = await uploadImageToCloudinaryAndGetImageURL();
 
     const finalRegistrationObject = {
@@ -206,8 +209,8 @@ const SignUpPage = () => {
       ...registerDetails,
     };
 
-    console.log(finalRegistrationObject);
-    setAccountCreationLoading(true);
+    // console.log(finalRegistrationObject);
+
     try {
       const response = await registerUser(finalRegistrationObject);
       console.log(response);
@@ -237,6 +240,68 @@ const SignUpPage = () => {
       }
     }
   };
+
+  // const handleFormSubmit = async (e) => {
+  //   e.preventDefault();
+
+  //   if (!imagePreview) {
+  //     setFormValidationError("Please select a Profile Image");
+  //     return;
+  //   }
+
+  //   if (profileImage.size > 1100000) {
+  //     setFormValidationError(
+  //       "Profile Image File size too big. Plese select a profile image less than 1mb"
+  //     );
+  //     return;
+  //   }
+
+  //   setAccountCreationLoading(true);
+
+  //   const cloudinaryResponse = await uploadImageToCloudinaryAndGetImageURL();
+
+  //   const finalRegistrationObject = {
+  //     profile_picture: cloudinaryResponse,
+  //     is_landlord: isLandlord,
+  //     ...registerDetails,
+  //   };
+
+  //   const url = `${BASE_URL}/register`;
+  //   const data = finalRegistrationObject;
+  //   console.log(url, data);
+
+  //   fetch(url, {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(data),
+  //   })
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       if (data) {
+  //         setAccountCreationLoading(false);
+  //         window.scrollTo({
+  //           top: -200,
+  //           left: 0,
+  //           behavior: "smooth",
+  //         });
+  //         toast.success(`Signup Successful.`, {
+  //           autoClose: 3200,
+  //         });
+  //         setTimeout(() => {
+  //           navigate("/login");
+  //         }, 3500);
+  //       }
+  //     })
+  //     .catch(() => {
+  //       setAccountCreationLoading(false);
+  //       setSignUpError("Server Error");
+  //       toast.error(`Something went wrong.`, {
+  //         autoClose: 3000,
+  //       });
+  //     });
+  // };
 
   useEffect(() => {
     setFormValidationError("");

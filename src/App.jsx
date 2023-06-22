@@ -48,8 +48,6 @@ const App = () => {
             <Route path="/home" element={<LandingPage />} />
             <Route path="/offers" element={<OffersPage />} />
             <Route path="/properties/:id" element={<PropertyDetailsPage />} />
-
-            <Route path="/fakeUsers" element={<FakeUsersPage />} />
           </Route>
 
           {/* private routes */}
@@ -67,6 +65,7 @@ const App = () => {
               path="/properties/your-property"
               element={<YourPropertyPage />}
             />
+            <Route path="/fakeUsers" element={<FakeUsersPage />} />
           </Route>
         </Routes>
       </AnimatePresence>
