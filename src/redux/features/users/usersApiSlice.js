@@ -22,6 +22,9 @@ export const userApiSlice = apiSlice.injectEndpoints({
         url: "/register",
         method: "POST",
         body: userObject,
+        headers: {
+          "Content-Type": `multipart/form-data`,
+        },
       }),
     }),
     propertyBooking: builder.mutation({

@@ -39,8 +39,6 @@ const SignUpPage = () => {
   //pageTwo Variables
   const [profileImage, setProfileImage] = useState("");
   const [imagePreview, setImagePreview] = useState(null);
-  const upload_preset = import.meta.env.VITE_UPLOAD_PRESET;
-  const cloud_name = import.meta.env.VITE_CLOUD_NAME;
   const [isLandlord, setIsLandlord] = useState(0);
   const [signUpError, setSignUpError] = useState("");
 
@@ -67,49 +65,10 @@ const SignUpPage = () => {
   };
 
   const handleImageChange = (e) => {
-    setProfileImage(e.target.files[0]);
+    console.log(`Image `, e.target.files);
+    setProfileImage(e.target.files[0].name);
     setImagePreview(URL.createObjectURL(e.target.files[0]));
   };
-
-  const uploadImageToCloudinaryAndGetImageURL = async () => {
-    try {
-      let imageURL;
-      if (
-        profileImage &&
-        (profileImage.type === "image/png" ||
-          profileImage.type === "image/jpg" ||
-          profileImage.type === "image/jpeg")
-      ) {
-        const image = new FormData();
-        image.append("file", profileImage);
-        image.append("cloud_name", cloud_name);
-        image.append("upload_preset", upload_preset);
-
-        const response = await fetch(
-          `https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`,
-          {
-            method: "POST",
-            body: image,
-          }
-        );
-
-        const imgData = await response.json();
-        imageURL = imgData.url.toString();
-        setImagePreview(null);
-        return imageURL;
-      }
-    } catch (error) {
-      console.log(error);
-      return "";
-    }
-  };
-
-  // const uploadToCloudinaryTest = async (e) => {
-  //   e.preventDefault();
-  //   const response = await uploadImageToCloudinaryAndGetImageURL();
-  //   setUserCloudinaryURL(response);
-  //   alert(response);
-  // };
 
   const updateCategoryBuyer = (e) => {
     e.preventDefault();
@@ -199,109 +158,60 @@ const SignUpPage = () => {
       return;
     }
 
-    setAccountCreationLoading(true);
-
-    const cloudinaryResponse = await uploadImageToCloudinaryAndGetImageURL();
+    // setAccountCreationLoading(true);
 
     const finalRegistrationObject = {
-      profile_picture: cloudinaryResponse,
+      profile_picture: profileImage,
       is_landlord: isLandlord,
       ...registerDetails,
     };
 
-    // console.log(finalRegistrationObject);
+    // console.log(finalRegistrationObject, "finalRegistrationObject");
+    console.log(userName, "username");
 
-    try {
-      const response = await registerUser(finalRegistrationObject);
-      console.log(response);
-      if (response.data.user) {
-        toast.success(
-          `Account Created Successfully, you will be routed to the login Page to login`,
-          {
-            autoClose: 3200,
-          }
-        );
-        setAccountCreationLoading(false);
-        setTimeout(() => {
-          navigate("/login");
-        }, 3500);
-      }
-    } catch (err) {
-      if (!err?.originalStatus) {
-        // isLoading: true until timeout occurs
-        setAccountCreationLoading(false);
-        setSignUpError("No Server Response");
-      } else if (err.originalStatus === 400) {
-        setSignUpError("Missing Username or Password");
-      } else if (err.originalStatus === 401) {
-        setSignUpError("Unauthorized");
-      } else {
-        setSignUpError("Login Failed");
-      }
-    }
+    const bodyFormData = new FormData();
+    bodyFormData.append("username", "Tega");
+    // bodyFormData.append("first_name", firstName);
+    // bodyFormData.append("last_name", lastName);
+    // bodyFormData.append("email", email);
+    // bodyFormData.append("password", password);
+    // bodyFormData.append("confirm_password", password);
+    // bodyFormData.append("phone_number", phoneNumber);
+    // bodyFormData.append("profile_picture", profileImage);
+    // bodyFormData.append("is_landlord", isLandlord);
+
+    console.log(JSON.stringify(bodyFormData), "bodyFormData");
+
+    // try {
+    //   const response = await registerUser(bodyFormData);
+    //   console.log(response);
+    //   if (response.data.user) {
+    //     toast.success(
+    //       `Account Created Successfully, you will be routed to the login Page to login`,
+    //       {
+    //         autoClose: 3200,
+    //       }
+    //     );
+    //     setAccountCreationLoading(false);
+    //     setTimeout(() => {
+    //       navigate("/login");
+    //     }, 3500);
+    //   }
+    // } catch (err) {
+    //   console.log(err);
+    //   if (!err?.originalStatus) {
+    //     // isLoading: true until timeout occurs
+    //     setAccountCreationLoading(false);
+    //     setSignUpError("No Server Response");
+    //   } else if (err.originalStatus === 400) {
+    //     setSignUpError("Missing Username or Password");
+    //   } else if (err.originalStatus === 401) {
+    //     setSignUpError("Unauthorized");
+    //   } else {
+    //     setSignUpError("Login Failed");
+    //   }
+    // }
   };
-
-  // const handleFormSubmit = async (e) => {
-  //   e.preventDefault();
-
-  //   if (!imagePreview) {
-  //     setFormValidationError("Please select a Profile Image");
-  //     return;
-  //   }
-
-  //   if (profileImage.size > 1100000) {
-  //     setFormValidationError(
-  //       "Profile Image File size too big. Plese select a profile image less than 1mb"
-  //     );
-  //     return;
-  //   }
-
-  //   setAccountCreationLoading(true);
-
-  //   const cloudinaryResponse = await uploadImageToCloudinaryAndGetImageURL();
-
-  //   const finalRegistrationObject = {
-  //     profile_picture: cloudinaryResponse,
-  //     is_landlord: isLandlord,
-  //     ...registerDetails,
-  //   };
-
-  //   const url = `${BASE_URL}/register`;
-  //   const data = finalRegistrationObject;
-  //   console.log(url, data);
-
-  //   fetch(url, {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify(data),
-  //   })
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       if (data) {
-  //         setAccountCreationLoading(false);
-  //         window.scrollTo({
-  //           top: -200,
-  //           left: 0,
-  //           behavior: "smooth",
-  //         });
-  //         toast.success(`Signup Successful.`, {
-  //           autoClose: 3200,
-  //         });
-  //         setTimeout(() => {
-  //           navigate("/login");
-  //         }, 3500);
-  //       }
-  //     })
-  //     .catch(() => {
-  //       setAccountCreationLoading(false);
-  //       setSignUpError("Server Error");
-  //       toast.error(`Something went wrong.`, {
-  //         autoClose: 3000,
-  //       });
-  //     });
-  // };
 
   useEffect(() => {
     setFormValidationError("");
@@ -329,12 +239,6 @@ const SignUpPage = () => {
                   {/* PAGE ONE FORM */}
                   {/* PAGE ONE FORM */}
                   <p className={styles.errorText}>{formValidationError}</p>
-
-                  {/* <p className={styles.errorText}>Passwords do not match</p>
-                  <p className={styles.errorText}>Invalid Email Address</p>
-                  <p className={styles.errorText}>
-                    Phone number must be 11 numbers
-                  </p> */}
 
                   <input
                     type="text"
@@ -406,6 +310,10 @@ const SignUpPage = () => {
                     {/* i used this test for the cloudinary upload */}
                     {/* <button onClick={(e) => uploadToCloudinaryTest(e)}>
                       Upload to Cloudinary
+                    </button> */}
+                    {/* i used this test console.log of image */}
+                    {/* <button onClick={(e) => viewImageType(e)}>
+                      View Image File
                     </button> */}
                   </div>
                   <div className={styles.category_btns}>
