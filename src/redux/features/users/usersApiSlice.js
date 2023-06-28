@@ -23,7 +23,8 @@ export const userApiSlice = apiSlice.injectEndpoints({
         method: "POST",
         body: userObject,
         headers: {
-          "Content-Type": `multipart/form-data`,
+          "Content-Type": "multipart/form-data",
+          Accept: "application/json",
         },
       }),
     }),

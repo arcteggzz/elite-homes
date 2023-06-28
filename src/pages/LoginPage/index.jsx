@@ -58,20 +58,15 @@ const LoginPage = () => {
           });
           dispatch(
             setCredentials({
-              // username: `${response._username}`,
-              // accessToken: response.accessToken,
-              // userImage: response.accessToken,
-              // userId: response._id,
               username: `${response.data.firstName} ${response.data.lastName}`,
               accessToken: response.token,
               userImage: response.data.profilePicture,
               userId: response.data.userId,
+              userEmail: response.data.email,
+              userPhoneNumber: response.data.phone_number,
             })
           );
           setAccountLoginLoading(false);
-          // setTimeout(() => {
-          //   navigate("/fakeUsers");
-          // }, 2000);
           setTimeout(() => {
             navigate(from, { replace: true });
           }, 2000);

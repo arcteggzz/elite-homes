@@ -2,16 +2,16 @@ import styles from "./SignUpPage.module.scss";
 import AnimatedFadeInPage from "../../utils/AnimatedFadeInPage";
 import signUpImage from "./SignUpAssets/signUpImage.png";
 import add_image from "./SignUpAssets/add_image.png";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { useRegisterUserMutation } from "../../redux/features/users/usersApiSlice";
-import { ToastContainer, toast } from "react-toastify";
+// import { useRegisterUserMutation } from "../../redux/features/users/usersApiSlice";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import LoadingScreen from "../../utils/LoadingScreen";
 // import { BASE_URL } from "../../redux/app/api/apiSlice";
 
 const SignUpPage = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   //general page variables
   const [pageOne, setPageOne] = useState(true);
   const [registerDetails, setRegisterDetails] = useState({
@@ -24,7 +24,7 @@ const SignUpPage = () => {
     userCategoryChoice: "",
   });
   const [accountCreationLoading, setAccountCreationLoading] = useState(false);
-  const [registerUser] = useRegisterUserMutation();
+  // const [registerUser] = useRegisterUserMutation();
 
   //pageOne Variables
   const [formValidationError, setFormValidationError] = useState("");
@@ -37,10 +37,11 @@ const SignUpPage = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
 
   //pageTwo Variables
-  const [profileImage, setProfileImage] = useState("");
+  const [profileImage, setProfileImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
   const [isLandlord, setIsLandlord] = useState(0);
-  const [signUpError, setSignUpError] = useState("");
+  // const [signUpError, setSignUpError] = useState("");
+  const [signUpError] = useState("");
 
   const validateName = (name) => {
     return name.length < 1;
@@ -66,7 +67,7 @@ const SignUpPage = () => {
 
   const handleImageChange = (e) => {
     console.log(`Image `, e.target.files);
-    setProfileImage(e.target.files[0].name);
+    setProfileImage(e.target.files[0]);
     setImagePreview(URL.createObjectURL(e.target.files[0]));
   };
 
@@ -143,6 +144,92 @@ const SignUpPage = () => {
     setPageOne(false);
   };
 
+  // function formDataToObject(formData) {
+  //   const object = {};
+  //   for (let [key, value] of formData.entries()) {
+  //     object[key] = value;
+  //   }
+  //   return object;
+  // }
+
+  // const handleFormSubmit = async (e) => {
+  //   e.preventDefault();
+  //   console.log("fired");
+
+  //   if (!imagePreview) {
+  //     setFormValidationError("Please select a Profile Image");
+  //     return;
+  //   }
+
+  //   if (profileImage.size > 1100000) {
+  //     setFormValidationError(
+  //       "Profile Image File size too big. Plese select a profile image less than 1mb"
+  //     );
+  //     return;
+  //   }
+
+  //   setAccountCreationLoading(true);
+
+  //   const finalRegistrationObject = {
+  //     profile_picture: profileImage,
+  //     is_landlord: isLandlord,
+  //     ...registerDetails,
+  //   };
+  //   console.log(isLandlord);
+
+  //   console.log(finalRegistrationObject, "finalRegistrationObject");
+  //   // console.log(userName, "username");
+
+  //   const bodyFormData = new FormData();
+  //   bodyFormData.append("username", userName);
+  //   bodyFormData.append("first_name", firstName);
+  //   bodyFormData.append("last_name", lastName);
+  //   bodyFormData.append("email", email);
+  //   bodyFormData.append("password", password);
+  //   bodyFormData.append("confirm_password", password);
+  //   bodyFormData.append("phone_number", phoneNumber);
+  //   bodyFormData.append("profile_picture", profileImage);
+  //   bodyFormData.append("is_landlord", isLandlord);
+
+  //   // console.log(`${bodyFormData.get(userName)} "userName"`);
+  //   const objectData = formDataToObject(bodyFormData);
+  //   console.log(objectData);
+
+  //   const key = "is_landlord";
+  //   const value = bodyFormData.get(key);
+  //   console.log(value);
+
+  //   try {
+  //     const response = await registerUser(bodyFormData);
+  //     console.log(response);
+  //     if (response.data.user) {
+  //       toast.success(
+  //         `Account Created Successfully, you will be routed to the login Page to login`,
+  //         {
+  //           autoClose: 3200,
+  //         }
+  //       );
+  //       setAccountCreationLoading(false);
+  //       setTimeout(() => {
+  //         navigate("/login");
+  //       }, 3500);
+  //     }
+  //   } catch (err) {
+  //     console.log(err);
+  //     if (!err?.originalStatus) {
+  //       // isLoading: true until timeout occurs
+  //       setAccountCreationLoading(false);
+  //       setSignUpError("No Server Response");
+  //     } else if (err.originalStatus === 400) {
+  //       setSignUpError("Missing Username or Password");
+  //     } else if (err.originalStatus === 401) {
+  //       setSignUpError("Unauthorized");
+  //     } else {
+  //       setSignUpError("Login Failed");
+  //     }
+  //   }
+  // };
+
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
@@ -158,7 +245,7 @@ const SignUpPage = () => {
       return;
     }
 
-    // setAccountCreationLoading(true);
+    setAccountCreationLoading(true);
 
     const finalRegistrationObject = {
       profile_picture: profileImage,
@@ -166,51 +253,36 @@ const SignUpPage = () => {
       ...registerDetails,
     };
 
-    // console.log(finalRegistrationObject, "finalRegistrationObject");
-    console.log(userName, "username");
+    console.log(finalRegistrationObject, "finalRegistrationObject");
 
     const bodyFormData = new FormData();
-    bodyFormData.append("username", "Tega");
-    // bodyFormData.append("first_name", firstName);
-    // bodyFormData.append("last_name", lastName);
-    // bodyFormData.append("email", email);
-    // bodyFormData.append("password", password);
-    // bodyFormData.append("confirm_password", password);
-    // bodyFormData.append("phone_number", phoneNumber);
-    // bodyFormData.append("profile_picture", profileImage);
-    // bodyFormData.append("is_landlord", isLandlord);
+    bodyFormData.append("username", userName);
+    bodyFormData.append("first_name", firstName);
+    bodyFormData.append("last_name", lastName);
+    bodyFormData.append("email", email);
+    bodyFormData.append("password", password);
+    bodyFormData.append("confirm_password", password);
+    bodyFormData.append("phone_number", phoneNumber);
+    bodyFormData.append("profile_picture", profileImage);
+    bodyFormData.append("is_landlord", isLandlord);
 
-    console.log(JSON.stringify(bodyFormData), "bodyFormData");
+    // console.log(`${bodyFormData.get(userName)} "userName"`);
+    // const objectData = formDataToObject(bodyFormData);
+    // console.log(objectData);
 
-    // try {
-    //   const response = await registerUser(bodyFormData);
-    //   console.log(response);
-    //   if (response.data.user) {
-    //     toast.success(
-    //       `Account Created Successfully, you will be routed to the login Page to login`,
-    //       {
-    //         autoClose: 3200,
-    //       }
-    //     );
-    //     setAccountCreationLoading(false);
-    //     setTimeout(() => {
-    //       navigate("/login");
-    //     }, 3500);
-    //   }
-    // } catch (err) {
-    //   console.log(err);
-    //   if (!err?.originalStatus) {
-    //     // isLoading: true until timeout occurs
-    //     setAccountCreationLoading(false);
-    //     setSignUpError("No Server Response");
-    //   } else if (err.originalStatus === 400) {
-    //     setSignUpError("Missing Username or Password");
-    //   } else if (err.originalStatus === 401) {
-    //     setSignUpError("Unauthorized");
-    //   } else {
-    //     setSignUpError("Login Failed");
-    //   }
-    // }
+    const requestOptions = {
+      method: "POST",
+      body: bodyFormData,
+    };
+
+    fetch("http://52.23.76.53/api/v1/register", requestOptions)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   useEffect(() => {
@@ -233,7 +305,7 @@ const SignUpPage = () => {
 
             {/* MAIN FORM */}
             {/* TWO-PAGE FORM */}
-            <form className={styles.signUp_form}>
+            <form className={styles.signUp_form} onSubmit={handleFormSubmit}>
               {pageOne ? (
                 <>
                   {/* PAGE ONE FORM */}
@@ -344,6 +416,7 @@ const SignUpPage = () => {
                   </div>
                 </>
               )}
+              {!pageOne ? <button type="submit">Register</button> : <></>}
             </form>
 
             {/* FORM FOOTER */}
