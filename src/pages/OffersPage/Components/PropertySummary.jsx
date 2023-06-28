@@ -26,8 +26,8 @@ export default function PropertySummary({
 
   const getPropertySummary = (paragraph) => {
     const words = paragraph.trim().split(/\s+/);
-    if (words.length >= 15) {
-      const first9Words = words.slice(0, 15);
+    if (words.length >= 13) {
+      const first9Words = words.slice(0, 13);
       const result = first9Words.join(" ");
       const finalQuote = `${result}...`;
       return finalQuote;
@@ -38,7 +38,9 @@ export default function PropertySummary({
 
   return (
     <Link className={styles.PropertySummary} to={`/properties/${propertyId}`}>
-      <img src={propertyImage} alt="" className={styles.property_image} />
+      <div className={styles.image_container}>
+        <img src={propertyImage} alt="" className={styles.property_image} />
+      </div>
       <div className={styles.property_name_tag}>
         <div className={styles.location_tag}>
           <img src={location_icon} alt="" />

@@ -5,6 +5,8 @@ import { useSelector } from "react-redux";
 import {
   selectCurrentUserName,
   selectCurrentAccessToken,
+  selectCurrentUserEmail,
+  selectCurrentUserPhoneNumber,
 } from "../../../redux/features/auth/authSlice";
 // import { usePropertyBookingMutation } from "../../../redux/features/users/usersApiSlice";
 import LoadingScreen from "../../../utils/LoadingScreen";
@@ -23,9 +25,13 @@ const PropertySchedule = ({
 }) => {
   const currentUserName = useSelector(selectCurrentUserName);
   const currentAccessToken = useSelector(selectCurrentAccessToken);
+  const currentUserEmail = useSelector(selectCurrentUserEmail);
+  const currentUserPhoneNumber = useSelector(selectCurrentUserPhoneNumber);
   const [fullName, setFullName] = useState(currentUserName);
-  const [userEmail, setUserEmail] = useState("");
-  const [userPhoneNumber, setUserPhoneNumber] = useState("");
+  const [userEmail, setUserEmail] = useState(currentUserEmail);
+  const [userPhoneNumber, setUserPhoneNumber] = useState(
+    currentUserPhoneNumber
+  );
   const [userMessage, setUserMessage] = useState("");
   // const [propertyBooking, { isLoading }] = usePropertyBookingMutation();
   const [errMsg, setErrMsg] = useState("");

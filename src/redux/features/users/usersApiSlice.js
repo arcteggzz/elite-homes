@@ -6,6 +6,15 @@ export const userApiSlice = apiSlice.injectEndpoints({
     getAllUsers: builder.query({
       query: () => "/users",
     }),
+    //for testing purposes only
+    createUserMock: builder.mutation({
+      query: (userObject) => ({
+        // url: "/users",
+        url: "/users",
+        method: "POST",
+        body: userObject,
+      }),
+    }),
     //signup route from backend
     registerUser: builder.mutation({
       query: (userObject) => ({
@@ -13,6 +22,10 @@ export const userApiSlice = apiSlice.injectEndpoints({
         url: "/register",
         method: "POST",
         body: userObject,
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Accept: "application/json",
+        },
       }),
     }),
     propertyBooking: builder.mutation({
@@ -29,4 +42,5 @@ export const {
   useGetAllUsersQuery,
   useRegisterUserMutation,
   usePropertyBookingMutation,
+  useCreateUserMockMutation,
 } = userApiSlice;

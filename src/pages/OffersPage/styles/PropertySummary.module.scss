@@ -22,12 +22,19 @@
     cursor: pointer !important;
   }
 
-  .property_image {
+  .image_container {
     width: 100%;
-    height: auto;
+    aspect-ratio: 1/1;
     border-radius: 20px;
+    overflow: hidden;
     @include sm() {
       border-radius: 12px;
+    }
+
+    .property_image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
   }
 
