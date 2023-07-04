@@ -95,7 +95,11 @@ export default function Navbar({ isAuthenticated, isHomepageNavbar }) {
             <div className={styles.userDetails}>
               <p>{currentUser}</p>
               <img
-                src={currentUserImage ? currentUserImage : placeholder_avatar}
+                src={
+                  !currentUserImage === "" || currentUserImage
+                    ? currentUserImage
+                    : placeholder_avatar
+                }
                 alt="user avatar image"
               />
               <button onClick={logoutHandler} className={styles.logout_btn}>
@@ -140,7 +144,11 @@ export default function Navbar({ isAuthenticated, isHomepageNavbar }) {
               <div className={styles.mobile_userDetails}>
                 <p>{currentUser}</p>
                 <img
-                  src={currentUserImage ? currentUserImage : placeholder_avatar}
+                  src={
+                    !currentUserImage === "" || currentUserImage
+                      ? currentUserImage
+                      : placeholder_avatar
+                  }
                   alt="user avatar image"
                 />
                 <button

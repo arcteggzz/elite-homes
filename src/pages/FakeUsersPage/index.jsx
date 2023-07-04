@@ -1,7 +1,7 @@
 import AnimatedFadeInPage from "../../utils/AnimatedFadeInPage";
 import {
   useGetAllUsersQuery,
-  useRegisterUserMutation,
+  useCreateUserMockMutation,
 } from "../../redux/features/users/usersApiSlice";
 import { useState } from "react";
 
@@ -14,6 +14,7 @@ const FakeUsersPage = () => {
     isError,
     error,
   } = useGetAllUsersQuery();
+  console.log(allUsers);
 
   //logic for creating users
   //logic for creating users
@@ -22,7 +23,7 @@ const FakeUsersPage = () => {
   const [email, setEmail] = useState("");
   const [userImage, setUserImage] = useState("");
   const [message, setMessage] = useState("");
-  const [registerUser] = useRegisterUserMutation();
+  const [registerUser] = useCreateUserMockMutation();
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
@@ -32,6 +33,7 @@ const FakeUsersPage = () => {
       userImage,
     };
     const response = await registerUser(newUserObject);
+    console.log(response);
     setMessage(response.data.message);
   };
 
@@ -64,6 +66,7 @@ const FakeUsersPage = () => {
     <>
       <AnimatedFadeInPage>
         {content}
+
         <main>
           <section>
             <form onSubmit={handleFormSubmit}>
