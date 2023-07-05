@@ -14,6 +14,8 @@ const PropertyListingsPage = () => {
     isError,
   } = useGetAllPropertiesBuyingQuery(userId);
 
+  console.log(allPropertiesBuying);
+
   let content;
   if (isLoading) {
     content = <h3>Loading all properties that you have booked...</h3>;
@@ -30,11 +32,18 @@ const PropertyListingsPage = () => {
                 propertyId={propertyData.property_id}
                 propertyAddress={propertyData.property_address}
                 propertyCategory={propertyData.property_category}
-                propertyImage={propertyData.property_other_image_url[1]}
+                propertyImage={
+                  !propertyData.property_other_image_url
+                    ? ""
+                    : propertyData.property_other_image_url.length < 1
+                    ? ""
+                    : propertyData.property_other_image_url[0]
+                }
                 propertyName={propertyData.property_name}
                 propertySummary={propertyData.property_description}
                 pageMount="Property Listings"
               />
+              {/* <p>Tega</p> */}
             </>
           );
         })}

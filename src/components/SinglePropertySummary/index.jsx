@@ -36,7 +36,11 @@ export default function SinglePropertySummary({
     <>
       <article className={styles.SinglePropertySummary}>
         <div className={styles.left}>
-          <img src={propertyImage} alt="" className={styles.image} />
+          {!propertyImage === "" ? (
+            <img src={propertyImage} alt="" className={styles.image} />
+          ) : (
+            <div className={styles.placeholder_image}></div>
+          )}
           <p>{getPropertyCategory()}</p>
         </div>
 

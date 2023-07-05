@@ -1,16 +1,17 @@
 import { apiSlice } from "../../app/api/apiSlice";
+import { apiRoutePaths } from "../../../utils/apiRoutePaths";
 
 export const userPropertyApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getAllPropertiesSelling: builder.query({
-      query: (userId) => `/users/${userId}/properties`,
+      query: (userId) => apiRoutePaths.userProperty.selling(userId),
     }),
     getAllPropertiesBuying: builder.query({
-      query: (userId) => `/users/${userId}/bookings`,
+      query: (userId) => apiRoutePaths.userProperty.buying(userId),
     }),
     createProperty: builder.mutation({
       query: (propertyObject) => ({
-        url: `/properties`,
+        url: `${apiRoutePaths.allProperty}`,
         method: "POST",
         body: propertyObject,
       }),
