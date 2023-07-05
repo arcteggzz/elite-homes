@@ -1,12 +1,13 @@
 import { apiSlice } from "../../app/api/apiSlice";
+import { apiRoutePaths } from "../../../utils/apiRoutePaths";
 
 export const propertyApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getAllProperties: builder.query({
-      query: () => "/properties",
+      query: () => `${apiRoutePaths.allProperty}`,
     }),
     getSingleProperty: builder.query({
-      query: (propertyId) => `/properties/${propertyId}`,
+      query: (propertyId) => `${apiRoutePaths.allProperty}/${propertyId}`,
     }),
   }),
 });

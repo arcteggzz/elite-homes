@@ -6,12 +6,17 @@ import { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import LoadingScreen from "../../utils/LoadingScreen";
-import { useCreatePropertyMutation } from "../../redux/features/userProperty/userPropertyApiSlice";
+// import { useCreatePropertyMutation } from "../../redux/features/userProperty/userPropertyApiSlice";
+import { BASE_URL, apiRoutePaths } from "../../utils/apiRoutePaths";
+import { selectCurrentAccessToken } from "../../redux/features/auth/authSlice";
+import { useSelector } from "react-redux";
 
 const AddPropertyPage = () => {
   const navigate = useNavigate();
   const [propertyCreationLoading, setPropertyCreationLoading] = useState(false);
-  const [createProperty] = useCreatePropertyMutation();
+  const currentUserAccessToken = useSelector(selectCurrentAccessToken);
+
+  // const [createProperty] = useCreatePropertyMutation();
 
   const [formValidationError, setFormValidationError] = useState("");
   const [propertyName, setPropertyName] = useState("");
@@ -30,17 +35,17 @@ const AddPropertyPage = () => {
   const [isForSale, setIsForSale] = useState(false);
 
   // floor Plan variables
-  const [floorPlanImage, setFloorPlanImage] = useState("");
+  const [floorPlanImage, setFloorPlanImage] = useState(null);
   const [floorPlanImagePreview, setFloorPlanImagePreview] = useState(null);
 
   //other images variables
-  const [otherImages, setOtherImages] = useState([]);
+  // const [otherImages, setOtherImages] = useState([]);
   const [otherImagesPreview, setOtherImagesPreview] = useState([]);
-  // const [links, setLinks] = useState([]);
+  const [otherImagesFiles, setOtherImagesFiles] = useState([]);
 
   //cloudinary variables
-  const upload_preset = import.meta.env.VITE_UPLOAD_PRESET;
-  const cloud_name = import.meta.env.VITE_CLOUD_NAME;
+  // const upload_preset = import.meta.env.VITE_UPLOAD_PRESET;
+  // const cloud_name = import.meta.env.VITE_CLOUD_NAME;
 
   const validateFormFieldIsEmpty = (value) => {
     return value.length < 1;
@@ -58,11 +63,13 @@ const AddPropertyPage = () => {
 
   const handleFloorPlanImageChange = (e) => {
     setFloorPlanImage(e.target.files[0]);
+    console.log(e.target.files);
+
     setFloorPlanImagePreview(URL.createObjectURL(e.target.files[0]));
   };
 
   const handleOtherImagesChange = (e) => {
-    setOtherImages(e.target.files);
+    // console.log(e.target.files);
     const arrayContainer = [];
     for (let key in e.target.files) {
       if (key === "length" || key === "item") {
@@ -73,135 +80,175 @@ const AddPropertyPage = () => {
       }
     }
     setOtherImagesPreview(arrayContainer);
+
+    //make an array of all the files and save in a state variable so you can pass that state variable into your api endpoint.
+    const files = e.target.files; // FileList
+    // Convert FileList to array
+    const fileArray = Array.from(files);
+    console.log(fileArray);
+    setOtherImagesFiles(fileArray);
   };
 
-  const uploadImageToCloudinaryAndGetImageURL = async (imageToUpload) => {
-    try {
-      let imageURL;
-      if (
-        imageToUpload &&
-        (imageToUpload.type === "image/png" ||
-          imageToUpload.type === "image/jpg" ||
-          imageToUpload.type === "image/jpeg")
-      ) {
-        const image = new FormData();
-        image.append("file", imageToUpload);
-        image.append("cloud_name", cloud_name);
-        image.append("upload_preset", upload_preset);
+  // const uploadImageToCloudinaryAndGetImageURL = async (imageToUpload) => {
+  //   try {
+  //     let imageURL;
+  //     if (
+  //       imageToUpload &&
+  //       (imageToUpload.type === "image/png" ||
+  //         imageToUpload.type === "image/jpg" ||
+  //         imageToUpload.type === "image/jpeg")
+  //     ) {
+  //       const image = new FormData();
+  //       image.append("file", imageToUpload);
+  //       image.append("cloud_name", cloud_name);
+  //       image.append("upload_preset", upload_preset);
 
-        const response = await fetch(
-          `https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`,
-          {
-            method: "POST",
-            body: image,
-          }
-        );
+  //       const response = await fetch(
+  //         `https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`,
+  //         {
+  //           method: "POST",
+  //           body: image,
+  //         }
+  //       );
 
-        const imgData = await response.json();
-        imageURL = imgData.url.toString();
-        return imageURL;
-      }
-    } catch (error) {
-      console.log(error);
-      return "";
-    }
-  };
+  //       const imgData = await response.json();
+  //       imageURL = imgData.url.toString();
+  //       return imageURL;
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //     return "";
+  //   }
+  // };
 
-  const uploadMultipleImagesToCloudinaryAndGetURLsInArray = async () => {
-    try {
-      let arr = [];
-      for (let i = 0; i < otherImages.length; i++) {
-        const data = await uploadImageToCloudinaryAndGetImageURL(
-          otherImages[i]
-        );
-        arr.push(data);
-      }
-      return arr;
-    } catch (error) {
-      return [];
-    }
-  };
+  // const uploadMultipleImagesToCloudinaryAndGetURLsInArray = async () => {
+  //   try {
+  //     let arr = [];
+  //     for (let i = 0; i < otherImages.length; i++) {
+  //       const data = await uploadImageToCloudinaryAndGetImageURL(
+  //         otherImages[i]
+  //       );
+  //       arr.push(data);
+  //     }
+  //     return arr;
+  //   } catch (error) {
+  //     return [];
+  //   }
+  // };
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
     if (validateFormFieldIsEmpty(propertyName)) {
       setFormValidationError("Please Enter a Property Name.");
-      return;
-    }
-    if (validateFormFieldIsEmpty(propertyAddress)) {
+    } else if (validateFormFieldIsEmpty(propertyAddress)) {
       setFormValidationError("Please Enter a Property Address.");
-      return;
-    }
-    if (validateFormFieldIsEmpty(propertyPrice)) {
+    } else if (validateFormFieldIsEmpty(propertyPrice)) {
       setFormValidationError("Please Enter a Property Price.");
-      return;
-    }
-    if (validateFormFieldIsEmpty(fullDetails)) {
+    } else if (validateFormFieldIsEmpty(fullDetails)) {
       setFormValidationError("Please Enter the description for the property.");
-      return;
-    }
-    if (!floorPlanImagePreview) {
+    } else if (!floorPlanImagePreview) {
       setFormValidationError("Please select a Floor Plan Image");
-      return;
-    }
-    if (floorPlanImage.size > 2100000) {
+    } else if (floorPlanImage.size > 2100000) {
       setFormValidationError(
         "Floor Plan Image File size too big. Plese select a profile image less than 2mb"
       );
-      return;
-    }
+    } else {
+      setPropertyCreationLoading(true);
 
-    setPropertyCreationLoading(true);
+      // const propertyObject = {
+      //   property_name: propertyName,
+      //   property_address: propertyAddress,
+      //   property_price: +propertyPrice,
+      //   category_id: isForRent ? 1 : 2,
+      //   property_description: fullDetails,
+      //   property_stock: 1,
+      //   property_total_floor_area: +propertyFloorPlanArea,
+      //   property_bedroom_number: +bedroomNumber,
+      //   property_toilet_number: +bathroomNumber,
+      //   property_plan_image_url: floorPlanCloudinaryUrl,
+      //   property_other_image_url: other_images_array,
+      // };
 
-    const floorPlanCloudinaryUrl = await uploadImageToCloudinaryAndGetImageURL(
-      floorPlanImage
-    );
+      // console.log(propertyObject);
 
-    const other_images_array =
-      await uploadMultipleImagesToCloudinaryAndGetURLsInArray();
+      const bodyFormData = new FormData();
+      bodyFormData.append("property_name", propertyName);
+      bodyFormData.append("property_address", propertyAddress);
+      bodyFormData.append("property_price", +propertyPrice);
+      bodyFormData.append("category_id", isForRent ? 1 : 2);
+      bodyFormData.append("property_description", fullDetails);
+      bodyFormData.append("property_stock", 1);
+      bodyFormData.append("property_total_floor_area", +propertyFloorPlanArea);
+      bodyFormData.append("property_bedroom_number", +bedroomNumber);
+      bodyFormData.append("property_toilet_number", +bathroomNumber);
+      bodyFormData.append("property_plan_image_url", floorPlanImage);
+      bodyFormData.append("property_other_image_url", otherImagesFiles);
 
-    const propertyObject = {
-      property_name: propertyName,
-      property_address: propertyAddress,
-      property_price: +propertyPrice,
-      category_id: isForRent ? 1 : 2,
-      property_description: fullDetails,
-      property_stock: 1,
-      property_total_floor_area: +propertyFloorPlanArea,
-      property_bedroom_number: +bedroomNumber,
-      property_toilet_number: +bathroomNumber,
-      property_plan_image_url: floorPlanCloudinaryUrl,
-      property_other_image_url: other_images_array,
-    };
+      const requestOptions = {
+        method: "POST",
+        body: bodyFormData,
+        headers: {
+          Authorization: `Bearer ${currentUserAccessToken}`,
+        },
+      };
 
-    console.log(propertyObject);
-
-    try {
-      const response = await createProperty(propertyObject);
-      console.log(response);
-      if (response.data.data.id) {
-        toast.success(`Property Created Successfully`, {
-          autoClose: 2000,
+      fetch(`${BASE_URL}${apiRoutePaths.allProperty}`, requestOptions)
+        .then((response) => response.json())
+        .then((data) => {
+          // console.log(data);
+          if (data) {
+            toast.success(
+              `Property Created Successfully. You will be routed to your dashboard.`,
+              {
+                autoClose: 2000,
+              }
+            );
+            setPropertyCreationLoading(false);
+            setTimeout(() => {
+              navigate("/properties/your-property");
+            }, 3500);
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          setPropertyCreationLoading(false);
+          setFormValidationError("No Server Response");
         });
-        setPropertyCreationLoading(false);
-        setTimeout(() => {
-          navigate("/properties/your-property");
-        }, 2100);
-      }
-    } catch (err) {
-      if (!err?.originalStatus) {
-        // isLoading: true until timeout occurs
-        setPropertyCreationLoading(false);
-        setFormValidationError("No Server Response");
-      } else if (err.originalStatus === 400) {
-        setFormValidationError("Missing Username or Password");
-      } else if (err.originalStatus === 401) {
-        setFormValidationError("Unauthorized");
-      } else {
-        setFormValidationError("Login Failed");
-      }
     }
+
+    // const floorPlanCloudinaryUrl = await uploadImageToCloudinaryAndGetImageURL(
+    //   floorPlanImage
+    // );
+
+    // const other_images_array =
+    //   await uploadMultipleImagesToCloudinaryAndGetURLsInArray();
+
+    // try {
+    //   const response = await createProperty(propertyObject);
+    //   console.log(response);
+    //   if (response.data.data.id) {
+    //     toast.success(`Property Created Successfully`, {
+    //       autoClose: 2000,
+    //     });
+    //     setPropertyCreationLoading(false);
+    //     setTimeout(() => {
+    //       navigate("/properties/your-property");
+    //     }, 2100);
+    //   }
+    // } catch (err) {
+    //   if (!err?.originalStatus) {
+    //     // isLoading: true until timeout occurs
+    //     setPropertyCreationLoading(false);
+    //     setFormValidationError("No Server Response");
+    //   } else if (err.originalStatus === 400) {
+    //     setFormValidationError("Missing Username or Password");
+    //   } else if (err.originalStatus === 401) {
+    //     setFormValidationError("Unauthorized");
+    //   } else {
+    //     setFormValidationError("Login Failed");
+    //   }
+    // }
   };
 
   useEffect(() => {

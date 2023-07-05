@@ -20,6 +20,14 @@
       height: auto;
     }
 
+    .placeholder_image {
+      width: 100%;
+      aspect-ratio: 4/2.5;
+      height: auto;
+      background-color: #dcdcdc;
+      border-radius: 16px;
+    }
+
     p {
       position: absolute;
       top: 30px;

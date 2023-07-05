@@ -13,6 +13,7 @@ import LoadingScreen from "../../../utils/LoadingScreen";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
+import { apiRoutePaths, BASE_URL } from "../../../utils/apiRoutePaths";
 
 const PropertySchedule = ({
   ownerEmail,
@@ -92,7 +93,7 @@ const PropertySchedule = ({
   //         });
   //       }
   //     } catch (error) {
-  //       setErrMsg(error.data.message);
+  //       setErrMsg("something went wrong.");
   //       window.scrollTo({
   //         top: -200,
   //         left: 0,
@@ -108,7 +109,7 @@ const PropertySchedule = ({
   const formSubmithandler = (e) => {
     e.preventDefault();
 
-    const url = "https://elitehomestest.onrender.com/api/v1/booking";
+    const url = `${BASE_URL}${apiRoutePaths.makeBooking}`;
     const data = {
       name: fullName.trim(),
       email: userEmail.trim(),
@@ -263,5 +264,5 @@ PropertySchedule.propTypes = {
   ownerPhoneNumber: PropTypes.string,
   ownerId: PropTypes.string,
   ownerEmail: PropTypes.string,
-  propertyId: PropTypes.string,
+  propertyId: PropTypes.number,
 };
