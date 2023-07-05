@@ -1,8 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-
-// export const BASE_URL = "http://localhost:3500";
-// const BASE_URL = "https://elitehomestest.onrender.com/api/v1";s
-export const BASE_URL = "http://52.23.76.53/api/v1";
+import { BASE_URL } from "../../../utils/apiRoutePaths";
 
 const baseQuery = fetchBaseQuery({
   baseUrl: BASE_URL,

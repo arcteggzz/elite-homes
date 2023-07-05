@@ -2,16 +2,16 @@ import styles from "./SignUpPage.module.scss";
 import AnimatedFadeInPage from "../../utils/AnimatedFadeInPage";
 import signUpImage from "./SignUpAssets/signUpImage.png";
 import add_image from "./SignUpAssets/add_image.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 // import { useRegisterUserMutation } from "../../redux/features/users/usersApiSlice";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import LoadingScreen from "../../utils/LoadingScreen";
-// import { BASE_URL } from "../../redux/app/api/apiSlice";
+import { BASE_URL, apiRoutePaths } from "../../utils/apiRoutePaths";
 
 const SignUpPage = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   //general page variables
   const [pageOne, setPageOne] = useState(true);
   const [registerDetails, setRegisterDetails] = useState({
@@ -41,7 +41,7 @@ const SignUpPage = () => {
   const [imagePreview, setImagePreview] = useState(null);
   const [isLandlord, setIsLandlord] = useState(0);
   // const [signUpError, setSignUpError] = useState("");
-  const [signUpError] = useState("");
+  const [signUpError, setSignUpError] = useState("");
 
   const validateName = (name) => {
     return name.length < 1;
@@ -66,7 +66,6 @@ const SignUpPage = () => {
   };
 
   const handleImageChange = (e) => {
-    console.log(`Image `, e.target.files);
     setProfileImage(e.target.files[0]);
     setImagePreview(URL.createObjectURL(e.target.files[0]));
   };
@@ -275,13 +274,27 @@ const SignUpPage = () => {
       body: bodyFormData,
     };
 
-    fetch("http://52.23.76.53/api/v1/register", requestOptions)
+    fetch(`${BASE_URL}${apiRoutePaths.auth.register}`, requestOptions)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
+        if (data.user) {
+          toast.success(
+            `Account Created Successfully, you will be routed to the login Page to login`,
+            {
+              autoClose: 3200,
+            }
+          );
+          setAccountCreationLoading(false);
+          setTimeout(() => {
+            navigate("/login");
+          }, 3500);
+        }
       })
       .catch((error) => {
         console.log(error);
+        setAccountCreationLoading(false);
+        setSignUpError("No Server Response");
       });
   };
 

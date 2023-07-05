@@ -27,7 +27,13 @@ const YourPropertyPage = () => {
             <>
               <SinglePropertySummary
                 key={propertyData.property_name}
-                propertyImage={propertyData.property_other_image_url[1]}
+                propertyImage={
+                  !propertyData.property_other_image_url
+                    ? ""
+                    : propertyData.property_other_image_url.length < 1
+                    ? ""
+                    : propertyData.property_other_image_url[0]
+                }
                 propertyCategory={propertyData.category_id}
                 propertyAddress={propertyData.property_address}
                 propertyName={propertyData.property_name}
