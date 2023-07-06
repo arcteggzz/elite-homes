@@ -17,6 +17,7 @@ import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignUpPage";
 import FakeUsersPage from "./pages/FakeUsersPage";
 import FakeLoginPage from "./pages/FakeLoginPage";
+import FetchAllPropeties from "./pages/FetchAllPropeties";
 
 //lazyLoading for pages
 const OffersPage = lazy(() => import("./pages/OffersPage/"));
@@ -48,6 +49,7 @@ const App = () => {
             <Route path="/home" element={<LandingPage />} />
             <Route path="/offers" element={<OffersPage />} />
             <Route path="/properties/:id" element={<PropertyDetailsPage />} />
+            <Route path="/fetchAllProperties" element={<FetchAllPropeties />} />
           </Route>
 
           {/* private routes */}
