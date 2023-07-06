@@ -35,6 +35,7 @@ const SignUpPage = () => {
   const [phoneNumber, setPhoneNumber] = useState("+234");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [pwdVisible, setPwdVisible] = useState(false);
 
   //pageTwo Variables
   const [profileImage, setProfileImage] = useState(null);
@@ -357,15 +358,24 @@ const SignUpPage = () => {
                     value={phoneNumber}
                     onChange={(e) => setPhoneNumber(e.target.value)}
                   />
+                  <div className={styles.input_field_container}>
+                    <input
+                      type={pwdVisible ? "password" : "text"}
+                      placeholder="Password must be 8 characters."
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      required
+                    />
+                    <p
+                      onClick={() => setPwdVisible(!pwdVisible)}
+                      className={styles.toggle}
+                    >
+                      {pwdVisible ? `SHOW` : `HIDE`}
+                    </p>
+                  </div>
+
                   <input
-                    type="password"
-                    placeholder="Password must be 8 characters."
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                  />
-                  <input
-                    type="password"
+                    type={pwdVisible ? "password" : "text"}
                     placeholder="Confirm Password"
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
@@ -429,19 +439,25 @@ const SignUpPage = () => {
                   </div>
                 </>
               )}
-              {!pageOne ? <button type="submit">Register</button> : <></>}
+              {!pageOne ? (
+                <button type="submit" className={styles.register_button}>
+                  Register
+                </button>
+              ) : (
+                <></>
+              )}
             </form>
 
             {/* FORM FOOTER */}
             {/* FORM FOOTER */}
             <div className={styles.FormFooter}>
-              <button
-                onClick={
-                  pageOne ? (e) => goToPageTwo(e) : (e) => handleFormSubmit(e)
-                }
-              >
-                {pageOne ? "Continue" : "Register"}
-              </button>
+              {pageOne ? (
+                <button onClick={(e) => goToPageTwo(e)} disabled={!pageOne}>
+                  Continue
+                </button>
+              ) : (
+                <></>
+              )}
               <h4>
                 Already have an account?{" "}
                 <span>

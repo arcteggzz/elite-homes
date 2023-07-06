@@ -54,7 +54,10 @@ export default function PropertySummary({
         <div className={styles.details_container}>
           <div className={styles.item_detail_container}>
             <img src={floorplan_icon} alt="" />
-            <p>{`${propertyFloorArea}m2`}</p>
+            <p>
+              {`${propertyFloorArea}m`}
+              <span className={styles.superscript}>2</span>
+            </p>
           </div>
           <div className={styles.item_detail_container}>
             <img src={bedroom_icon} alt="" />

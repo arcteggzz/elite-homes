@@ -1,6 +1,7 @@
 import styles from "../styles/LandingPageProperties.module.scss";
 import PropertySummary from "../../OffersPage/Components/PropertySummary";
 import { useGetAllPropertiesQuery } from "../../../redux/features/property/propertyApiSlice";
+import { Link } from "react-router-dom";
 
 const LandingPageProperties = () => {
   const {
@@ -16,7 +17,7 @@ const LandingPageProperties = () => {
   } else if (isSuccess) {
     content = (
       <>
-        {allProperties?.data?.map((propertyData, index) => {
+        {allProperties?.data?.slice(0, 12).map((propertyData, index) => {
           return (
             <>
               <PropertySummary
@@ -51,7 +52,9 @@ const LandingPageProperties = () => {
       <div className={styles.Property_List}>{content}</div>
 
       <div className={styles.btn_container}>
-        <button className={styles.view_more_btn}>Browse More Properties</button>
+        <Link to={`/offers`} className={styles.view_more_btn}>
+          Browse More Properties
+        </Link>
       </div>
     </section>
   );
