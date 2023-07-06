@@ -4,6 +4,7 @@ import SinglePropertySummary from "../../components/SinglePropertySummary";
 import { useGetAllPropertiesBuyingQuery } from "../../redux/features/userProperty/userPropertyApiSlice";
 import { selectCurrentUserId } from "../../redux/features/auth/authSlice";
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 const PropertyListingsPage = () => {
   const userId = useSelector(selectCurrentUserId);
@@ -12,9 +13,18 @@ const PropertyListingsPage = () => {
     isLoading,
     isSuccess,
     isError,
+    refetch,
   } = useGetAllPropertiesBuyingQuery(userId);
 
   console.log(allPropertiesBuying);
+
+  useEffect(() => {
+    let isMounted = true;
+    if (isMounted) refetch();
+
+    return () => (isMounted = false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   let content;
   if (isLoading) {
