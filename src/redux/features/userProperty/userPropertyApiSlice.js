@@ -5,9 +5,11 @@ export const userPropertyApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getAllPropertiesSelling: builder.query({
       query: (userId) => apiRoutePaths.userProperty.selling(userId),
+      keepUnusedDataFor: 0,
     }),
     getAllPropertiesBuying: builder.query({
       query: (userId) => apiRoutePaths.userProperty.buying(userId),
+      keepUnusedDataFor: 0,
     }),
     createProperty: builder.mutation({
       query: (propertyObject) => ({

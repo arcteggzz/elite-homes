@@ -82,11 +82,14 @@ const AddPropertyPage = () => {
     setOtherImagesPreview(arrayContainer);
 
     //make an array of all the files and save in a state variable so you can pass that state variable into your api endpoint.
-    const files = e.target.files; // FileList
-    // Convert FileList to array
-    const fileArray = Array.from(files);
-    console.log(fileArray);
-    setOtherImagesFiles(fileArray);
+    // const files = e.target.files; // FileList
+    // // Convert FileList to array
+    // const fileArray = Array.from(files);
+    // console.log(fileArray);
+    // setOtherImagesFiles(fileArray);
+
+    //this is the new file change system I want to try so I commented out the recent one above.
+    setOtherImagesFiles(e.target.files);
   };
 
   // const uploadImageToCloudinaryAndGetImageURL = async (imageToUpload) => {
@@ -183,7 +186,11 @@ const AddPropertyPage = () => {
       bodyFormData.append("property_bedroom_number", +bedroomNumber);
       bodyFormData.append("property_toilet_number", +bathroomNumber);
       bodyFormData.append("property_plan_image_url", floorPlanImage);
-      bodyFormData.append("property_other_image_url", otherImagesFiles);
+
+      for (let i = 0; i < otherImagesFiles.length; i++) {
+        bodyFormData.append("property_other_image_url[]", otherImagesFiles[i]);
+      }
+      // bodyFormData.append("property_other_image_url", otherImagesFiles);
 
       const requestOptions = {
         method: "POST",

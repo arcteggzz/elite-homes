@@ -14,6 +14,8 @@ const YourPropertyPage = () => {
     isError,
   } = useGetAllPropertiesSellingQuery(userId);
 
+  console.log(allPropertiesSelling);
+
   let content;
   if (isLoading) {
     content = <h3>Loading all your properties...</h3>;
