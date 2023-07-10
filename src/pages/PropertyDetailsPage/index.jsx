@@ -4,19 +4,19 @@ import PropertyHeader from "./Components/PropertyHeader";
 import PropertyImages from "./Components/PropertyImages";
 import PropertyDetails from "./Components/PropertyDetails";
 import PropertySchedule from "./Components/PropertySchedule";
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useGetSinglePropertyQuery } from "../../redux/features/property/propertyApiSlice";
 
 const PropertyDetailsPage = () => {
-  const location = useLocation();
-  const propertyIdentifier =
-    location.pathname.split("/")[location.pathname.split("/").length - 1];
+  const params = useParams();
+  const propertyId = params.id;
+
   const {
     data: propertyDetails,
     isLoading,
     isSuccess,
     isError,
-  } = useGetSinglePropertyQuery(propertyIdentifier);
+  } = useGetSinglePropertyQuery(propertyId);
 
   let content;
   if (isLoading) {
