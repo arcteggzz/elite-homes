@@ -1,0 +1,119 @@
+@use "../../../assets/styles/" as *;
+
+.SearchQuery {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: pixRem(32) pixRem(100);
+  row-gap: 32px;
+
+  @include sm() {
+    width: 100%;
+    padding: pixRem(20) pixRem(20);
+    row-gap: 16px;
+  }
+
+  .SearchParameters_container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    row-gap: 32px;
+    padding: pixRem(32) pixRem(52);
+    border-radius: 10px;
+    border: 2px solid rgba(0, 0, 0, 0.07);
+    background: rgba(0, 0, 0, 0.04);
+
+    .SearchParameters_top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      column-gap: 24px;
+      width: 100%;
+
+      input {
+        width: 48%;
+        padding: 20px 28px;
+        background-color: #fff;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        color: #000;
+        font-size: 25px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        text-transform: capitalize;
+        opacity: 0.7;
+      }
+
+      .SearchParameters_dropdown {
+        width: 48%;
+      }
+    }
+
+    .SearchParameters_bottom {
+      display: flex;
+      justify-content: space-between;
+      column-gap: 24px;
+      width: 100%;
+
+      .price_slider_container {
+        width: 48%;
+      }
+
+      .bathroom_bedroom_input_container {
+        width: 48%;
+        display: flex;
+        justify-content: space-between;
+
+        .bedroom_container,
+        .bathroom_container {
+          display: flex;
+          align-items: center;
+          column-gap: 26px;
+
+          p {
+            color: #000;
+            font-family: Montserrat;
+            font-size: 25px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: normal;
+            text-transform: capitalize;
+            opacity: 0.7;
+          }
+
+          input {
+            width: 70px;
+            height: 70px;
+            text-align: center;
+            background-color: #fff;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            color: #000;
+            font-size: 25px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: normal;
+            text-transform: capitalize;
+            opacity: 0.7;
+          }
+        }
+      }
+    }
+
+    button {
+      width: 48%;
+      text-align: center;
+      background: #2e70cb;
+      padding: 20px 0;
+      cursor: pointer;
+
+      color: #fff;
+      font-family: Montserrat;
+      font-size: 25px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+      text-transform: capitalize;
+      border: none;
+    }
+  }
+}
