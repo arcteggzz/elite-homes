@@ -1,9 +1,9 @@
-# ELITE HOMES WEB APPLICATION FRONTEND TO DO LIST 05_07_2023
+# ELITE HOMES WEB APPLICATION FRONTEND LIST OF API ENDPOINT CONNECTIONS 07_07_2023
 
 FETCH API
 
 1. All endpoints working.
-2. Add property endpoint failing because of adding multiple files to api.
+2. All post requests exept login currently working with Fetch
 
 REDUX TOOLKIT
 
