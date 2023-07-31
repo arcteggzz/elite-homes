@@ -148,8 +148,10 @@
         font-size: 25px;
         line-height: 30px;
         text-transform: capitalize;
-        color: #000000;
+        background-color: #2e70cb;
         cursor: pointer;
+        padding: 28px 30px;
+        color: #ffffff;
         @include sm() {
           font-size: 5.44175px;
           line-height: 7px;

@@ -23,21 +23,19 @@ const PropertyHeader = ({
   };
 
   const addFavoriteHandler = () => {
-    const url = `${BASE_URL}${apiRoutePaths.makeFavorite}`;
-    const data = {
-      property_id: propertyId,
-    };
+    const url = `${BASE_URL}${apiRoutePaths.makeFavorite(propertyId)}`;
+    console.log(url);
+
     const authToken = currentAccessToken;
 
     setAddFavoriteLoading(true);
-    console.log(data);
+
     fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${authToken}`,
       },
-      body: JSON.stringify(data),
     })
       .then((response) => response.json())
       .then((data) => {

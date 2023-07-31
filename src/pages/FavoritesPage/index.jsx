@@ -14,17 +14,23 @@ const FavoritesPage = () => {
     isError,
   } = useGetAllFavoritePropertiesQuery(userId);
 
-  console.log(allPropertiesFavorites);
+  console.log(allPropertiesFavorites?.favouriteProperties);
 
   let content;
   if (isLoading) {
     content = <h3>Loading all your favorite properties...</h3>;
-  } else if (isSuccess && allPropertiesFavorites?.data?.length < 1) {
-    content = <h3>You have not created any properties yet.</h3>;
-  } else if (isSuccess && allPropertiesFavorites?.data?.length > 0) {
+  } else if (
+    isSuccess &&
+    allPropertiesFavorites?.favouriteProperties?.length < 1
+  ) {
+    content = <h3>You have not liked any properties yet.</h3>;
+  } else if (
+    isSuccess &&
+    allPropertiesFavorites?.favouriteProperties?.length > 0
+  ) {
     content = (
       <>
-        {allPropertiesFavorites?.data?.map((propertyData) => {
+        {allPropertiesFavorites?.favouriteProperties?.map((propertyData) => {
           return (
             <>
               <SinglePropertySummary

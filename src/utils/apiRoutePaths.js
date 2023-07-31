@@ -27,8 +27,8 @@ export const apiRoutePaths = {
   getReviews: (propertyId) => {
     return `/properties/${propertyId}/reviews`;
   },
-  makeFavorite: (userId) => {
-    return `/favourites/${userId}/properties`;
+  makeFavorite: (propertyId) => {
+    return `/favourites/${propertyId}`;
   },
   userFavoritesList: (userId) => {
     return `/favourites/${userId}/properties`;
