@@ -63,5 +63,21 @@
         line-height: 14px;
       }
     }
+
+    .like_button {
+      padding: 8px 14px;
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 24px;
+      background: #2e70cb;
+      border-radius: 10px;
+      color: #ffffff;
+      border: none;
+      cursor: pointer;
+      @include sm() {
+        font-size: 12px;
+        line-height: 14px;
+      }
+    }
   }
 }

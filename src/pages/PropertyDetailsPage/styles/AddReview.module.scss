@@ -1,0 +1,88 @@
+@use "../../../assets/styles/" as *;
+
+.AddReview {
+  display: flex;
+  flex-direction: column;
+  row-gap: 40px;
+  padding: 40px 0 0 0;
+  width: 100%;
+
+  @include sm() {
+  }
+
+  .schedule_tour_form {
+    display: flex;
+    flex-direction: column;
+    background: rgba(46, 112, 203, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.07);
+    border-radius: 10px;
+    padding: 40px 24px;
+    width: 100%;
+    row-gap: 24px;
+
+    h4 {
+      font-weight: 500;
+      font-size: 35px;
+      line-height: 43px;
+      color: #000000;
+    }
+
+    p {
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 22px;
+      color: rgba(0, 0, 0, 0.6);
+    }
+
+    .input_details {
+      padding: 20px 18px;
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 24px;
+      color: #000000;
+      opacity: 0.4;
+      background: #ffffff;
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      border-radius: 5px;
+    }
+
+    .message_input {
+      padding: 20px 18px;
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 24px;
+      color: #000000;
+      opacity: 0.4;
+      background: #ffffff;
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      border-radius: 5px;
+      height: 180px;
+    }
+
+    button {
+      align-self: center;
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 24px;
+      text-transform: capitalize;
+      color: #ffffff;
+      width: 92%;
+      padding: 28px 0;
+      text-align: center;
+      background: #2e70cb;
+      border: none;
+      cursor: pointer;
+      transition: all ease 0.5s;
+      font-family: "Montserrat", sans-serif;
+      @include sm() {
+        font-size: 14px;
+        line-height: 16px;
+        padding: 14px 0;
+      }
+    }
+
+    button:hover {
+      opacity: 0.75;
+    }
+  }
+}

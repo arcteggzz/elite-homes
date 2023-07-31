@@ -1,0 +1,40 @@
+@use "../../../assets/styles/" as *;
+
+.OffersPageHeader {
+  display: flex;
+  background-image: url("../images/offers_header_bg.png");
+  background-size: cover;
+  background-position: center;
+
+  padding: pixRem(72) pixRem(100);
+
+  width: 100%;
+  @include sm() {
+    padding: pixRem(28) pixRem(24);
+  }
+
+  h1 {
+    // display: flex;
+    // flex-direction: column;
+    width: 50%;
+
+    span {
+      font-weight: 400;
+      font-size: 60px;
+      line-height: 72px;
+      color: #ffffff;
+
+      @include sm() {
+        font-size: 24px;
+        line-height: 28px;
+      }
+
+      span {
+        font-weight: 600;
+        @include sm() {
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}
