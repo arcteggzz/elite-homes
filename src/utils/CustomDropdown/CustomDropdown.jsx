@@ -63,7 +63,11 @@ const CustomDropdown = ({
             ) : (
               <></>
             )}
-            <p className={styles.selected_option}>{selectedChoice}</p>
+            {selectedChoice?.length > 0 ? (
+              <p className={styles.selected_option}>{selectedChoice}</p>
+            ) : (
+              <p className={styles.selected_option}>{"None"}</p>
+            )}
           </div>
           <img
             src={openOptions ? dropdown_icon_opened : dropdown_icon_closed}

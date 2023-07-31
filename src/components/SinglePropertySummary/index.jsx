@@ -69,6 +69,9 @@ export default function SinglePropertySummary({
               </Link>
             </div>
           ) : (
+            <></>
+          )}
+          {pageMount === "Your Property" ? (
             <div className={styles.buttons_container}>
               <div className={styles.potential_buyers}>
                 <p>Potentional Buyers</p>
@@ -79,6 +82,20 @@ export default function SinglePropertySummary({
               </div>
               <button className={styles.delete_button}>Remove Property</button>
             </div>
+          ) : (
+            <></>
+          )}
+          {pageMount === "Favorite Page" ? (
+            <div className={styles.buttons_container}>
+              <Link
+                to={`/properties/${propertyId}`}
+                className={styles.view_button}
+              >
+                View Property
+              </Link>
+            </div>
+          ) : (
+            <></>
           )}
         </div>
       </article>

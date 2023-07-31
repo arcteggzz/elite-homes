@@ -6,6 +6,7 @@ export default function AuthenticatedPageNavigation() {
     { link: "/properties/property-listings", name: "Property Listings" },
     { link: "/properties/your-property", name: "Your Properties" },
     { link: "/properties/add-property", name: "Add Properties" },
+    { link: "/properties/your-favorites", name: "Your Favorites" },
   ];
 
   return (

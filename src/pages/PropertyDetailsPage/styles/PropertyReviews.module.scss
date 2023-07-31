@@ -1,0 +1,100 @@
+@use "../../../assets/styles/" as *;
+
+.PropertyReviews {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  row-gap: 30px;
+  @include sm() {
+  }
+
+  h2 {
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 42px;
+    color: #000000;
+    text-align: left;
+    @include sm() {
+      font-size: 28px;
+      line-height: 30px;
+      text-align: center;
+    }
+  }
+
+  .PropertyReviews_list_container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+    gap: 20px;
+
+    @include sm() {
+      grid-template-columns: repeat(1, 1fr);
+    }
+
+    p {
+      width: 100%;
+    }
+
+    .link_button {
+      text-decoration: none;
+      font-weight: 700;
+    }
+  }
+}
+
+.SingleReview {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  border: 1px solid rgba(128, 128, 128, 0.673);
+  padding: 20px;
+  border-radius: 20px;
+  width: 100%;
+  aspect-ratio: 5/2.5;
+  box-shadow: 1.576036810874939px 3.152073621749878px 7.281105041503906px 0px
+    rgba(201, 202, 245, 0.1);
+
+  .review_owner {
+    display: flex;
+    column-gap: 12px;
+    align-items: center;
+
+    .image_dummy {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px gray solid;
+    }
+
+    p {
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 24px;
+      color: #000000;
+      opacity: 0.5;
+      text-align: left;
+
+      span {
+        font-weight: 600;
+      }
+
+      @include sm() {
+        font-size: 16px;
+        line-height: 16px;
+      }
+    }
+  }
+
+  p {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #000000;
+    opacity: 0.5;
+    text-align: left;
+    @include sm() {
+      font-size: 12px;
+      line-height: 16px;
+    }
+  }
+}

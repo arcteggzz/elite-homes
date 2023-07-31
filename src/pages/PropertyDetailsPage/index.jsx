@@ -4,8 +4,12 @@ import PropertyHeader from "./Components/PropertyHeader";
 import PropertyImages from "./Components/PropertyImages";
 import PropertyDetails from "./Components/PropertyDetails";
 import PropertySchedule from "./Components/PropertySchedule";
+import PropertyReviews from "./Components/PropertyReviews";
+import AddReview from "./Components/AddReview";
 import { useParams } from "react-router-dom";
 import { useGetSinglePropertyQuery } from "../../redux/features/property/propertyApiSlice";
+import { useGetAllPropertyReviewsQuery } from "../../redux/features/reviews/reviewsApiSlice";
+import { useState } from "react";
 
 const PropertyDetailsPage = () => {
   const params = useParams();
@@ -17,6 +21,66 @@ const PropertyDetailsPage = () => {
     isSuccess,
     isError,
   } = useGetSinglePropertyQuery(propertyId);
+
+  const {
+    data: reviewsList,
+    isLoading: reviewIsLoading,
+    isSuccess: reviewIsSuccess,
+    isError: reviewIsError,
+  } = useGetAllPropertyReviewsQuery(propertyId);
+
+  // console.log(reviewsList);
+
+  // const reviews_List = [
+  //   {
+  //     ownerImage: "images",
+  //     ownerComment:
+  //       "The PersistGate component ensures that the rehydration process is complete before rendering your main application (App) component",
+  //     first_name: "Tega",
+  //     last_name: "Esedere",
+  //   },
+  //   {
+  //     ownerImage: "images",
+  //     ownerComment:
+  //       "comment import PropertyReviews from ./Components/PropertyReviews",
+  //     first_name: "Jite",
+  //     last_name: "Okpani",
+  //   },
+  //   {
+  //     ownerImage: "images",
+  //     ownerComment:
+  //       "The PersistGate component ensures that the rehydration process is complete before rendering your main application (App) component",
+  //     first_name: "Tega",
+  //     last_name: "Esedere",
+  //   },
+  //   {
+  //     ownerImage: "images",
+  //     ownerComment:
+  //       "comment import PropertyReviews from ./Components/PropertyReviews",
+  //     first_name: "Jite",
+  //     last_name: "Okpani",
+  //   },
+  //   {
+  //     ownerImage: "images",
+  //     ownerComment:
+  //       "The PersistGate component ensures that the rehydration process is complete before rendering your main application (App) component",
+  //     first_name: "Tega",
+  //     last_name: "Esedere",
+  //   },
+  //   {
+  //     ownerImage: "images",
+  //     ownerComment:
+  //       "comment import PropertyReviews from ./Components/PropertyReviews",
+  //     first_name: "Jite",
+  //     last_name: "Okpani",
+  //   },
+  // ];
+
+  const [reloadPropertyReviews, setReloadPropertyReviews] = useState(false);
+
+  const handlePropertyReviewsReload = () => {
+    setReloadPropertyReviews(true); // Trigger the reload by updating the state
+  };
 
   let content;
   if (isLoading) {
@@ -56,6 +120,20 @@ const PropertyDetailsPage = () => {
             ownerPhoneNumber={propertyDetails.data.property_owner.phone_number}
             ownerImage={propertyDetails.data.property_owner.profile_picture}
             propertyId={+propertyDetails.data.id}
+          />
+        </section>
+
+        <section className={styles.Review_container}>
+          <PropertyReviews
+            propertyReviews={reviewsList?.data}
+            reviewIsError={reviewIsError}
+            reviewIsSuccess={reviewIsSuccess}
+            reviewIsLoading={reviewIsLoading}
+            reload={reloadPropertyReviews}
+          />
+          <AddReview
+            propertyId={+propertyDetails.data.id}
+            onReloadPropertyReviews={handlePropertyReviewsReload}
           />
         </section>
       </>

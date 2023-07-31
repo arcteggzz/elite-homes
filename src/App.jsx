@@ -26,6 +26,7 @@ const PropertyListingsPage = lazy(() =>
 const PropertyDetailsPage = lazy(() => import("./pages/PropertyDetailsPage/"));
 const AddPropertyPage = lazy(() => import("./pages/AddPropertyPage/"));
 const YourPropertyPage = lazy(() => import("./pages/YourPropertyPage/"));
+const FavoritesPage = lazy(() => import("./pages/FavoritesPage"));
 
 const App = () => {
   const location = useLocation();
@@ -64,6 +65,10 @@ const App = () => {
             <Route
               path="/properties/your-property"
               element={<YourPropertyPage />}
+            />
+            <Route
+              path="/properties/your-favorites"
+              element={<FavoritesPage />}
             />
             <Route path="/fakeUsers" element={<FakeUsersPage />} />
           </Route>
