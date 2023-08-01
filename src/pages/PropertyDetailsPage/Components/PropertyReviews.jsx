@@ -2,6 +2,8 @@ import styles from "../styles/PropertyReviews.module.scss";
 import PropTypes from "prop-types";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { selectCurrentAccessToken } from "../../../redux/features/auth/authSlice";
 
 const SingleReview = ({ propertyReview }) => {
   return (
@@ -30,6 +32,8 @@ const PropertyReviews = ({
   reviewIsSuccess,
   reload,
 }) => {
+  const currentUserAccessToken = useSelector(selectCurrentAccessToken);
+
   useEffect(() => {
     // Logic to handle the reload effect (e.g., fetching data)
     if (reload) {
@@ -50,16 +54,21 @@ const PropertyReviews = ({
       <>
         {propertyReviews?.length === 0 ? (
           <>
-            <p>
-              No reivews have been made. Wanna be the first?{" "}
-              <Link to={"/login"} className={styles.link_button}>
-                Login
-              </Link>{" "}
-              or{" "}
-              <Link to={"/signup"} className={styles.link_button}>
-                Signup
-              </Link>
-            </p>
+            <p>No reivews have been made. Wanna be the first? </p>
+            {!currentUserAccessToken ? (
+              <>
+                {" "}
+                <Link to={"/login"} className={styles.link_button}>
+                  Login
+                </Link>{" "}
+                or{" "}
+                <Link to={"/signup"} className={styles.link_button}>
+                  Signup
+                </Link>{" "}
+              </>
+            ) : (
+              <></>
+            )}
           </>
         ) : (
           <></>
