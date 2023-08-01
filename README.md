@@ -11,6 +11,10 @@ Vercel:- https://elite-homes.vercel.app
 
 https://www.figma.com/file/X9D9zRroTTvjabSL1pBRaE/ZojaGame-App?type=design&node-id=308-29&t=wKz0RYjuJnz2pRIl-0
 
+## BACKEND DOCUMENTATION
+
+https://documenter.getpostman.com/view/19072098/2s93sf3X7s
+
 ### Technologies Used
 
 1. React

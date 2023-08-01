@@ -1,0 +1,31 @@
+@use "../../assets/styles/" as *;
+
+.FavoritesPage {
+  padding: pixRem(80) pixRem(120) pixRem(160) pixRem(120);
+  display: flex;
+  flex-direction: column;
+  row-gap: 64px;
+
+  width: 100%;
+  min-height: 50vh;
+  @include sm() {
+    padding: pixRem(28) pixRem(24) pixRem(64) pixRem(24);
+    display: flex;
+    flex-direction: column;
+    row-gap: 32px;
+
+    width: 100%;
+    min-height: 50vh;
+  }
+
+  h1 {
+    font-size: 45px;
+
+    @include md() {
+      font-size: 30px;
+    }
+    @include sm() {
+      font-size: 18px;
+    }
+  }
+}

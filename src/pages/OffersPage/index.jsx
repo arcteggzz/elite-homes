@@ -1,6 +1,8 @@
 import styles from "./OffersPage.module.scss";
 import AnimatedFadeInPage from "../../utils/AnimatedFadeInPage";
 import PropertySummary from "./Components/PropertySummary";
+import OffersPageHeader from "./Components/OffersPageHeader";
+import SearchQuery from "./Components/SearchQuery";
 import { useGetAllPropertiesQuery } from "../../redux/features/property/propertyApiSlice";
 
 const OffersPage = () => {
@@ -46,6 +48,8 @@ const OffersPage = () => {
     <>
       <AnimatedFadeInPage>
         <main className={styles.OffersPage}>
+          <OffersPageHeader />
+          <SearchQuery />
           <section className={styles.offersList}>{content}</section>
 
           <div className={styles.btn_container}>

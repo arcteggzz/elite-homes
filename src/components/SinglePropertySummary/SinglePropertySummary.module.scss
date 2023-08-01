@@ -6,6 +6,7 @@
   width: 100%;
   height: auto;
   column-gap: 60px;
+  max-height: 400px;
 
   @include sm() {
     column-gap: 16px;
@@ -13,11 +14,13 @@
 
   .left {
     width: 40%;
+    max-height: 400px;
+
     position: relative;
 
     img {
       width: 100%;
-      height: auto;
+      height: 400px;
     }
 
     .placeholder_image {
@@ -145,8 +148,10 @@
         font-size: 25px;
         line-height: 30px;
         text-transform: capitalize;
-        color: #000000;
+        background-color: #2e70cb;
         cursor: pointer;
+        padding: 28px 30px;
+        color: #ffffff;
         @include sm() {
           font-size: 5.44175px;
           line-height: 7px;
