@@ -131,7 +131,7 @@ const PropertyDetailsPage = () => {
             reviewIsLoading={reviewIsLoading}
             reload={reloadPropertyReviews}
           />
-          <AddReview
+           <AddReview
             propertyId={+propertyDetails.data.id}
             onReloadPropertyReviews={handlePropertyReviewsReload}
           />

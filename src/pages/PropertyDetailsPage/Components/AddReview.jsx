@@ -28,6 +28,7 @@ const AddReview = ({ propertyId, onReloadPropertyReviews }) => {
   const [addReviewLoading, setAddReviewLoading] = useState(false);
   const reviewsReferesh = useGetAllPropertyReviewsQuery({ skip: true });
 
+  
   const formSubmithandler = async (e) => {
     e.preventDefault();
 
@@ -93,6 +94,9 @@ const AddReview = ({ propertyId, onReloadPropertyReviews }) => {
   return (
     <>
       <section className={styles.AddReview}>
+      { !currentAccessToken ? 
+        <h2>Your Review is important. Kindly login to comment</h2> 
+      :
         <form
           className={styles.schedule_tour_form}
           onSubmit={formSubmithandler}
@@ -122,6 +126,7 @@ const AddReview = ({ propertyId, onReloadPropertyReviews }) => {
           />
           <button>Post Comment</button>
         </form>
+}
       </section>
       {addReviewLoading ? (
         <>
